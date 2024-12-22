@@ -27,7 +27,7 @@ export function registerHandlebarsHelpers() {
     val && game.user.isGM && !game.settings.get('demonlord', 'gmEffectsControls') ? 'visibility: hidden;' : '',
   )
 
-  Handlebars.registerHelper('isBadgeImg', img => game.settings.get('demonlord', 'convertIntoBadge') ? img.includes('/demonlord-godless/assets/icons/badges') : true);
+  Handlebars.registerHelper('isBadgeImg', img => game.settings.get('demonlord', 'convertIntoBadge') ? img.includes('/demonlord/assets/icons/badges') : true);
   Handlebars.registerHelper('plusify', x => (!x ? "0" : (x > 0 ? '+' + x : x)))
   Handlebars.registerHelper('defaultValue', function (a, b) {
     return a ? a : b;

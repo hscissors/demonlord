@@ -171,7 +171,7 @@ export class DemonlordItem extends Item {
 
         const chatData = getChatBaseData(actor, rollMode)
 
-        const template = 'systems/demonlord-godless/templates/chat/formulaeroll.hbs'
+        const template = 'systems/demonlord/templates/chat/formulaeroll.hbs'
         renderTemplate(template, templateData).then(async content => {
           chatData.content = content
           chatData.sound = CONFIG.sounds.dice

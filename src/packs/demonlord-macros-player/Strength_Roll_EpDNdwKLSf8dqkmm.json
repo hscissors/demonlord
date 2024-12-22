@@ -10,7 +10,7 @@
   "scope": "global",
   "command": "// Select your token and execute to roll Strength Challenge Roll\ngame.demonlord.rollAttributeMacro(\"strength\");",
   "author": "Sd8TaawsSgOTEPU7",
-  "img": "systems/demonlord-godless/assets/icons/skills/strength.webp",
+  "img": "systems/demonlord/assets/icons/skills/strength.webp",
   "actorIds": [],
   "_key": "!macros!EpDNdwKLSf8dqkmm"
 }

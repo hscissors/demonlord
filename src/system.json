@@ -1,82 +1,91 @@
 {
-  "id": "demonlord-godless",
-  "title": "Shadow of the Demon Lord - Godless",
-  "description": "The Shadow of the Demonlord - Godless system for FoundryVTT",
-  "version": "1.0.0",
+  "id": "demonlord",
+  "title": "Shadow of the Demon Lord",
+  "description": "The Shadow of the Demonlord system for FoundryVTT",
+  "version": "4.6.7",
   "authors": [
     {
-      "name": "Nightmare Gate Press"
+      "name": "Xacus"
+    },
+    {
+      "name": "ClipplerBlood"
+    },
+    {
+      "name": "PatrickPorto"
+    },
+    {
+      "name": "Ferrer"
     }
   ],
-  "background": "systems/demonlord-godless/assets/ui/thumbnail.webp",
+  "background": "systems/demonlord/assets/ui/thumbnail.webp",
   "compatibility": {
     "minimum": 12,
     "verified": 12
   },
-  "esmodules": ["module/demonlord-godless.js"],
-  "styles": ["styles/demonlord-godless.css", "module/bundle.css"],
+  "esmodules": ["module/demonlord.js"],
+  "styles": ["styles/demonlord.css", "module/bundle.css"],
   "scripts": [],
   "packs": [
     {
       "name": "weapons",
       "label": "Weapons",
-      "system": "demonlord-godless",
+      "system": "demonlord",
       "path": "packs/weapons",
       "type": "Item"
     },
     {
       "name": "armor",
       "label": "Armor",
-      "system": "demonlord-godless",
+      "system": "demonlord",
       "path": "packs/armor",
       "type": "Item"
     },
     {
       "name": "ammunition",
       "label": "Ammunition",
-      "system": "demonlord-godless",
+      "system": "demonlord",
       "path": "packs/ammunition",
       "type": "Item"
     },
     {
       "name": "weapons-creature",
       "label": "Weapons Creature",
-      "system": "demonlord-godless",
+      "system": "demonlord",
       "path": "packs/weapons-creatures",
       "type": "Item"
     },
     {
       "name": "languages",
       "label": "Languages",
-      "system": "demonlord-godless",
+      "system": "demonlord",
       "path": "packs/languages",
       "type": "Item"
     },
     {
       "name": "demonlord-macros-gm",
       "label": "Demonlord Macros - GM",
-      "system": "demonlord-godless",
+      "system": "demonlord",
       "path": "packs/demonlord-macros-gm",
       "type": "Macro"
     },
     {
       "name": "demonlord-macros-player",
       "label": "Demonlord Macros - Player",
-      "system": "demonlord-godless",
+      "system": "demonlord",
       "path": "packs/demonlord-macros-player",
       "type": "Macro"
     },
     {
       "name": "sotdl-system-guide",
       "label": "SotDL System Guide",
-      "system": "demonlord-godless",
+      "system": "demonlord",
       "path": "packs/sotdl-system-guide",
       "type": "JournalEntry"
     },
     {
       "name": "sotdl-roll-tables",
       "label": "Demonlord - Roll Tables",
-      "system": "demonlord-godless",
+      "system": "demonlord",
       "path": "packs/roll-tables",
       "type": "RollTable"
     }
@@ -86,6 +95,41 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Portuguese (Brazilian)",
+      "path": "lang/pt-BR.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json"
+    },
+    {
+      "lang": "es",
+      "name": "Spanish",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "fr",
+      "name": "French",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italian",
+      "path": "lang/it.json"
+    },
+    {
+      "lang": "zh-tw",
+      "name": "Taiwanese Chinese",
+      "path": "lang/zh-tw.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polish",
+      "path": "lang/pl.json"
     }
   ],
   "grid": {
@@ -95,5 +139,11 @@
   "primaryTokenAttribute": "characteristics.health",
   "secondaryTokenAttribute": null,
   "socket": true,
+  "url": "https://github.com/Xacus/demonlord",
+  "manifest": "https://github.com/Xacus/demonlord/releases/latest/download/system.json",
+  "download": "https://github.com/Xacus/demonlord/releases/download/3.0.0/system.zip",
+  "bugs": "https://github.com/Xacus/demonlord/issues",
+  "readme": "https://github.com/Xacus/demonlord/blob/master/README.md",
+  "changelog": "https://github.com/Xacus/demonlord/blob/master/CHANGELOG.md",
   "license": "LICENSE.txt"
 }

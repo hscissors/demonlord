@@ -1,0 +1,21 @@
+<div class="demonlord" {{#if actor.id}}data-actor-id="{{actor.id}}" {{/if}}
+  {{#if item.id}}data-item-id="{{item.id}}" {{/if}} {{#if tokenId}}data-token-id="{{tokenId}}" {{/if}}>
+  <div class="showlessinfo"></div>
+  <header class="init-header">
+    <div class="inittext">
+      {{localize "DL.DialogHealedFor"}}<b>{{data.healing}}</b>{{localize "DL.DialogHealedForPoints"}}
+    </div>
+  </header>
+  <div>
+    {{#each diceData.dice}}
+      <div class="{{#if this.dice}}dice{{else}}modifier{{/if}}">
+        <label style="color:{{this.color}};">
+          {{this.result}}
+        </label>
+        {{#if this.img}}
+          <img src='{{this.img}}' />
+        {{/if}}
+      </div>
+    {{/each}}
+  </dive>
+</div>

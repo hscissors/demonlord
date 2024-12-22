@@ -26,7 +26,7 @@ export default class CharacterDataModel extends foundry.abstract.DataModel {
       religion: new foundry.data.fields.SchemaField({
         edit: makeBoolField(),
         value: makeStringField(),
-        image: makeStringField('systems/demonlord-godless/assets/icons/bird.webp')
+        image: makeStringField('systems/demonlord/assets/icons/bird.webp')
       }),
       languages: new foundry.data.fields.SchemaField({
         edit: makeBoolField(),

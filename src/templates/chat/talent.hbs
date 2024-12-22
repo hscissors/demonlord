@@ -49,9 +49,9 @@
     {{/if}}
     {{/if}}
 
-    {{> "systems/demonlord-godless/templates/chat/partial/chat-attack.hbs" data=data diceData=diceData}}
+    {{> "systems/demonlord/templates/chat/partial/chat-attack.hbs" data=data diceData=diceData}}
 
-    {{> "systems/demonlord-godless/templates/chat/partial/chat-description.hbs" description=data.description isCreature=data.isCreature}}
+    {{> "systems/demonlord/templates/chat/partial/chat-description.hbs" description=data.description isCreature=data.isCreature}}
 
     {{#if data.isCreature}}
       <div class="gmonly">
@@ -64,7 +64,7 @@
         </div>
       {{/if}}
 
-      {{> "systems/demonlord-godless/templates/chat/partial/chat-extra-effects.hbs" extraEffect=item.system.action.extraEffect extraEffect20=item.system.action.extraEffect20 isPlus20Roll=data.isPlus20Roll}}
+      {{> "systems/demonlord/templates/chat/partial/chat-extra-effects.hbs" extraEffect=item.system.action.extraEffect extraEffect20=item.system.action.extraEffect20 isPlus20Roll=data.isPlus20Roll}}
 
       {{#if data.defense}}
       <div class="roll20">
@@ -77,13 +77,13 @@
       {{#if data.healing}}
       <div class="talentactions roll-healing">
         <div class="header" data-item-id="{{data.id}}" data-healing="1">
-          <img src=" systems/demonlord-godless/assets/ui/icons/health.webp" width="15" height="15" />
+          <img src=" systems/demonlord/assets/ui/icons/health.webp" width="15" height="15" />
           <div>{{localize "DL.DialogTalentApplyHealing"}}</div>
         </div>
       </div>
       <div class="talentactions roll-healing">
         <div class="header" data-item-id="{{data.id}}" data-healing="2">
-          <img src=" systems/demonlord-godless/assets/ui/icons/health.webp" width="15" height="15" />
+          <img src=" systems/demonlord/assets/ui/icons/health.webp" width="15" height="15" />
           <div>{{localize "DL.DialogTalentApplyHalfHealing"}}</div>
         </div>
       </div>
@@ -92,28 +92,28 @@
       </div>
     {{/if}}
 
-    {{> "systems/demonlord-godless/templates/chat/partial/chat-challenge.hbs" data=data}}
+    {{> "systems/demonlord/templates/chat/partial/chat-challenge.hbs" data=data}}
 
     {{#if data.isCreature}}
     <div class="gmonly">
 
-      {{> "systems/demonlord-godless/templates/chat/partial/chat-measured-template.hbs" hasAreaTarget=data.hasAreaTarget
+      {{> "systems/demonlord/templates/chat/partial/chat-measured-template.hbs" hasAreaTarget=data.hasAreaTarget
       uuid=item.uuid}}
 
-      {{> "systems/demonlord-godless/templates/chat/partial/chat-damage.hbs" data=data}}
+      {{> "systems/demonlord/templates/chat/partial/chat-damage.hbs" data=data}}
 
-      {{> "systems/demonlord-godless/templates/chat/partial/chat-effects.hbs" data=data}}
+      {{> "systems/demonlord/templates/chat/partial/chat-effects.hbs" data=data}}
     </div>
     {{else}}
     {{#if data.ifBlindedRoll }}
     <div class="gmonly">
       {{/if}}
 
-      {{> "systems/demonlord-godless/templates/chat/partial/chat-measured-template.hbs" hasAreaTarget=data.hasAreaTarget uuid=item.uuid}}
+      {{> "systems/demonlord/templates/chat/partial/chat-measured-template.hbs" hasAreaTarget=data.hasAreaTarget uuid=item.uuid}}
 
-      {{> "systems/demonlord-godless/templates/chat/partial/chat-damage.hbs" data=data}}
+      {{> "systems/demonlord/templates/chat/partial/chat-damage.hbs" data=data}}
 
-      {{> "systems/demonlord-godless/templates/chat/partial/chat-effects.hbs" data=data}}
+      {{> "systems/demonlord/templates/chat/partial/chat-effects.hbs" data=data}}
       {{#if data.ifBlindedRoll }}
         </div>
       {{/if}}

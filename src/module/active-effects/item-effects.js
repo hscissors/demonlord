@@ -152,7 +152,7 @@ export class DLActiveEffects {
           addEffect('system.characteristics.health.max', ancestryLevel.characteristics.health, priority),
           addEffect('system.characteristics.health.healingrate', ancestryLevel.characteristics.healingRate, priority),
           overrideEffect('system.characteristics.size', ancestryLevel.characteristics.size, priority, true),
-          addEffect('system.characteristics.power', ancestryLevel.characteristics.power, priority),
+          // addEffect('system.characteristics.power', ancestryLevel.characteristics.power, priority),
           addEffect('system.attributes.perception.value', ancestryLevel.characteristics.perception, priority),
 
           (ancestryLevel.level === '0' ?
@@ -240,7 +240,7 @@ export class DLActiveEffects {
         changes: [
           // Characteristics
           addEffect('system.characteristics.health.max', pathLevel.characteristics.health, priority),
-          addEffect('system.characteristics.power', pathLevel.characteristics.power, priority),
+          // addEffect('system.characteristics.power', pathLevel.characteristics.power, priority),
           addEffect('system.attributes.perception.value', pathLevel.characteristics.perception, priority),
           addEffect('system.characteristics.speed', pathLevel.characteristics.speed, priority),
           addEffect('system.characteristics.defense', pathLevel.characteristics.defense, priority),
@@ -373,7 +373,7 @@ export class DLActiveEffects {
         // Bonuses - Characteristics
         addEffect('system.characteristics.defense', talentData.bonuses.defense, priority),
         addEffect('system.characteristics.health.max', talentData.bonuses.health, priority),
-        addEffect('system.characteristics.power', talentData.bonuses.power, priority),
+        // addEffect('system.characteristics.power', talentData.bonuses.power, priority),
         addEffect('system.characteristics.speed', talentData.bonuses.speed, priority),
       ].filter(falsyChangeFilter),
     }
@@ -474,7 +474,7 @@ export class DLActiveEffects {
 
     const effectData = {
       name: effectName,
-      icon: 'systems/demonlord-godless/assets/icons/effects/fatigued.svg',
+      icon: 'systems/demonlord/assets/icons/effects/fatigued.svg',
       origin: 'encumbrance',
       transfer: false,
       duration: { startTime: 0 },

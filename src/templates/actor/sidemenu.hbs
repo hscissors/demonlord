@@ -36,6 +36,20 @@
       </div>
       <div class="resttext">{{localize "DL.RestAction"}}</div>
     </div>
+    <div class="healbox">
+      <div class="heal">
+        <input
+                class="heal-char button"
+                type="button"
+                name="heal-char"
+                id="heal-char"
+                class="button"
+        />
+        <image class="heal-icon"/>
+        <label for="heal-char"/>
+      </div>
+      <div class="healtext">Heal</div>
+    </div>
     <div class="editBars">
       <a class="bar-edit" title="{{localize 'DL.ToggleBarView'}}"><i class="fas fa-edit"></i></a>
     </div>
@@ -141,7 +155,7 @@
       </div>
     </div>
     <div class="chars grid grid-2">
-      <div class="speedbox">
+      {{!-- <div class="speedbox">
         <div class="speedtext">{{localize "DL.CharFortune"}}</div>
         <div class="speed">
           <input
@@ -152,9 +166,12 @@
                   placeholder=""
           />
         </div>
-      </div>
+      </div> --}}
       <div class="speedbox">
-        <div class="speedtext">Grit</div>
+        <div class="speedtext">
+          <a class="grit-roll" title="Grit">Grit <i class="fas fa-dice"></i></a> 
+        </div>
+        
         <div class="speed">
           <input
                 name="system.characteristics.health.grit"

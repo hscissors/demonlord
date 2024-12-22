@@ -28,8 +28,8 @@ export default class DLCharacterSheet extends DLBaseActorSheet {
 
   /** @override */
   get template() {
-    if (!game.user.isGM && this.actor.limited) return 'systems/demonlord-godless/templates/actor/limited-sheet.hbs'
-    return 'systems/demonlord-godless/templates/actor/actor-sheet.hbs'
+    if (!game.user.isGM && this.actor.limited) return 'systems/demonlord/templates/actor/limited-sheet.hbs'
+    return 'systems/demonlord/templates/actor/actor-sheet.hbs'
   }
 
   /* -------------------------------------------- */
@@ -214,6 +214,12 @@ export default class DLCharacterSheet extends DLBaseActorSheet {
     // Corruption Roll
     html.find('.corruption-roll').click(async _ => await this.actor.rollCorruption())
 
+    // Heal clicks
+    html.find('.heal-char').click(async _ => this.actor.healActor())
+
+    // Grit Roll
+    html.find('.grit-roll').click(async _ => await this.actor.rollGrit())
+
     // Edit HealthBar, Insanity and Corruption
     html.find('.bar-edit').click(async () => {
       const actor = this.actor
@@ -362,9 +368,6 @@ export default class DLCharacterSheet extends DLBaseActorSheet {
         )
       }),
     )
-
-    // Healing Rate button
-    html.find('.healingratebox').on('mousedown', async ev => await this.actor.applyHealing(ev.button === 0))
 
     // Talent: Options
     html.find('input[type=checkbox][id^="option"]').click(async ev => {

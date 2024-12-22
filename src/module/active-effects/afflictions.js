@@ -76,10 +76,10 @@ export class DLAfflictions {
     )
 
     // Charmed
-    effectsDataList.push(_buildBaseAffliction('charmed', 'systems/demonlord-godless/assets/icons/effects/charmed.svg'))
+    effectsDataList.push(_buildBaseAffliction('charmed', 'systems/demonlord/assets/icons/effects/charmed.svg'))
 
     // Compelled
-    effectsDataList.push(_buildBaseAffliction('compelled', 'systems/demonlord-godless/assets/icons/effects/compelled.svg'))
+    effectsDataList.push(_buildBaseAffliction('compelled', 'systems/demonlord/assets/icons/effects/compelled.svg'))
 
     // Dazed
     effectsDataList.push(
@@ -115,7 +115,7 @@ export class DLAfflictions {
     effectsDataList.push(
       _buildBaseAffliction(
         'defenseless',
-        'systems/demonlord-godless/assets/icons/effects/defenseless.svg',
+        'systems/demonlord/assets/icons/effects/defenseless.svg',
         [
           overrideEffect('system.characteristics.defense', 5, effectPriority),
           overrideEffect('system.maluses.autoFail.challenge.strength', 1, effectPriority),
@@ -139,7 +139,7 @@ export class DLAfflictions {
     effectsDataList.push(
       _buildBaseAffliction(
         'diseased',
-        'systems/demonlord-godless/assets/icons/effects/diseased.svg',
+        'systems/demonlord/assets/icons/effects/diseased.svg',
         [
           addEffect('system.bonuses.challenge.boons.all', -1, effectPriority),
           addEffect('system.bonuses.attack.boons.all', -1, effectPriority),
@@ -151,7 +151,7 @@ export class DLAfflictions {
     effectsDataList.push(
       _buildBaseAffliction(
         'fatigued',
-        'systems/demonlord-godless/assets/icons/effects/fatigued.svg',
+        'systems/demonlord/assets/icons/effects/fatigued.svg',
         [
           addEffect('system.bonuses.challenge.boons.all', -1, effectPriority),
           addEffect('system.bonuses.attack.boons.all', -1, effectPriority),
@@ -172,11 +172,11 @@ export class DLAfflictions {
     )
 
     // Grabbed
-    effectsDataList.push(_buildBaseAffliction('grabbed', 'systems/demonlord-godless/assets/icons/effects/grabbed.svg'))
+    effectsDataList.push(_buildBaseAffliction('grabbed', 'systems/demonlord/assets/icons/effects/grabbed.svg'))
 
     // Horrified
     effectsDataList.push(
-      _buildBaseAffliction('horrified', 'systems/demonlord-godless/assets/icons/effects/horrified.svg', [
+      _buildBaseAffliction('horrified', 'systems/demonlord/assets/icons/effects/horrified.svg', [
         addEffect('system.bonuses.challenge.boons.all', -3, effectPriority),
         addEffect('system.bonuses.attack.boons.all', -3, effectPriority),
       ]),
@@ -184,7 +184,7 @@ export class DLAfflictions {
 
     // Immobilized
     effectsDataList.push(
-      _buildBaseAffliction('immobilized', 'systems/demonlord-godless/assets/icons/effects/immobilized.svg', [
+      _buildBaseAffliction('immobilized', 'systems/demonlord/assets/icons/effects/immobilized.svg', [
         downgradeEffect('system.characteristics.speed', 0, effectPriority),
         addEffect('system.bonuses.defense.boons.defense', -1, effectPriority),
         addEffect('system.bonuses.defense.boons.strength', -1, effectPriority),
@@ -199,7 +199,7 @@ export class DLAfflictions {
     effectsDataList.push(
       _buildBaseAffliction(
         'impaired',
-        'systems/demonlord-godless/assets/icons/effects/impaired.svg',
+        'systems/demonlord/assets/icons/effects/impaired.svg',
         [
           addEffect('system.bonuses.challenge.boons.all', -1, effectPriority),
           addEffect('system.bonuses.attack.boons.all', -1, effectPriority),
@@ -232,7 +232,7 @@ export class DLAfflictions {
 
     // Slowed
     effectsDataList.push(
-      _buildBaseAffliction('slowed', 'systems/demonlord-godless/assets/icons/effects/slowed.svg', [
+      _buildBaseAffliction('slowed', 'systems/demonlord/assets/icons/effects/slowed.svg', [
         overrideEffect('system.maluses.noFastTurn', 1, effectPriority),
         multiplyEffect('system.characteristics.speed', 0.5, effectPriority),
       ]),
@@ -271,7 +271,7 @@ export class DLAfflictions {
     effectsDataList.push(
       _buildBaseAffliction(
         'surprised',
-        'systems/demonlord-godless/assets/icons/effects/surprised.svg',
+        'systems/demonlord/assets/icons/effects/surprised.svg',
         [
           overrideEffect('system.maluses.autoFail.challenge.strength', 1, effectPriority),
           overrideEffect('system.maluses.autoFail.challenge.agility', 1, effectPriority),
@@ -319,11 +319,11 @@ export class DLAfflictions {
     // ----------------------- ACTIONS -------------------------- //
 
     // Concentrate
-    effectsDataList.push(_buildBaseAffliction('concentrate', 'systems/demonlord-godless/assets/icons/effects/concentrate.svg'))
+    effectsDataList.push(_buildBaseAffliction('concentrate', 'systems/demonlord/assets/icons/effects/concentrate.svg'))
 
     // Defend
     effectsDataList.push(
-      _buildBaseAffliction('defend', 'systems/demonlord-godless/assets/icons/effects/defend.svg', [
+      _buildBaseAffliction('defend', 'systems/demonlord/assets/icons/effects/defend.svg', [
         addEffect('system.bonuses.defense.boons.defense', 1, effectPriority),
         addEffect('system.bonuses.defense.boons.strength', 1, effectPriority),
         addEffect('system.bonuses.defense.boons.agility', 1, effectPriority),
@@ -338,14 +338,14 @@ export class DLAfflictions {
     effectsDataList.push(
       _buildBaseAffliction(
         'help',
-        'systems/demonlord-godless/assets/icons/effects/help.svg',
+        'systems/demonlord/assets/icons/effects/help.svg',
         [], // TODO: Add boons? Aka help should be applied to the receiver
       ),
     )
 
     // Prepare
     effectsDataList.push(
-      _buildBaseAffliction('prepare', 'systems/demonlord-godless/assets/icons/effects/prepare.svg', [
+      _buildBaseAffliction('prepare', 'systems/demonlord/assets/icons/effects/prepare.svg', [
         addEffect('system.bonuses.challenge.boons.strength', 1, effectPriority),
         addEffect('system.bonuses.challenge.boons.agility', 1, effectPriority),
         addEffect('system.bonuses.challenge.boons.intellect', 1, effectPriority),
@@ -360,16 +360,16 @@ export class DLAfflictions {
     )
 
     // Reload
-    effectsDataList.push(_buildBaseAffliction('reload', 'systems/demonlord-godless/assets/icons/effects/reload.svg'))
+    effectsDataList.push(_buildBaseAffliction('reload', 'systems/demonlord/assets/icons/effects/reload.svg'))
 
     // Retreat
-    effectsDataList.push(_buildBaseAffliction('retreat', 'systems/demonlord-godless/assets/icons/effects/retreat.svg'))
+    effectsDataList.push(_buildBaseAffliction('retreat', 'systems/demonlord/assets/icons/effects/retreat.svg'))
 
     // Rush
-    effectsDataList.push(_buildBaseAffliction('rush', 'systems/demonlord-godless/assets/icons/effects/rush.svg'))
+    effectsDataList.push(_buildBaseAffliction('rush', 'systems/demonlord/assets/icons/effects/rush.svg'))
 
     // Stabilize
-    effectsDataList.push(_buildBaseAffliction('stabilize', 'systems/demonlord-godless/assets/icons/effects/stabilize.svg'))
+    effectsDataList.push(_buildBaseAffliction('stabilize', 'systems/demonlord/assets/icons/effects/stabilize.svg'))
 
     // ----------------------- DAMAGE EFFECTS -------------------------- //
 
@@ -378,14 +378,14 @@ export class DLAfflictions {
 
     // Incapacitated
     effectsDataList.push(
-      _buildBaseAffliction('incapacitated', 'systems/demonlord-godless/assets/icons/effects/incapacitated.svg'),
+      _buildBaseAffliction('incapacitated', 'systems/demonlord/assets/icons/effects/incapacitated.svg'),
     )
 
     // Disabled
-    effectsDataList.push(_buildBaseAffliction('disabled', 'systems/demonlord-godless/assets/icons/effects/disabled.svg', [], {'core.overlay': true}))
+    effectsDataList.push(_buildBaseAffliction('disabled', 'systems/demonlord/assets/icons/effects/disabled.svg', [], {'core.overlay': true}))
 
     // Dying
-    effectsDataList.push(_buildBaseAffliction('dying', 'systems/demonlord-godless/assets/icons/effects/dying.svg', [], {'core.overlay': true}))
+    effectsDataList.push(_buildBaseAffliction('dying', 'systems/demonlord/assets/icons/effects/dying.svg', [], {'core.overlay': true}))
 
     return effectsDataList
   }

@@ -69,27 +69,27 @@ export default class DLBaseItemSheet extends HandlebarsApplicationMixin(ItemShee
   }
 
   static PARTS = {
-    header: { template: 'systems/demonlord-godless/templates/item/parts/item-sheet-header.hbs' },
-    tabs: { template: 'systems/demonlord-godless/templates/generic/tab-navigation.hbs' },
-    description: { template: 'systems/demonlord-godless/templates/item/parts/item-description.hbs' },
-    effects: { template: 'systems/demonlord-godless/templates/item/parts/item-effects.hbs' },
+    header: { template: 'systems/demonlord/templates/item/parts/item-sheet-header.hbs' },
+    tabs: { template: 'systems/demonlord/templates/generic/tab-navigation.hbs' },
+    description: { template: 'systems/demonlord/templates/item/parts/item-description.hbs' },
+    effects: { template: 'systems/demonlord/templates/item/parts/item-effects.hbs' },
 
     // Attributes
-    ancestry: { template: 'systems/demonlord-godless/templates/item/item-ancestry-sheet.hbs' },
-    ammo: { template: 'systems/demonlord-godless/templates/item/item-ammo-sheet.hbs' },
-    armor: { template: 'systems/demonlord-godless/templates/item/item-armor-sheet.hbs' },
-    creaturerole: { template: 'systems/demonlord-godless/templates/item/item-role-sheet.hbs'},
-    endoftheround: { template: 'systems/demonlord-godless/templates/item/item-endoftheround-sheet.hbs' },
-    feature: { template: 'systems/demonlord-godless/templates/item/item-feature-sheet.hbs' }, // Empty
-    item: { template: 'systems/demonlord-godless/templates/item/item-item-sheet.hbs' },
-    language: { template: 'systems/demonlord-godless/templates/item/item-language-sheet.hbs' },
-    path: { template: 'systems/demonlord-godless/templates/item/item-path-sheet.hbs' },
-    profession: { template: 'systems/demonlord-godless/templates/item/item-profession-sheet.hbs' }, // Empty
-    relic: { template: 'systems/demonlord-godless/templates/item/item-relic-sheet.hbs' },
-    specialaction: { template: 'systems/demonlord-godless/templates/item/item-specialaction-sheet.hbs' }, // Empty
-    spell: { template: 'systems/demonlord-godless/templates/item/item-spell-sheet.hbs' },
-    talent: { template: 'systems/demonlord-godless/templates/item/item-talent-sheet.hbs' },
-    weapon: { template: 'systems/demonlord-godless/templates/item/item-weapon-sheet.hbs' }
+    ancestry: { template: 'systems/demonlord/templates/item/item-ancestry-sheet.hbs' },
+    ammo: { template: 'systems/demonlord/templates/item/item-ammo-sheet.hbs' },
+    armor: { template: 'systems/demonlord/templates/item/item-armor-sheet.hbs' },
+    creaturerole: { template: 'systems/demonlord/templates/item/item-role-sheet.hbs'},
+    endoftheround: { template: 'systems/demonlord/templates/item/item-endoftheround-sheet.hbs' },
+    feature: { template: 'systems/demonlord/templates/item/item-feature-sheet.hbs' }, // Empty
+    item: { template: 'systems/demonlord/templates/item/item-item-sheet.hbs' },
+    language: { template: 'systems/demonlord/templates/item/item-language-sheet.hbs' },
+    path: { template: 'systems/demonlord/templates/item/item-path-sheet.hbs' },
+    profession: { template: 'systems/demonlord/templates/item/item-profession-sheet.hbs' }, // Empty
+    relic: { template: 'systems/demonlord/templates/item/item-relic-sheet.hbs' },
+    specialaction: { template: 'systems/demonlord/templates/item/item-specialaction-sheet.hbs' }, // Empty
+    spell: { template: 'systems/demonlord/templates/item/item-spell-sheet.hbs' },
+    talent: { template: 'systems/demonlord/templates/item/item-talent-sheet.hbs' },
+    weapon: { template: 'systems/demonlord/templates/item/item-weapon-sheet.hbs' }
   }
 
   // Default tab

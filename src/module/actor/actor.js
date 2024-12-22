@@ -10,13 +10,14 @@ import {
   postAttackToChat,
   postAttributeToChat,
   postCorruptionToChat,
+  postGritToChat,
   postItemToChat,
   postSpellToChat,
   postTalentToChat,
 } from '../chat/roll-messages'
 import {handleCreateAncestry, handleCreatePath, handleCreateRole, handleCreateRelic } from '../item/nested-objects'
 import {TokenManager} from '../pixi/token-manager'
-import {findAddEffect, findDeleteEffect} from "../demonlord-godless";
+import {findAddEffect, findDeleteEffect} from "../demonlord";
 
 const tokenManager = new TokenManager()
 
@@ -178,6 +179,17 @@ export class DemonlordActor extends Actor {
 
       // Armor
       system.characteristics.defense = (system.bonuses.armor.fixed || system.attributes.agility.value + system.bonuses.armor.agility) // + system.characteristics.defense // Applied as ActiveEffect further down
+
+      //Power
+      let powerMap = ["0", "1", "1", "2", "2", "3", "3", "4", "4", "5"]
+      let powerLevel = "0"
+  
+      if(parseInt(system.level) >= powerMap.length) {
+        powerLevel = "5"
+      } else {
+        powerLevel = powerMap[parseInt(system.level)]
+      }
+      system.characteristics.power = powerLevel
     }
     // --- Creature specific data ---
     else {
@@ -849,6 +861,18 @@ export class DemonlordActor extends Actor {
 
   /* -------------------------------------------- */
 
+  async rollGrit(increment = true) {
+    if(this.system.characteristics.health.grit == 0 && increment) { return }
+
+    let gritFormula = this.getGritFromPaths(this.paths)
+    let gritRoll = new Roll(gritFormula)
+
+    await gritRoll.evaluate()
+    postGritToChat(this, gritRoll, increment)
+  }
+
+   /* -------------------------------------------- */
+
   async createItemCreate(event) {
     event.preventDefault()
 
@@ -907,7 +931,7 @@ export class DemonlordActor extends Actor {
       chatData.whisper = ChatMessage.getWhisperRecipients('GM')
     }
 
-    const template = 'systems/demonlord-godless/templates/chat/enchantment.hbs'
+    const template = 'systems/demonlord/templates/chat/enchantment.hbs'
     renderTemplate(template, templateData).then(async content => {
       chatData.content = content
       await ChatMessage.create(chatData)
@@ -972,8 +996,11 @@ export class DemonlordActor extends Actor {
     await this.updateEmbeddedDocuments('Item', [...talentData, ...spellData])
 
     if(healing) {
-      await this.applyHealing(true)
-      if (restTime === 24) this.applyHealing(true)
+      this.increaseGrit(1)
+
+      if (restTime === 24) {
+        this.applyHealing(true)
+      }
     }
 
 		for (let effect of this.appliedEffects) {
@@ -994,17 +1021,28 @@ export class DemonlordActor extends Actor {
       chatData.whisper = ChatMessage.getWhisperRecipients('GM')
     }
 
-    const template = 'systems/demonlord-godless/templates/chat/rest.hbs'
+    const template = 'systems/demonlord/templates/chat/rest.hbs'
     renderTemplate(template, templateData).then(async content => {
       chatData.content = content
       await ChatMessage.create(chatData)
     })
   }
 
+  async healActor() {
+    await this.rollGrit(false)
+  }
+
   async applyHealing(fullHealingRate) {
     let rate = this.system.characteristics.health?.healingrate || 0
     rate = fullHealingRate ? rate : rate / 2
     return await this.increaseDamage(-rate)
+  }
+
+  async increaseGrit(increment) {
+    let newGrit = this.system.characteristics.health.grit + increment
+    return this.update({
+      'system.characteristics.health.grit': newGrit
+    })
   }
 
   async increaseDamage(increment) {
@@ -1122,5 +1160,24 @@ export class DemonlordActor extends Actor {
     } else if (sizeNumber >= 0.03125) {
       return "1/32";
     }
+  }
+
+  getGritFromPaths(paths) {
+    let gritRoll
+
+    switch(this.paths.length) {
+      case 0:
+      case 1:
+        gritRoll = '2d6'
+        break
+      case 2:
+        gritRoll = '4d6'
+        break
+      case 3: 
+      default:
+        gritRoll = '6d6'
+    }
+
+    return gritRoll
   }
 }

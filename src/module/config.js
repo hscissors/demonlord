@@ -105,22 +105,22 @@ DL.activeEffectsMenuTypes = {
 }
 
 DL.defaultItemIcons = {
-  ammo: 'systems/demonlord-godless/assets/icons/ammunition/arrows/arrows7.webp',
+  ammo: 'systems/demonlord/assets/icons/ammunition/arrows/arrows7.webp',
   item: 'icons/containers/bags/sack-cloth-tan.webp',
-  armor: 'systems/demonlord-godless/assets/icons/armor/soft%20leather.webp',
+  armor: 'systems/demonlord/assets/icons/armor/soft%20leather.webp',
   feature: 'icons/skills/social/intimidation-impressing.webp',
-  spell: 'systems/demonlord-godless/assets/icons/skills/spellbook.webp',
-  talent: 'systems/demonlord-godless/assets/icons/skills/fist.webp',
+  spell: 'systems/demonlord/assets/icons/skills/spellbook.webp',
+  talent: 'systems/demonlord/assets/icons/skills/fist.webp',
   weapon: 'icons/magic/light/explosion-impact-purple.webp',
-  specialaction: 'systems/demonlord-godless/assets/icons/skills/fist.webp',
+  specialaction: 'systems/demonlord/assets/icons/skills/fist.webp',
   endoftheround: 'icons/commodities/tech/watch.webp',
   profession: 'icons/tools/hand/hammer-and-nail.webp',
-  language: 'systems/demonlord-godless/assets/icons/other/books/book2.webp',
-  ancestry: 'systems/demonlord-godless/assets/icons/badges/dwarf-01.webp',
+  language: 'systems/demonlord/assets/icons/other/books/book2.webp',
+  ancestry: 'systems/demonlord/assets/icons/badges/dwarf-01.webp',
   path: {
-    novice: 'systems/demonlord-godless/assets/icons/badges/sword-01.webp',
-    expert: 'systems/demonlord-godless/assets/icons/badges/axe-01.webp',
-    master: 'systems/demonlord-godless/assets/icons/badges/helm-01.webp',
+    novice: 'systems/demonlord/assets/icons/badges/sword-01.webp',
+    expert: 'systems/demonlord/assets/icons/badges/axe-01.webp',
+    master: 'systems/demonlord/assets/icons/badges/helm-01.webp',
   },
   creaturerole: 'icons/equipment/back/cape-layered-blue-accent.webp',
   relic: 'icons/commodities/treasure/sceptre-jeweled-gold.webp'

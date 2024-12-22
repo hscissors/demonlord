@@ -114,13 +114,11 @@ form {
       }
 
       .restbox,
-      .healingratebox {
+      .healbox {
         position: absolute;
-        top: 143px;
-        left: 35px;
 
         .rest,
-        .healingrate {
+        .heal {
           height: 26px;
           width: 26px;
           border-radius: 16px;
@@ -152,6 +150,14 @@ form {
             top: -33px;
           }
 
+          img.heal-icon {
+            pointer-events: none;
+            content: url('../../../icons/svg/pill.svg');
+            position: relative;
+            left: -1px;
+            top: -33px;
+          }
+
           input.checkbox {
             display: none;
           }
@@ -173,12 +179,21 @@ form {
         }
 
         .resttext,
-        .healingratetext {
+        .healtext {
           position: absolute;
           text-align: center;
           left: 0;
           top: 30px;
         }
+      }
+
+      .restbox {
+        top: 143px;
+        left: 35px;
+      }
+      .healbox {
+        top: 143px;
+        right: 35px;
       }
 
       .editBars {
@@ -277,19 +292,6 @@ form {
         .turnmode {
           margin-top: 15px;
           text-align: center;
-        }
-      }
-
-      .healingratebox {
-        left: 186px;
-
-        .healingrate {
-          padding-top: 5px;
-          text-align: center;
-        }
-
-        .healingratetext {
-          left: -20px;
         }
       }
 

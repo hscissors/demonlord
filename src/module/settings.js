@@ -7,7 +7,7 @@ export class AdvancedSettings extends FormApplication {
         return foundry.utils.mergeObject(super.defaultOptions, {
             id: "advanced-settings",
             title: game.i18n.localize("DL.SettingDSNLabel"),
-            template: 'systems/demonlord-godless/templates/setting/advancedsettings.hbs',
+            template: 'systems/demonlord/templates/setting/advancedsettings.hbs',
             width: 520
         });
     }
@@ -62,7 +62,7 @@ export class OptionalRulesSettings extends FormApplication {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: 'optionalrules-settings',
       title: game.i18n.localize('DL.SettingOptionalRulesLabel'),
-      template: 'systems/demonlord-godless/templates/setting/optionalrules.hbs',
+      template: 'systems/demonlord/templates/setting/optionalrules.hbs',
       width: 720,
     })
   }

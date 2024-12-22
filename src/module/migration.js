@@ -703,8 +703,8 @@ export const migrateWorld_2_0_0 = async () => {
 }
 
 const _getNewImgPath = (img, migrateDefault = false, item = undefined) => {
-  if (img && img.includes('systems/demonlord-godless/icons')) {
-    img = img.replace('/demonlord-godless/icons', '/demonlord-godless/assets/icons')
+  if (img && img.includes('systems/demonlord/icons')) {
+    img = img.replace('/demonlord/icons', '/demonlord/assets/icons')
     img = img.replace('.png', '.webp')
     return img
   } else if (migrateDefault && img === 'icons/svg/mystery-man.svg' && item) {

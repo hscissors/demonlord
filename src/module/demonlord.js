@@ -398,7 +398,7 @@ Hooks.once('diceSoNiceReady', dice3d => {
   dice3d.addSystem({id: 'demonlord', name: 'Demonlord'}, true)
   dice3d.addDicePreset({
     type: 'd6',
-    labels: ['1', '2', '3', '4', '5', 'systems/demonlord-godless/assets/ui/icons/logo.png'],
+    labels: ['1', '2', '3', '4', '5', 'systems/demonlord/assets/ui/icons/logo.png'],
     system: 'demonlord',
   })
   dice3d.addDicePreset({
@@ -423,14 +423,14 @@ Hooks.once('diceSoNiceReady', dice3d => {
       '17',
       '18',
       '19',
-      'systems/demonlord-godless/assets/ui/icons/logo.png',
+      'systems/demonlord/assets/ui/icons/logo.png',
     ],
     system: 'demonlord',
   })
   if (game.settings.get('demonlord', 'replaced3')) {
     dice3d.addDicePreset({
       type: 'd3',
-      labels: ['I', 'II', 'systems/demonlord-godless/assets/ui/icons/logo.png'],
+      labels: ['I', 'II', 'systems/demonlord/assets/ui/icons/logo.png'],
       system: 'demonlord',
     })
   }  

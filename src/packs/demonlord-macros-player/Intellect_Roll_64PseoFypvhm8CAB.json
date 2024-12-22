@@ -10,7 +10,7 @@
   "scope": "global",
   "command": "// Select your token and execute to roll Intellect Challenge Roll\ngame.demonlord.rollAttributeMacro(\"intellect\");",
   "author": "Sd8TaawsSgOTEPU7",
-  "img": "systems/demonlord-godless/assets/icons/skills/intellect.webp",
+  "img": "systems/demonlord/assets/icons/skills/intellect.webp",
   "actorIds": [],
   "_key": "!macros!64PseoFypvhm8CAB"
 }
