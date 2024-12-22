@@ -177,7 +177,7 @@ async function _onChatRollDamage(event) {
   if (damageRoll) {
     chatData.rolls = [damageRoll]
   }
-  const template = 'systems/demonlord/templates/chat/damage.hbs'
+  const template = 'systems/demonlord-godless/templates/chat/damage.hbs'
   renderTemplate(template, templateData).then(content => {
     chatData.content = content
     chatData.sound = CONFIG.sounds.dice
@@ -335,7 +335,7 @@ async function _onChatRequestChallengeRoll(event) {
 
     chatData.whisper = ChatMessage.getWhisperRecipients(actor.name)
 
-    const template = 'systems/demonlord/templates/chat/makechallengeroll.hbs'
+    const template = 'systems/demonlord-godless/templates/chat/makechallengeroll.hbs'
     renderTemplate(template, templateData).then(content => {
       chatData.content = content
 
@@ -393,7 +393,7 @@ async function _onChatRequestInitRoll(event) {
 
     chatData.whisper = ChatMessage.getWhisperRecipients(actor.name)
 
-    const template = 'systems/demonlord/templates/chat/makeinitroll.hbs'
+    const template = 'systems/demonlord-godless/templates/chat/makeinitroll.hbs'
     renderTemplate(template, templateData).then(async content => {
       chatData.content = content
       await ChatMessage.create(chatData)

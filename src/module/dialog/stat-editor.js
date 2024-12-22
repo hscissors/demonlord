@@ -22,7 +22,7 @@ export class DLStatEditor extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static PARTS = {
     form: {
-      template: 'systems/demonlord/templates/dialogs/stat-editor.hbs'
+      template: 'systems/demonlord-godless/templates/dialogs/stat-editor.hbs'
     }
   }
 

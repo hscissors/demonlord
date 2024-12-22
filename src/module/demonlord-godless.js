@@ -12,12 +12,12 @@ import * as migrations from './migration.js'
 import {handleMigrations} from './migration.js'
 import * as macros from './macros/item-macros.js'
 import * as gmMacros from './macros/gm-macros.js'
-import * as playerMacros from './macros/player-macros'
-import {DLAfflictions} from './active-effects/afflictions'
-import {DLActiveEffectConfig} from './active-effects/sheets/active-effect-config'
-import DLCharacterSheet from './actor/sheets/character-sheet'
-import DLCreatureSheet from './actor/sheets/creature-sheet'
-import DLVehicleSheet from './actor/sheets/vehicle-sheet'
+import * as playerMacros from './macros/player-macros.js'
+import {DLAfflictions} from './active-effects/afflictions.js'
+import {DLActiveEffectConfig} from './active-effects/sheets/active-effect-config.js'
+import DLCharacterSheet from './actor/sheets/character-sheet.js'
+import DLCreatureSheet from './actor/sheets/creature-sheet.js'
+import DLVehicleSheet from './actor/sheets/vehicle-sheet.js'
 import DLBaseItemSheet from './item/sheets/base-item-sheet.js'
 
 import CharacterDataModel from './data/actor/CharacterDataModel.js'
@@ -38,12 +38,12 @@ import SpecialActionDataModel from './data/item/SpecialActionDataModel.js'
 import SpellDataModel from './data/item/SpellDataModel.js'
 import TalentDataModel from './data/item/TalentDataModel.js'
 import WeaponDataModel from './data/item/WeaponDataModel.js'
-import './playertrackercontrol'
-import {initChatListeners} from './chat/chat-listeners'
+import './playertrackercontrol.js'
+import {initChatListeners} from './chat/chat-listeners.js'
 import 'tippy.js/dist/tippy.css';
-import {registerHandlebarsHelpers} from "./utils/handlebars-helpers";
-import DLBaseActorSheet from "./actor/sheets/base-actor-sheet";
-import {_onUpdateWorldTime, DLCombat} from "./combat/combat"; // optional for styling
+import {registerHandlebarsHelpers} from "./utils/handlebars-helpers.js";
+import DLBaseActorSheet from "./actor/sheets/base-actor-sheet.js";
+import {_onUpdateWorldTime, DLCombat} from "./combat/combat.js"; // optional for styling
 
 
 Hooks.once('init', async function () {
@@ -398,7 +398,7 @@ Hooks.once('diceSoNiceReady', dice3d => {
   dice3d.addSystem({id: 'demonlord', name: 'Demonlord'}, true)
   dice3d.addDicePreset({
     type: 'd6',
-    labels: ['1', '2', '3', '4', '5', 'systems/demonlord/assets/ui/icons/logo.png'],
+    labels: ['1', '2', '3', '4', '5', 'systems/demonlord-godless/assets/ui/icons/logo.png'],
     system: 'demonlord',
   })
   dice3d.addDicePreset({
@@ -423,14 +423,14 @@ Hooks.once('diceSoNiceReady', dice3d => {
       '17',
       '18',
       '19',
-      'systems/demonlord/assets/ui/icons/logo.png',
+      'systems/demonlord-godless/assets/ui/icons/logo.png',
     ],
     system: 'demonlord',
   })
   if (game.settings.get('demonlord', 'replaced3')) {
     dice3d.addDicePreset({
       type: 'd3',
-      labels: ['I', 'II', 'systems/demonlord/assets/ui/icons/logo.png'],
+      labels: ['I', 'II', 'systems/demonlord-godless/assets/ui/icons/logo.png'],
       system: 'demonlord',
     })
   }  

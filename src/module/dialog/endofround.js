@@ -24,7 +24,7 @@ export class DLEndOfRound extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static PARTS = {
     form: {
-      template: 'systems/demonlord/templates/dialogs/endofround-dialog.hbs'
+      template: 'systems/demonlord-godless/templates/dialogs/endofround-dialog.hbs'
     }
   }
   

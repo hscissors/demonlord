@@ -47,7 +47,8 @@
             "max": 0,
             "value": 0,
             "injured": false,
-            "healingrate": 0
+            "healingrate": 0,
+            "grit": 0
           },
           "defense": 0,
           "size": "1",
@@ -95,7 +96,7 @@
       "religion": {
         "edit": false,
         "value": "",
-        "image": "systems/demonlord/assets/icons/bird.webp"
+        "image": "systems/demonlord-godless/assets/icons/bird.webp"
       },
       "languages": {
         "edit": false,

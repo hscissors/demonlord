@@ -16,7 +16,7 @@ import {
 } from '../chat/roll-messages'
 import {handleCreateAncestry, handleCreatePath, handleCreateRole, handleCreateRelic } from '../item/nested-objects'
 import {TokenManager} from '../pixi/token-manager'
-import {findAddEffect, findDeleteEffect} from "../demonlord";
+import {findAddEffect, findDeleteEffect} from "../demonlord-godless";
 
 const tokenManager = new TokenManager()
 
@@ -907,7 +907,7 @@ export class DemonlordActor extends Actor {
       chatData.whisper = ChatMessage.getWhisperRecipients('GM')
     }
 
-    const template = 'systems/demonlord/templates/chat/enchantment.hbs'
+    const template = 'systems/demonlord-godless/templates/chat/enchantment.hbs'
     renderTemplate(template, templateData).then(async content => {
       chatData.content = content
       await ChatMessage.create(chatData)
@@ -994,7 +994,7 @@ export class DemonlordActor extends Actor {
       chatData.whisper = ChatMessage.getWhisperRecipients('GM')
     }
 
-    const template = 'systems/demonlord/templates/chat/rest.hbs'
+    const template = 'systems/demonlord-godless/templates/chat/rest.hbs'
     renderTemplate(template, templateData).then(async content => {
       chatData.content = content
       await ChatMessage.create(chatData)

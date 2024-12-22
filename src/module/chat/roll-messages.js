@@ -122,7 +122,7 @@ export function postAttackToChat(attacker, defender, item, attackRoll, attackAtt
   if (attackRoll) {
     chatData.rolls = [attackRoll]
   }
-  const template = 'systems/demonlord/templates/chat/combat.hbs'
+  const template = 'systems/demonlord-godless/templates/chat/combat.hbs'
   return renderTemplate(template, templateData).then(content => {
     chatData.content = content
     chatData.sound = CONFIG.sounds.dice
@@ -183,7 +183,7 @@ export function postAttributeToChat(actor, attribute, challengeRoll, inputBoons)
   if (challengeRoll) {
     chatData.rolls = [challengeRoll]
   }
-  const template = 'systems/demonlord/templates/chat/challenge.hbs'
+  const template = 'systems/demonlord-godless/templates/chat/challenge.hbs'
   renderTemplate(template, templateData).then(content => {
     chatData.content = content
     chatData.sound = CONFIG.sounds.dice
@@ -298,7 +298,7 @@ export function postTalentToChat(actor, talent, attackRoll, target, inputBoons) 
     chatData.rolls = [attackRoll]
   }
   if (talentData?.damage || talentData?.action?.attack || (!talentData?.action?.attack && !talentData?.damage)) {
-    const template = 'systems/demonlord/templates/chat/talent.hbs'
+    const template = 'systems/demonlord-godless/templates/chat/talent.hbs'
     return renderTemplate(template, templateData).then(content => {
       chatData.content = content
       if (attackRoll != null) {
@@ -429,7 +429,7 @@ export async function postSpellToChat(actor, spell, attackRoll, target, inputBoo
   if (attackRoll) {
     chatData.rolls = [attackRoll]
   }
-  const template = 'systems/demonlord/templates/chat/spell.hbs'
+  const template = 'systems/demonlord-godless/templates/chat/spell.hbs'
   renderTemplate(template, templateData).then(content => {
     chatData.content = content
     if (attackRoll != null && attackAttribute) {
@@ -466,7 +466,7 @@ export async function postCorruptionToChat(actor, corruptionRoll) {
   if (corruptionRoll) {
     chatData.rolls = [corruptionRoll]
   }
-  const template = 'systems/demonlord/templates/chat/corruption.hbs'
+  const template = 'systems/demonlord-godless/templates/chat/corruption.hbs'
 
   chatData.content = await renderTemplate(template, templateData)
   chatData.sound = CONFIG.sounds.dice
@@ -591,7 +591,7 @@ export const postItemToChat = (actor, item, attackRoll, target, inputBoons) => {
   if (attackRoll) {
     chatData.rolls = [attackRoll]
   }
-  const template = 'systems/demonlord/templates/chat/useitem.hbs'
+  const template = 'systems/demonlord-godless/templates/chat/useitem.hbs'
   return renderTemplate(template, templateData).then(content => {
     chatData.content = content
     if (attackRoll != null) {

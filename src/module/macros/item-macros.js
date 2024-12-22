@@ -217,7 +217,7 @@ export async function healingPotionMacro() {
       },
     }
 
-    const template = 'systems/demonlord/templates/chat/useitem.hbs'
+    const template = 'systems/demonlord-godless/templates/chat/useitem.hbs'
     renderTemplate(template, templateData).then(content => {
       chatData.content = content
       ChatMessage.create(chatData)

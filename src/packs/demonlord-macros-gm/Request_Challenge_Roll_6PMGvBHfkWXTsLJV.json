@@ -10,7 +10,7 @@
   "scope": "global",
   "command": "// GM Tool\n// Lets you request a challenge roll from the select tokens. Each token owner gets a whisper message asking them to make a roll.\n\ngame.demonlord.macros.requestChallengeRollMacro()",
   "author": "Sd8TaawsSgOTEPU7",
-  "img": "systems/demonlord/assets/icons/skills/challenge.webp",
+  "img": "systems/demonlord-godless/assets/icons/skills/challenge.webp",
   "actorIds": [],
   "_key": "!macros!6PMGvBHfkWXTsLJV"
 }

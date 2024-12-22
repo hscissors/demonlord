@@ -116,7 +116,7 @@ export class DLCombatTracker extends CombatTracker {
         .find('#combat-tracker')
         .append(
           `<li id="combat-endofround" class="combatant actor directory-item flexrow">
-             <img class="token-image" src="systems/demonlord/assets/ui/icons/pentragram.webp"/>
+             <img class="token-image" src="systems/demonlord-godless/assets/ui/icons/pentragram.webp"/>
              <div class="token-name flexcol"><h4>${i18n("DL.CreatureSpecialEndRound")}</h4></div>
            </li>`,
         )

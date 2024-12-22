@@ -63,7 +63,8 @@ export function makeHealth() {
     max: makeIntField(),
     value: makeIntField(0),
     injured: makeBoolField(),
-    healingrate: makeIntField()
+    healingrate: makeIntField(),
+    grit: makeIntField()
   })
 }
 

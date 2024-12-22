@@ -24,7 +24,7 @@
   "effects": [
     {
       "name": "Heavy Armor",
-      "icon": "systems/demonlord/assets/icons/armor/full plate.webp",
+      "icon": "systems/demonlord-godless/assets/icons/armor/full plate.webp",
       "origin": "Compendium.demonlord.armor.Item.yGPE7ZL6S10RZ10n",
       "transfer": true,
       "flags": {
@@ -55,6 +55,6 @@
     }
   ],
   "flags": {},
-  "img": "systems/demonlord/assets/icons/armor/full plate.webp",
+  "img": "systems/demonlord-godless/assets/icons/armor/full plate.webp",
   "_key": "!items!yGPE7ZL6S10RZ10n"
 }

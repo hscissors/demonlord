@@ -474,7 +474,7 @@ export class DLActiveEffects {
 
     const effectData = {
       name: effectName,
-      icon: 'systems/demonlord/assets/icons/effects/fatigued.svg',
+      icon: 'systems/demonlord-godless/assets/icons/effects/fatigued.svg',
       origin: 'encumbrance',
       transfer: false,
       duration: { startTime: 0 },

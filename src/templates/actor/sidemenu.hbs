@@ -36,10 +36,6 @@
       </div>
       <div class="resttext">{{localize "DL.RestAction"}}</div>
     </div>
-    <div class="healingratebox" style="cursor: pointer">
-      <div class="healingrate">{{system.characteristics.health.healingrate}}</div>
-      <div class="healingratetext">{{localize "DL.CharHealthHealingRating"}}</div>
-    </div>
     <div class="editBars">
       <a class="bar-edit" title="{{localize 'DL.ToggleBarView'}}"><i class="fas fa-edit"></i></a>
     </div>
@@ -157,7 +153,18 @@
           />
         </div>
       </div>
-      <div></div>
+      <div class="speedbox">
+        <div class="speedtext">Grit</div>
+        <div class="speed">
+          <input
+                name="system.characteristics.health.grit"
+                type="text"
+                value="{{system.characteristics.health.grit}}"
+                data-dtype="Number"
+                placeholder=""
+          />
+        </div>
+      </div>
     </div>
     <div class="chars flexrow">
       <div class="turnmode">

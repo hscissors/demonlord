@@ -313,7 +313,7 @@ async rollInitiativeGroup(ids, { formula = null, updateTurn = true, messageOptio
 
 const selectTurnType = async function (actor, fastturn) {
   let turn = ''
-  const template = 'systems/demonlord/templates/dialogs/choose-turn-dialog.hbs'
+  const template = 'systems/demonlord-godless/templates/dialogs/choose-turn-dialog.hbs'
   const html = await renderTemplate(template, {
     data: {
       fastturn: fastturn,
@@ -361,7 +361,7 @@ export async function createInitChatMessage(combatant, messageOptions) {
     },
   }
 
-  const template = 'systems/demonlord/templates/chat/init.hbs'
+  const template = 'systems/demonlord-godless/templates/chat/init.hbs'
   const content = await renderTemplate(template, templateData)
   return foundry.utils.mergeObject(messageOptions, {
     speaker: {

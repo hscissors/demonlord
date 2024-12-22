@@ -10,7 +10,7 @@
   "scope": "global",
   "command": "// Select your token and execute to roll Perception Challenge Roll\r\ngame.demonlord.rollAttributeMacro(\"perception\");",
   "author": "Sd8TaawsSgOTEPU7",
-  "img": "systems/demonlord/assets/icons/skills/perception.webp",
+  "img": "systems/demonlord-godless/assets/icons/skills/perception.webp",
   "actorIds": [],
   "_key": "!macros!5Bom3CgdNePXO8gj"
 }

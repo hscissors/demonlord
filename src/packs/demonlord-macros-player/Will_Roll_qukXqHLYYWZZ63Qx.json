@@ -10,7 +10,7 @@
   "scope": "global",
   "command": "// Select your token and execute to roll Will Challenge Roll\r\ngame.demonlord.rollAttributeMacro(\"will\");",
   "author": "Sd8TaawsSgOTEPU7",
-  "img": "systems/demonlord/assets/icons/skills/will.webp",
+  "img": "systems/demonlord-godless/assets/icons/skills/will.webp",
   "actorIds": [],
   "_key": "!macros!qukXqHLYYWZZ63Qx"
 }

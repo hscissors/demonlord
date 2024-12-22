@@ -3,7 +3,7 @@ const { nodeResolve } = require('@rollup/plugin-node-resolve')
 const css = require("rollup-plugin-import-css")
 const commonjs = require('@rollup/plugin-commonjs')
 module.exports = {
-  input: 'src/module/demonlord.js',
+  input: 'src/module/demonlord-godless.js',
   output: {
     dir: 'dist/module',
     format: 'es',

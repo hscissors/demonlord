@@ -5,7 +5,7 @@ export default class DLVehicleSheet extends DLBaseActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['vehicle', 'sheet', 'actor', 'dl-sheet'],
-      template: 'systems/demonlord/templates/actor/vehicle-sheet.hbs',
+      template: 'systems/demonlord-godless/templates/actor/vehicle-sheet.hbs',
       width: 900,
       height: 700,
       tabs: [

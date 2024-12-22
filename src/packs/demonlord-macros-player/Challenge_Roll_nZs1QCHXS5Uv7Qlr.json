@@ -14,7 +14,7 @@
   "scope": "global",
   "command": "// Player Tool\n// Lets you choose with attributes you want to make challenge roll for and add bones/banes.\n\ngame.demonlord.macros.makeChallengeRollMacro()",
   "author": "Sd8TaawsSgOTEPU7",
-  "img": "systems/demonlord/assets/icons/skills/wings.webp",
+  "img": "systems/demonlord-godless/assets/icons/skills/wings.webp",
   "actorIds": [],
   "_key": "!macros!nZs1QCHXS5Uv7Qlr"
 }

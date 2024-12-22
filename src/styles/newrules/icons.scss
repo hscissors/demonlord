@@ -160,7 +160,7 @@ $afflictions-demonlord: 'concentrate', 'defend', 'help', 'prepare', 'reload', 'r
   'slowed', 'injured', 'incapacitated', 'disabled', 'dying';
 @each $affliction in $afflictions-demonlord {
   i.dl-icon-#{$affliction} {
-    @include dl-icon('/systems/demonlord/assets/icons/effects/#{$affliction}.svg');
+    @include dl-icon('systems/demonlord-godless/assets/icons/effects/#{$affliction}.svg');
   }
 }
 

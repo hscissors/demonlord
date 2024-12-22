@@ -24,7 +24,7 @@
   "effects": [
     {
       "name": "Heavy Armor",
-      "icon": "systems/demonlord/assets/icons/armor/plate and mail.webp",
+      "icon": "systems/demonlord-godless/assets/icons/armor/plate and mail.webp",
       "origin": "Compendium.demonlord.armor.Item.C5A6s8HGjFmquDjc",
       "transfer": true,
       "flags": {
@@ -55,6 +55,6 @@
     }
   ],
   "flags": {},
-  "img": "systems/demonlord/assets/icons/armor/plate and mail.webp",
+  "img": "systems/demonlord-godless/assets/icons/armor/plate and mail.webp",
   "_key": "!items!C5A6s8HGjFmquDjc"
 }

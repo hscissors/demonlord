@@ -1,16 +1,13 @@
 {
   "private": true,
-  "name": "demonlord",
-  "version": "4.0.0",
+  "name": "demonlord-godless",
+  "version": "1.0.0",
   "description": "",
   "license": "",
   "homepage": "",
   "repository": {
     "type": "git",
     "url": ""
-  },
-  "bugs": {
-    "url": "https://github.com/Xacus/demonlord/issues"
   },
   "contributors": [],
   "scripts": {
