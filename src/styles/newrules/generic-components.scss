@@ -109,7 +109,7 @@
     width: 16px;
     height: 16px;
     border: none;
-    background-color: gray;
+    background-color: dimgray;
     pointer-events: none;
   }
 }
@@ -135,14 +135,14 @@
     position: absolute;
     left: 2px;
     top: 2px;
-    background-color: gray;
+    background-color: dimgray;
   }
 
   &:hover {
-    border-color: dimgray;
+    border-color: #ae392d;
 
     & > i {
-      background-color: dimgray;
+      background-color: #ae392d;
     }
   }
 
@@ -191,7 +191,7 @@
 
   &:not(.nohover):hover,
   &:not(.nohover):hover span {
-    border-color: dimgray;
+    border-color: #ae392d;
     cursor: pointer;
   }
 
@@ -209,10 +209,10 @@
     }
 
     &:not(.selected) {
-      color: gray;
+      color: dimgray;
 
       i {
-        background-color: gray;
+        background-color: dimgray;
       }
     }
     &.selected,
