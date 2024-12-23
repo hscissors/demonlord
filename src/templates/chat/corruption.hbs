@@ -6,9 +6,10 @@
     <div class="headertext {{data.resultText}}">{{data.resultText}}</div>
   </header>
 
+  {{#if data.autoFail}}{{else}}
   <div class="result">
     <div class="box {{data.resultText}}">
-      <div class="valuetext">D20</div>
+      <div class="valuetext"> {{data.diceFormula}}</div>
       <div class="boxborder tooltip">
         <div class="value">{{data.diceTotal}}</div>
         <span class="tooltiptext">
@@ -35,8 +36,10 @@
       </div>
     </div>
   </div>
+  {{/if}}
   {{#if data.failureText}}
     <div class="description">
+      {{#if data.traitText}} You gain the demonic trait <b>{{data.traitText}}</b>. <br>{{/if}}
       {{data.failureText}}
     </div>
   {{/if}}

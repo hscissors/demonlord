@@ -854,9 +854,10 @@ export class DemonlordActor extends Actor {
   /* -------------------------------------------- */
 
   async rollCorruption() {
-    const corruptionRoll = new Roll('1d20')
+    const corruptionData = this.getCorruptionFromScore(this.system.characteristics.corruption.value)
+    const corruptionRoll = new Roll(corruptionData.formula)
     await corruptionRoll.evaluate()
-    postCorruptionToChat(this, corruptionRoll)
+    postCorruptionToChat(this, corruptionRoll, corruptionData)
   }
 
   /* -------------------------------------------- */
@@ -1179,5 +1180,46 @@ export class DemonlordActor extends Actor {
     }
 
     return gritRoll
+  }
+
+  getCorruptionFromScore(currentCorruption) {
+    if(currentCorruption == "0") return
+
+    let corruption = {}
+    corruption['formula'] = "1d20"
+    corruption['autoFail'] = false
+    corruption['trait'] = ""
+
+    switch(currentCorruption) {
+      case 0:
+      case 1: 
+        break
+      case 2:
+      case 3:
+        corruption.trait = "Touch of Darkness" 
+        break
+      case 4:
+      case 5:
+        corruption.formula = "1d6" 
+        corruption.trait = "Slave of Darkness" 
+        break
+      case 6:
+      case 7:
+        corruption.autoFail = true 
+        break
+      case 8:
+        corruption.autoFail = true
+        corruption.trait = "Infernal Interest"
+        break
+      case 9:
+        corruption.autoFail = true
+        corruption.trait = "Damned"
+        break
+      default:
+        corruption.autoFail = true
+        break
+    }
+
+    return corruption
   }
 }

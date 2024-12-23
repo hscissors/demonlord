@@ -441,25 +441,47 @@ export async function postSpellToChat(actor, spell, attackRoll, target, inputBoo
 
 /* -------------------------------------------- */
 
-export async function postCorruptionToChat(actor, corruptionRoll) {
+export async function postCorruptionToChat(actor, corruptionRoll, corruptionData) {
   const templateData = {
     actor: actor,
     data: {},
     diceData: formatDice(corruptionRoll),
   }
   const data = templateData.data
+  const isFailure = data['autoFail'] || corruptionRoll.total < actor.system.characteristics.corruption.value
+  data['autoFail'] = corruptionData.autoFail
+  data['diceFormula'] = corruptionRoll.formula
   data['diceTotal'] = corruptionRoll.total
   data['actorInfo'] = buildActorInfo(actor)
   data['tagetValueText'] = game.i18n.localize('DL.CharCorruption').toUpperCase()
   data['targetValue'] = actor.system.characteristics.corruption.value
-  data['resultText'] =
-    corruptionRoll.total >= actor.system.characteristics.corruption.value
-      ? game.i18n.localize('DL.DiceResultSuccess')
-      : game.i18n.localize('DL.DiceResultFailure')
-  data['failureText'] =
-    corruptionRoll.total >= actor.system.characteristics.corruption.value
-      ? ''
-      : game.i18n.localize('DL.CharRolCorruptionResult')
+
+  if(isFailure) {
+    data['resultText'] = game.i18n.localize('DL.DiceResultFailure')
+    data['failureText'] = "Roll [[/roll 1d6]] to determine severity of your Mark of Darkness."
+
+    //if actor gains a trait on failure, add to sheet
+    if(corruptionData.trait != undefined) {
+      if(actor.items.get(corruptionData.trait) == undefined) {
+        data['traitText'] = corruptionData.trait
+
+        const compendium = await game.packs.get('world.demonic-traits').getDocuments()
+        const trait = compendium.find(i => i.name === corruptionData.trait)
+        await actor.createEmbeddedDocuments('Item', [
+          {
+            name: trait.name,
+            type: 'feature',
+            img: trait.img,
+            system: {
+              description: trait.system.description,
+            },
+          },
+        ])
+      }
+    }
+  } else {
+    data['resultText'] = game.i18n.localize('DL.DiceResultSuccess')
+  }
 
   const rollMode = game.settings.get('core', 'rollMode')
   const chatData = getChatBaseData(actor, rollMode)
@@ -471,24 +493,6 @@ export async function postCorruptionToChat(actor, corruptionRoll) {
   chatData.content = await renderTemplate(template, templateData)
   chatData.sound = CONFIG.sounds.dice
   await ChatMessage.create(chatData)
-
-  // Get mark of darkess if roll < corruption value
-  if (corruptionRoll.total < actor.system.characteristics.corruption.value) {
-    const compendiumRollTables = await game.packs.get('demonlord.sotdl roll tabels').getDocuments()
-    const tableMarkOfDarkess = compendiumRollTables.find(i => i.name === 'Mark of Darkness')
-    const result = await tableMarkOfDarkess.draw()
-    let resultText = result.results[0].text
-    await actor.createEmbeddedDocuments('Item', [
-      {
-        name: 'Mark of Darkness',
-        type: 'feature',
-        img: 'icons/magic/death/skull-energy-light-purple.webp',
-        system: {
-          description: resultText,
-        },
-      },
-    ])
-  }
 }
 
 export async function postGritToChat(actor, gritRoll, increment) {

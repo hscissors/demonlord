@@ -21,11 +21,11 @@
             <img class="badge" src="{{ancestry.img}}"/>
           {{else}}
             <div class="ancestry-frame">
-              <img class="border" src="systems/demonlord/assets/ui/shields/rogue-shield.webp"/>
+              <img class="border" src="systems/demonlord/assets/ui/shields/ancestry-circle.webp"/>
               <img
                 class="icon"
                 src="{{ancestry.img}}"
-                style="top: 15px; left: -1px; clip-path: polygon(51% 0%, 100% 50%, 52% 100%, 0% 48%)"
+                {{!-- style="top: 15px; left: -1px; clip-path: polygon(51% 0%, 100% 50%, 52% 100%, 0% 48%)" --}}
               />
             </div>
           {{/if}}
@@ -35,7 +35,7 @@
       {{/each}} {{else}}
         <div class="col-3">
           <div class="ancestry-frame">
-            <img class="border gray" src="systems/demonlord/assets/ui/shields/rogue-shield.webp"/>
+            <img class="border gray" src="systems/demonlord/assets/ui/shields/ancestry-circle.webp"/>
           </div>
           <div class="type">{{localize 'DL.CharAncestry'}}</div>
           <div class="name"></div>
@@ -49,38 +49,38 @@
             <img class="badge" src="{{path.img}}"/>
           {{else}} {{#if (eq path.system.type "novice")}}
             <div class="path-frame">
-              <img class="border-small" src="systems/demonlord/assets/ui/shields/barbarian-shield.webp"/>
+              <img class="border" src="systems/demonlord/assets/ui/shields/novice-circle.webp"/>
               <img
                 class="icon"
                 src="{{path.img}}"
-                style="top: 16px; left: 0px; height: 48px; width: 48px; clip-path: circle(50% at 50% 50%)"
+                {{!-- style="top: 16px; left: 0px; height: 48px; width: 48px; clip-path: circle(50% at 50% 50%)" --}}
               />
             </div>
           {{/if}} {{#if (eq path.system.type "expert")}}
             <div class="path-frame">
-              <img class="border-small" src="systems/demonlord/assets/ui/shields/mage-shield.webp"/>
+              <img class="border" src="systems/demonlord/assets/ui/shields/expert-circle.webp"/>
               <img
                 class="icon"
                 src="{{path.img}}"
-                style="top: 16px; left: 0px; height: 48px; width: 48px; clip-path: circle(50% at 50% 50%)"
+                {{!-- style="top: 16px; left: 0px; height: 48px; width: 48px; clip-path: circle(50% at 50% 50%)" --}}
               />
             </div>
           {{/if}} {{#if (eq path.system.type "master")}}
             <div class="path-frame">
-              <img class="border" src="systems/demonlord/assets/ui/shields/demon-shield.webp"/>
+              <img class="border" src="systems/demonlord/assets/ui/shields/master-circle.webp"/>
               <img
                 class="icon"
                 src="{{path.img}}"
-                style="top: 19px; left: 0px; height: 42px; width: 42px; clip-path: circle(50% at 50% 50%);"
+                {{!-- style="top: 19px; left: 0px; height: 42px; width: 42px; clip-path: circle(50% at 50% 50%);" --}}
               />
             </div>
           {{/if}} {{#if (eq path.system.type "legendary")}}
             <div class="path-frame">
-              <img class="border-small" src="systems/demonlord/assets/ui/shields/mage-shield.webp"/>
+              <img class="border" src="systems/demonlord/assets/ui/shields/master-circle.webp"/>
               <img
                 class="icon"
                 src="{{path.img}}"
-                style="top: 16px; left: 0px; height: 48px; width: 48px; clip-path: circle(50% at 50% 50%)"
+                {{!-- style="top: 16px; left: 0px; height: 48px; width: 48px; clip-path: circle(50% at 50% 50%)" --}}
               />
             </div>
           {{/if}} {{/if}}
@@ -95,7 +95,7 @@
       {{/each}} {{else}}
         <div class="col-3">
           <div class="path-frame">
-            <img class="border-small gray" src="systems/demonlord/assets/ui/shields/barbarian-shield.webp"/>
+            <img class="border" src="systems/demonlord/assets/ui/shields/novice-circle.webp"/>
           </div>
           <div class="type">{{localize 'DL.TabsPath'}}</div>
           <div class="name"></div>
