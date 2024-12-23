@@ -344,13 +344,13 @@ nav.sheet-subnavigation {
     .ancestry-frame,
     .path-frame,
     .badge {
-      -webkit-filter: drop-shadow(0px 0px 3px #404040);
-      filter: drop-shadow(0px 0px 3px #404040);
+      -webkit-filter: drop-shadow(0px 0px 7px #000000);
+      filter: drop-shadow(0px 0px 7px #000000);
     }
 
     img.icon {
-      -webkit-filter: drop-shadow(0px 0px 3px #404040);
-      filter: drop-shadow(0px 0px 3px #404040);
+      -webkit-filter: drop-shadow(0px 0px 3px #000000);
+      filter: drop-shadow(0px 0px 3px #000000);
       // -webkit-filter: grayscale(0.15);
       // filter: grayscale(0.15);
     }
@@ -420,7 +420,7 @@ nav.sheet-subnavigation {
         border-radius: 20px;
         border: none;
         background-color: #fff;
-        box-shadow: 0 0 0 1px #000, 0 0 0 2px #a22223, 0 0 0 3px #000, inset 0 0 8px rgb(0 0 0 / 50%), 0 0 8px #a22223;
+        box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgb(0 0 0 / 50%), 0 0 8px #c74134;
         cursor: pointer;
       }
     }
