@@ -212,6 +212,9 @@ export default class DLCharacterSheet extends DLBaseActorSheet {
     super.activateListeners(html)
     if (!this.options.editable) return
 
+    // Insanity Roll
+    html.find('.insanity-roll').click(async _ => await this.actor.rollInsanity())
+
     // Corruption Roll
     html.find('.corruption-roll').click(async _ => await this.actor.rollCorruption())
 
@@ -220,6 +223,9 @@ export default class DLCharacterSheet extends DLBaseActorSheet {
 
     // Grit Roll
     html.find('.grit-roll').click(async _ => await this.actor.rollGrit())
+
+    // Speed Roll
+    html.find('.speed-roll').click(async _ => await this.actor.rollSpeed())
 
     // Edit HealthBar, Insanity and Corruption
     html.find('.bar-edit').click(async () => {

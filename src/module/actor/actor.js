@@ -11,6 +11,7 @@ import {
   postAttributeToChat,
   postCorruptionToChat,
   postGritToChat,
+  postSpeedToChat,
   postCountBulletsToChat,
   postItemToChat,
   postSpellToChat,
@@ -20,6 +21,7 @@ import {handleCreateAncestry, handleCreatePath, handleCreateRole, handleCreateRe
 import {TokenManager} from '../pixi/token-manager'
 import {findAddEffect, findDeleteEffect} from "../demonlord";
 import launchCountBulletsDialog from '../dialog/count-bullet-dialog'
+import launchInsanityDialog from '../dialog/insanity-dialog'
 
 const tokenManager = new TokenManager()
 
@@ -505,7 +507,12 @@ export class DemonlordActor extends Actor {
 
     // Check if there is an ammo for weapon
     if (item.system.consume.ammorequired) {
+      await item.update({
+        'system.consume.reloadRequired': true,
+      })
+
       ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
+      
       if (ammoItem) {
         if (ammoItem.system.quantity === 0) {
           return ui.notifications.warn(
@@ -534,10 +541,6 @@ export class DemonlordActor extends Actor {
     if (!DLAfflictions.isActorBlocked(this, 'action', attribute))
       launchRollDialog(game.i18n.localize('DL.DialogAttackRoll') + game.i18n.localize(item.name), async html => {
         await this.rollAttack(item, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val())
-
-        await item.update({
-          'system.consume.reloadRequired': true,
-        })
       })
   }
   /* -------------------------------------------- */
@@ -930,10 +933,56 @@ export class DemonlordActor extends Actor {
   /* -------------------------------------------- */
 
   async rollCorruption() {
-    const corruptionData = this.getCorruptionFromScore(this.system.characteristics.corruption.value)
+    const corruptionData = this.getCorruptionDataFromScore(this.system.characteristics.corruption.value)
     const corruptionRoll = new Roll(corruptionData.formula)
     await corruptionRoll.evaluate()
     postCorruptionToChat(this, corruptionRoll, corruptionData)
+  }
+
+  /* -------------------------------------------- */
+
+
+  async rollInsanity() {
+    const willAttribute = this.system.attributes.will
+    const insanity = this.system.characteristics.insanity
+
+    launchInsanityDialog("Insanity Severity", async (html, severity) => {
+      let boba = 0
+      let insanityOnFailure = "1"
+
+      switch(severity) {
+        case "minor":
+          boba = 1
+          break;
+        case "moderate":
+          break;
+        case "major":
+          insanityOnFailure = "1d3"
+          break;
+        case "severe":
+          boba = -1
+          insanityOnFailure = "1d3"
+          break;
+        case "extreme":
+          boba = -2
+          insanityOnFailure = "1d6"
+      }
+
+      let insanityRoll = await this.rollAttribute(willAttribute, boba, 0)
+      
+      if(insanityRoll.total < 10) {
+        let insanityDamage = new Roll(insanityOnFailure)
+        await insanityDamage.evaluate()
+
+        let newInsanity = insanity.value + insanityDamage.total
+
+        if(newInsanity > insanity.max) newInsanity = insanity.max 
+
+        return this.update({
+          'system.characteristics.insanity.value': newInsanity
+        })
+      }
+    })
   }
 
   /* -------------------------------------------- */
@@ -947,14 +996,27 @@ export class DemonlordActor extends Actor {
     await gritRoll.evaluate()
 
     if(increment) {
-      await actor.increaseGrit(-1)
+      await this.increaseGrit(-1)
     }
-    await actor.increaseDamage(-gritRoll.total)
+    await this.increaseDamage(-gritRoll.total)
 
     postGritToChat(this, gritRoll)
   }
 
-   /* -------------------------------------------- */
+  /* -------------------------------------------- */
+
+  async rollSpeed() {
+    if(this.system.characteristics.speed == 0) { return }
+
+    let remainingSpeed = this.system.characteristics.speed % 5
+    let speedRoll = new Roll("1d20" + "+" + remainingSpeed)
+
+    await speedRoll.evaluate()
+
+    postSpeedToChat(this, speedRoll)
+  }
+
+  /* -------------------------------------------- */
 
   async createItemCreate(event) {
     event.preventDefault()
@@ -1264,7 +1326,7 @@ export class DemonlordActor extends Actor {
     return gritRoll
   }
 
-  getCorruptionFromScore(currentCorruption) {
+  getCorruptionDataFromScore(currentCorruption) {
     if(currentCorruption == "0") return
 
     let corruption = {}

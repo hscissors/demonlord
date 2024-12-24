@@ -116,6 +116,7 @@
         {{#unless system.characteristics.insanity.immune}}
           <div class="insanitymax">{{system.characteristics.insanity.max}}</div>
           <div class="insanityvalue">{{system.characteristics.insanity.value}}</div>
+          <a class="insanity-roll" title="Roll Instanity"><i class="fas fa-dice-d20"></i></a>          
         {{else}}
           <div class="insanitymiddle">–</div>
         {{/unless}}
@@ -150,7 +151,9 @@
         <div class="speed">{{system.characteristics.size}}</div>
       </div>
       <div class="speedbox">
-        <div class="speedtext">{{localize "DL.CharSpeed"}}</div>
+        <div class="speedtext">
+          <a class="speed-roll">{{localize "DL.CharSpeed"}} <i class="fas fa-dice"></i></a> 
+          </div>
         <div class="speed">{{system.characteristics.speed}}</div>
       </div>
     </div>
@@ -188,8 +191,8 @@
         <label class="switchTurn">
           <input type="checkbox" id="system.fastturn" name="system.fastturn" {{checked system.fastturn}} />
           <div class="slider round">
-              <span class="on">{{localize "DL.TurnFastButton"}}</span
-              ><span class="off">{{localize "DL.TurnSlowButton"}}</span>
+              <span class="on">Take Initiative</span
+              ><span class="off">Wait</span>
           </div>
         </label>
       </div>

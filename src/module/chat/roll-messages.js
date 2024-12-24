@@ -515,6 +515,55 @@ export async function postGritToChat(actor, gritRoll) {
   await ChatMessage.create(chatData)
 }
 
+export async function postSpeedToChat(actor, speedRoll) {
+  let targetNumber = 10
+
+  speedRoll = changeBobDieColour (speedRoll)  
+
+  const rollMode = game.settings.get('core', 'rollMode')
+
+  let diceTotal = speedRoll?.total ?? ''
+  let resultTextGM =
+    speedRoll.total >= targetNumber ? game.i18n.localize('DL.DiceResultSuccess') : game.i18n.localize('DL.DiceResultFailure')
+
+  let resultText = resultTextGM
+  if (rollMode === 'blindroll') {
+    diceTotal = '?'
+    resultText = ''
+  }
+  const resultBoxClass = resultText === '' ? '' : speedRoll.total >= targetNumber ? 'SUCCESS' : 'FAILURE'
+  const templateData = {
+    actor: actor,
+    item: {name: "SPEED"},
+    diceData: formatDice(speedRoll),
+    data: {},
+  }
+
+  const data = templateData.data
+  data['diceTotal'] = diceTotal
+  data['diceTotalGM'] = speedRoll.total
+  data['resultText'] = resultText
+  data['resultTextGM'] = resultTextGM
+  data['resultBoxClass'] = resultBoxClass
+  data['isCreature'] = actor.type === 'creature'
+  data['actionEffects'] = ''
+  data['ifBlindedRoll'] = rollMode === 'blindroll'
+  data['actorInfo'] = buildActorInfo(actor)
+  data['targetNumber'] = targetNumber
+
+  const chatData = getChatBaseData(actor, rollMode)
+  if (speedRoll) {
+    chatData.rolls = [speedRoll]
+  }
+  const template = 'systems/demonlord/templates/chat/challenge.hbs'
+  renderTemplate(template, templateData).then(content => {
+    chatData.content = content
+    chatData.sound = CONFIG.sounds.dice
+    ChatMessage.create(chatData)
+  })
+}
+
+
 export async function postCountBulletsToChat(actor, countRoll, isFailure) {
   const templateData = {
     actor: actor,

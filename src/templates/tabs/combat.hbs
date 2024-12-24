@@ -90,7 +90,7 @@
 </div>
 
 {{#each actor.armor as |armor id|}}
-  <div class="dl-item-row dropitem" data-item-id="{{armor._id}}">
+  <div class="dl-item-row {{#if system.wear}}{{else}}wearoff{{/if}} dropitem" data-item-id="{{armor._id}}">
     <div class="row">
       <div class="col-10 dl-clickable-nored item-edit">
         <img class="dl-clickable item-edit" src="{{armor.img}}" title="{{armor.name}}" width="32" height="32"/>
@@ -111,7 +111,7 @@
         <a class="dl-clickable item-delete" title="{{localize 'DL.ArmorDelete'}}"><i class="fas fa-times"></i></a>
         <a class="dl-clickable {{#if system.wear}}item-wear{{else}}item-wearoff{{/if}}"
            title="{{localize 'DL.ArmorWear'}}">
-          <i class="fas fa-shield-alt"></i>
+          <i class="fas {{#if system.wear}}fa-shield{{else}}fa-shield-alt{{/if}}"></i>
         </a>
       </div>
     </div>
