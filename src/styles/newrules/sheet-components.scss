@@ -10,6 +10,13 @@
   padding-bottom: 2px;
 }
 
+.wearoff {
+  background: rgba(0, 0, 0, 0) !important;
+  label {
+    font-weight: normal !important;
+  }
+}
+
 // Row of items
 .dl-item-row {
   @extend .dl-bordered-bg-light;
@@ -24,7 +31,7 @@
     height: 32px;
     float: left;
     margin-right: 4px;
-    border-color: #3e3e3e;
+    border: 0;
   }
 
   label {
@@ -49,8 +56,16 @@
     margin-left: 42px;
   }
 
-  .item-wearoff {
-    color: $c-light-gray;
+  .item-damage {
+    position: relative;
+  }
+
+  .item-reload {
+    position: absolute;
+    right: 30px;
+    width: 15px;
+    height: 15px;
+    top: -2px;
   }
 
   .fas {
@@ -113,10 +128,10 @@ i.fas.fa-arrows-alt-v {
   width: 0;
 }
 
-i.fas.fa-shield-alt {
-  margin-right: -16px;
+i.fas.fa-shield-alt, i.fas.fa-shield {
+  position: relative;
+  left: 10px;
   width: 0;
-  float: right;
 }
 
 // Creature tab

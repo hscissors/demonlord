@@ -450,11 +450,11 @@ export async function postCorruptionToChat(actor, corruptionRoll, corruptionData
   const data = templateData.data
   const isFailure = data['autoFail'] || corruptionRoll.total < actor.system.characteristics.corruption.value
   data['autoFail'] = corruptionData.autoFail
-  data['diceFormula'] = corruptionRoll.formula
-  data['diceTotal'] = corruptionRoll.total
   data['actorInfo'] = buildActorInfo(actor)
   data['tagetValueText'] = game.i18n.localize('DL.CharCorruption').toUpperCase()
   data['targetValue'] = actor.system.characteristics.corruption.value
+  data['diceTotal'] = corruptionRoll.total
+  data['diceFormula'] = corruptionRoll.formula
 
   if(isFailure) {
     data['resultText'] = game.i18n.localize('DL.DiceResultFailure')
@@ -495,7 +495,7 @@ export async function postCorruptionToChat(actor, corruptionRoll, corruptionData
   await ChatMessage.create(chatData)
 }
 
-export async function postGritToChat(actor, gritRoll, increment) {
+export async function postGritToChat(actor, gritRoll) {
   const templateData = {
     actor: actor,
     data: {},
@@ -513,12 +513,36 @@ export async function postGritToChat(actor, gritRoll, increment) {
   chatData.content = await renderTemplate(template, templateData)
   chatData.sound = CONFIG.sounds.dice
   await ChatMessage.create(chatData)
+}
 
-  if(increment) {
-    await actor.increaseGrit(-1)
+export async function postCountBulletsToChat(actor, countRoll, isFailure) {
+  const templateData = {
+    actor: actor,
+    data: {},
+    diceData: formatDice(countRoll),
   }
-  await actor.increaseDamage(-gritRoll.total)
 
+  const data = templateData.data
+  data['actorInfo'] = buildActorInfo(actor)
+  data['isFailure'] = isFailure
+  data['diceTotal'] = countRoll.total
+  data['diceFormula'] = countRoll.formula
+
+  if(isFailure) {
+    data['resultText'] = game.i18n.localize('DL.DiceResultFailure')
+  } else {
+    data['resultText'] = game.i18n.localize('DL.DiceResultSuccess')
+  }
+
+
+  const rollMode = game.settings.get('core', 'rollMode')
+  const chatData = getChatBaseData(actor, rollMode)
+
+  const template = 'systems/demonlord/templates/chat/countbullets.hbs'
+
+  chatData.content = await renderTemplate(template, templateData)
+  chatData.sound = CONFIG.sounds.dice
+  await ChatMessage.create(chatData)
 }
 
 export const postItemToChat = (actor, item, attackRoll, target, inputBoons) => {

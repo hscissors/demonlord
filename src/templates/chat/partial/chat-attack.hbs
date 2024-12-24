@@ -70,21 +70,10 @@
           {{/if}}
         {{/if}}
       </div>
+      {{#if data.against}}
+        <div class="valuetext against">VS {{data.against}}</div>
+      {{/if}}
     </div>
-    {{#if data.against}}
-      <div class="boxvs">
-        <div class="vs">{{localize "DL.ChallengeVS"}}</div>
-      </div>
-      <div class="box {{data.resultBoxClass}}">
-        <div class="valuetext">{{data.against}}</div>
-        <div class="boxborderTarget">
-          <div class="value">
-            <div class="gmremove">{{data.againstNumber}}</div>
-            <div class="gmonlyzero">{{data.againstNumberGM}}</div>
-          </div>
-        </div>
-      </div>
-    {{/if}}
   </div>
 {{/if}}
 

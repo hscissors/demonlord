@@ -2,6 +2,7 @@ import DLBaseActorSheet from './base-actor-sheet'
 import { prepareActiveEffectCategories } from '../../active-effects/effects'
 import { handleLevelChange } from '../../item/nested-objects'
 import launchRestDialog from '../../dialog/rest-dialog'
+import launchCountBulletsDialog from '../../dialog/count-bullet-dialog'
 
 export default class DLCharacterSheet extends DLBaseActorSheet {
   /** @override */
@@ -341,6 +342,12 @@ export default class DLCharacterSheet extends DLBaseActorSheet {
       if (ev.button == 0 && amount >= 0) item.system.quantity = +amount + 1
       else if (ev.button == 2 && amount > 0) item.system.quantity = +amount - 1
       await Item.updateDocuments([item], { parent: this.actor })
+    })
+
+    // Count Bullets
+    html.find('.item-reload').click(async ev => {
+      const id = $(ev.currentTarget).closest('[data-item-id]').data('itemId')
+      await this.actor.countBullets(id, {event: ev})
     })
 
     // Item uses

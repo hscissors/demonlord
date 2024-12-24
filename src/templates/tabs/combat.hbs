@@ -12,20 +12,19 @@
 
 
 {{#each actor.weapons as |weapon id|}}
-  <div class="dl-item-row dropitem" data-item-id="{{weapon._id}}">
+  <div class="dl-item-row {{#if system.wear}}{{else}}wearoff{{/if}} dropitem" data-item-id="{{weapon._id}}">
     <div class="row">
       <div class="col-7">
         <img class="dl-clickable item-edit" src="{{weapon.img}}" title="{{weapon.name}}" width="32" height="32"/>
-        {{#if system.wear}}
-          <label class="dl-rollable attack-roll">{{weapon.name}}</label>
-        {{else}}
-          <label style="font-weight: normal">{{weapon.name}}</label>
-        {{/if}}
+        <label class="dl-rollable attack-roll">{{weapon.name}}</label>
         <div class="dl-clickable dlToggleInfoBtn">
           <i class="fas fa-angle-right"></i> {{localize "DL.ItemShowInfo"}}
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-2 item-damage">
+        {{#if system.consume.reloadRequired}}
+          <img class="dl-clickable item-reload" src="systems/demonlord/assets/ui/other-svg/ammo2.svg" width="15px" height="15px"/>
+        {{/if}}
         {{defaultValue system.action.damage "―"}}{{#if system.action.damagetypes}}∗{{/if}}
       </div>
       <div class="col-1">
@@ -33,9 +32,8 @@
       </div>
       <div class="col-2">
         <a class="dl-clickable item-delete" title="{{localize 'DL.WeaponDelete'}}"><i class="fas fa-times"></i></a>
-        <a class="dl-clickable {{#if system.wear}}item-wear{{else}}item-wearoff{{/if}}"
-           title="{{localize 'DL.WeaponWear'}}">
-          <i class="fas fa-shield-alt"></i>
+        <a class="dl-clickable {{#if system.wear}}item-wear{{else}}item-wearoff{{/if}}" title="{{localize 'DL.WeaponWear'}}">
+          <i class="fas {{#if system.wear}}fa-shield{{else}}fa-shield-alt{{/if}}"></i>
         </a>
       </div>
     </div>

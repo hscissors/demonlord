@@ -207,11 +207,10 @@
 
 .result {
   display: flex;
-  height: 52px;
+  justify-content: center;
 
   .box {
     text-align: center;
-    flex-basis: 40%;
 
     .boxborder,
     .boxborderTarget {

@@ -11,6 +11,7 @@ import {
   postAttributeToChat,
   postCorruptionToChat,
   postGritToChat,
+  postCountBulletsToChat,
   postItemToChat,
   postSpellToChat,
   postTalentToChat,
@@ -18,6 +19,7 @@ import {
 import {handleCreateAncestry, handleCreatePath, handleCreateRole, handleCreateRelic } from '../item/nested-objects'
 import {TokenManager} from '../pixi/token-manager'
 import {findAddEffect, findDeleteEffect} from "../demonlord";
+import launchCountBulletsDialog from '../dialog/count-bullet-dialog'
 
 const tokenManager = new TokenManager()
 
@@ -445,8 +447,7 @@ export class DemonlordActor extends Actor {
         (horrifyingBane && ignoreLevelDependentBane && !attacker.system.horrifying && !attacker.system.frightening && defender?.system.horrifying && 1 || 0)
 
     // Check if requirements met
-    if (item.system.wear && parseInt(item.system.requirement?.minvalue) > attacker.getAttribute(item.system.requirement?.attribute)?.value)
-      boons--
+    if (item.system.wear && parseInt(item.system.requirement?.minvalue) > attacker.getAttribute(item.system.requirement?.attribute)?.value) boons--
     const boonsReroll = parseInt(this.system.bonuses.rerollBoon1Dice)
 
     // Roll the attack
@@ -495,6 +496,13 @@ export class DemonlordActor extends Actor {
     const item = this.getEmbeddedDocument('Item', itemID)
     let ammoItem
 
+    //Check if item is equipped
+    if(item.system.wear == false) {
+      return ui.notifications.warn(
+        "Weapon is not equipped!", { weaponName: item.name }
+      )
+    }
+
     // Check if there is an ammo for weapon
     if (item.system.consume.ammorequired) {
       ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
@@ -503,9 +511,9 @@ export class DemonlordActor extends Actor {
           return ui.notifications.warn(
             game.i18n.format('DL.WeaponRunOutOfAmmo', {
               weaponName: item.name,
-            }),
+            })
           )
-        }
+        } 
       } else {
         return ui.notifications.warn(
           game.i18n.format('DL.WeaponNoAmmo', {
@@ -526,14 +534,82 @@ export class DemonlordActor extends Actor {
     if (!DLAfflictions.isActorBlocked(this, 'action', attribute))
       launchRollDialog(game.i18n.localize('DL.DialogAttackRoll') + game.i18n.localize(item.name), async html => {
         await this.rollAttack(item, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val())
-        // Decrease ammo quantity
-        if (item.system.consume.ammorequired) {
+
+        await item.update({
+          'system.consume.reloadRequired': true,
+        })
+      })
+  }
+  /* -------------------------------------------- */
+
+  async countBullets(itemID){
+    const item = this.getEmbeddedDocument('Item', itemID)
+    let ammoItem
+
+    ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
+
+    //Check if there is no ammo left already
+    if (ammoItem) {
+      if (ammoItem.system.quantity === 0) {
+        await item.update({
+          'system.consume.reloadRequired': false,
+        })
+
+        return ui.notifications.warn(
+          game.i18n.format('DL.WeaponRunOutOfAmmo', {
+            weaponName: item.name,
+          })
+        )
+      } 
+    } else {
+      await item.update({
+        'system.consume.reloadRequired': false,
+      })
+
+      return ui.notifications.warn(
+        game.i18n.format('DL.WeaponNoAmmo', {
+          weaponName: item.name,
+        }),
+      )
+    }
+
+    let isSpecialTypeAmmo = ammoItem.system.properties.toLowerCase().includes("special")
+    let targetNumber
+
+    launchCountBulletsDialog("Count bullets for " + item.name, async (html, countType) => {
+        if(isSpecialTypeAmmo) {
+          targetNumber = 4
+        } else {
+          switch(countType) {
+            case "single":
+              targetNumber = 2
+              break;
+            case "full":
+              targetNumber = 3
+              break;
+          }
+        }
+        
+        let isFailure = false
+        let countRoll = new Roll("1d6")
+        await countRoll.evaluate()
+
+        if(countRoll.total <= targetNumber) {
+          isFailure = true
+          //Decrease ammo quantity
           await ammoItem.update({
             'system.quantity': ammoItem.system.quantity - item.system.consume.amount,
           })
         }
-      })
+
+        postCountBulletsToChat(this, countRoll, isFailure)
+    })
+
+    await item.update({
+      'system.consume.reloadRequired': false,
+    })
   }
+  
   /* -------------------------------------------- */
 
   async rollAttribute(attribute, inputBoons, inputModifier) {
@@ -869,7 +945,13 @@ export class DemonlordActor extends Actor {
     let gritRoll = new Roll(gritFormula)
 
     await gritRoll.evaluate()
-    postGritToChat(this, gritRoll, increment)
+
+    if(increment) {
+      await actor.increaseGrit(-1)
+    }
+    await actor.increaseDamage(-gritRoll.total)
+
+    postGritToChat(this, gritRoll)
   }
 
    /* -------------------------------------------- */
