@@ -1,5 +1,5 @@
 {
-  "_id": "8dke910ska01kaA",
+  "_id": "8dke910ska01kaAa",
   "name": "Rifle Bullets",
   "permission": {
     "default": 0,
@@ -8,10 +8,10 @@
   "type": "ammo",
   "data": {
     "description": "",
-    "quantity": "5",
+    "quantity": "1",
     "value": "1 ss"
   },
   "flags": {},
   "img": "systems/demonlord/assets/icons/ammunition/rifle-ammo.webp",
-  "_key": "!items!8dke910ska01kaA"
+  "_key": "!items!8dke910ska01kaAa"
 }

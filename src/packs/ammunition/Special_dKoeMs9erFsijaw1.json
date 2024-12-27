@@ -1,17 +1,18 @@
 {
-  "_id": "Special_dKoeMs9erFsijaw1",
-  "name": "Pistol Bullets",
+  "_id": "dKoeMs9erFsijaw1",
+  "name": "Special Ammo",
   "permission": {
     "default": 0,
     "Sd8TaawsSgOTEPU7": 3
   },
   "type": "ammo",
   "data": {
+    "properties": "Special",
     "description": "",
-    "quantity": "5",
+    "quantity": "1",
     "value": "1 ss"
   },
   "flags": {},
-  "img": "systems/demonlord/assets/icons/ammunition/pistol-ammo.webp",
-  "_key": "!items!Special_dKoeMs9erFsijaw1"
+  "img": "systems/demonlord/assets/icons/ammunition/special-ammo.webp",
+  "_key": "!items!dKoeMs9erFsijaw1"
 }

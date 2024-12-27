@@ -507,10 +507,6 @@ export class DemonlordActor extends Actor {
 
     // Check if there is an ammo for weapon
     if (item.system.consume.ammorequired) {
-      await item.update({
-        'system.consume.reloadRequired': true,
-      })
-
       ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
       
       if (ammoItem) {
@@ -528,6 +524,10 @@ export class DemonlordActor extends Actor {
           }),
         )
       }
+
+      await item.update({
+        'system.consume.reloadRequired': true,
+      })
     }
 
     // If no attribute to roll, roll without modifiers and boons
@@ -538,10 +538,16 @@ export class DemonlordActor extends Actor {
     }*/
 
     // Check if actor is blocked by an affliction
-    if (!DLAfflictions.isActorBlocked(this, 'action', attribute))
-      launchRollDialog(game.i18n.localize('DL.DialogAttackRoll') + game.i18n.localize(item.name), async html => {
-        await this.rollAttack(item, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val())
-      })
+    if (!DLAfflictions.isActorBlocked(this, 'action', attribute)) {
+      launchRollDialog(
+        game.i18n.localize('DL.DialogAttackRoll') + game.i18n.localize(item.name), 
+        async html => {
+          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
+          let mod = html.currentTarget.querySelector("input[id='modifier']").value
+          await this.rollAttack(item, boba, mod)
+        }
+      )
+    }
   }
   /* -------------------------------------------- */
 
@@ -642,10 +648,17 @@ export class DemonlordActor extends Actor {
   rollChallenge(attribute) {
     if (typeof attribute === 'string' || attribute instanceof String) attribute = this.getAttribute(attribute)
 
-    if (!DLAfflictions.isActorBlocked(this, 'challenge', attribute.key))
-      launchRollDialog(this.name + ': ' + game.i18n.localize('DL.DialogChallengeRoll').slice(0, -2), async html =>
-        await this.rollAttribute(attribute, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val()),
+    if (!DLAfflictions.isActorBlocked(this, 'challenge', attribute.key)) {
+      launchRollDialog(
+        this.name + ': ' + game.i18n.localize('DL.DialogChallengeRoll').slice(0, -2), 
+        async html => {
+          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
+          let mod = html.currentTarget.querySelector("input[id='modifier']").val()
+          
+          await this.rollAttribute(attribute, boba, mod)
+        }
       )
+    }
   }
 
   /* -------------------------------------------- */
@@ -664,8 +677,14 @@ export class DemonlordActor extends Actor {
     }
 
     if (item.system?.action?.attack) {
-      launchRollDialog(game.i18n.localize('DL.TalentVSRoll') + game.i18n.localize(item.name), async html =>
-        await this.useTalent(item, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val()),
+      launchRollDialog(
+        game.i18n.localize('DL.TalentVSRoll') + game.i18n.localize(item.name), 
+        async html => {
+          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
+          let mod = html.currentTarget.querySelector("input[id='modifier']").val()
+          
+          await this.useTalent(item, boba, mod)
+        }
       )
     } else {
       await this.useTalent(item, 0, 0)
@@ -756,8 +775,14 @@ export class DemonlordActor extends Actor {
     } else await item.update({'system.castings.value': uses + 1}, {parent: this})
 
     if (isAttack && attackAttribute) {
-      launchRollDialog(game.i18n.localize('DL.DialogSpellRoll') + game.i18n.localize(item.name), async html =>
-        await this.useSpell(item, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val()),
+      launchRollDialog(
+        game.i18n.localize('DL.DialogSpellRoll') + game.i18n.localize(item.name),        
+        async html => {
+          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
+          let mod = html.currentTarget.querySelector("input[id='modifier']").val()
+          
+          await this.useSpell(item, boba, mod)
+        }
       )
     } else {
       await this.useSpell(item, 0, 0)
@@ -868,8 +893,14 @@ export class DemonlordActor extends Actor {
     }
 
     if (item.system?.action?.attack) {
-      launchRollDialog(game.i18n.localize('DL.ItemVSRoll') + game.i18n.localize(item.name), async html =>
-        await this.useItem(item, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val()),
+      launchRollDialog(
+        game.i18n.localize('DL.ItemVSRoll') + game.i18n.localize(item.name),        
+        async html => {
+          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
+          let mod = html.currentTarget.querySelector("input[id='modifier']").val()
+          
+          await this.useItem(item, boba, mod)
+        }
       )
     } else {
       await this.useItem(item, 0, 0)

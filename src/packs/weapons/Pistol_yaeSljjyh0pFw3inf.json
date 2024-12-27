@@ -1,0 +1,33 @@
+{
+  "_id": "yaeSljjyh0pFwinf",
+  "name": "Pistol (Inferior)",
+  "permission": {
+    "default": 0,
+    "Sd8TaawsSgOTEPU7": 3
+  },
+  "type": "weapon",
+  "data": {
+    "description": "",
+    "hands": "Off",
+    "properties": "Range (medium), Uses Bullets, Inferior, Unreliable",
+    "availability": "E",
+    "value": "5 gc",
+    "action": {
+      "attack": "Agility",
+      "against": "Defense",
+      "damage": "2d6",
+      "damagetype": "",
+      "damagetypes": [],
+      "boonsbanes": "-1",
+      "plus20": "",
+      "extraEffect": "Unreliable: If this attack misses by +5, roll [[/r 1d6]]. On 1, the weapon explodes for [[/r 2d6]] damage. On 2, the weapon is broken."
+    },
+    "consume": {
+      "reloadRequired": false,
+      "ammorequired": true
+    }
+  },
+  "flags": {},
+  "img": "systems/demonlord/assets/icons/weapons/guns/pistol/inferior/pistol2.webp",
+  "_key": "!items!yaeSljjyh0pFwinf"
+}

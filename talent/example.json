@@ -1,0 +1,94 @@
+{
+  "description": {
+    "initial": "",
+    "textSearch": true
+  },
+  "enrichedDescription": {
+    "initial": "",
+    "textSearch": true
+  },
+  "action": {
+    "active": false,
+    "attack": "",
+    "against": "",
+    "damageactive": false,
+    "damage": "",
+    "damagetype": "",
+    "boonsbanesactive": false,
+    "boonsbanes": "",
+    "plus20active": false,
+    "plus20": "",
+    "plus20damage": "",
+    "defense": "",
+    "defenseboonsbanes": "",
+    "damagetypes": [], 
+    "strengthboonsbanesselect": false,
+    "agilityboonsbanesselect": false,
+    "intellectboonsbanesselect": false,
+    "willboonsbanesselect": false,
+    "perceptionboonsbanesselect": false,
+    "extraboonsbanes": "",
+    "extradamage": "",
+    "extraplus20damage": "",
+    "extraEffect": "",
+    "extraEffect20": ""
+  },
+  "activatedEffect": {
+    "activation": {
+      "type": "",
+      "cost": 0
+    },
+    "duration": {
+      "value": 0,
+      "type": ""
+    },
+    "target": {
+      "value": "",
+      "type": ""
+    },
+    "texture": "",
+    "range": "",
+    "uses": {
+      "value": 0,
+      "max": 0,
+      "per": ""
+    }
+  },
+  "addtonextroll": false,
+  "multipleoptions": false,
+  "uses": {
+    "value": "",
+    "max": ""
+  },
+  "challenge": {
+    "active": true,
+    "attribute": "",
+    "boonsbanesactive": true,
+    "boonsbanesselect": "",
+    "boonsbanes": "",
+    "strengthboonsbanesselect": false,
+    "agilityboonsbanesselect": false,
+    "intellectboonsbanesselect": false,
+    "willboonsbanesselect": false,
+    "perceptionboonsbanesselect": false
+  },
+  "healing": {
+    "healactive": true,
+    "healing": false,
+    "rate": ""
+  },
+  "damage": "",
+  "damagetype": "",
+  "bonuses": {
+    "defenseactive": true,
+    "defense": "",
+    "healthactive": true,
+    "health": "",
+    "speedactive": true,
+    "speed": "",
+    "poweractive": true,
+    "power": ""
+  },
+  "groupname": "",
+  "isActive": false
+}

@@ -49,37 +49,61 @@ form {
       overflow: hidden;
       scrollbar-width: thin;
       scrollbar-color: var(--demonlord-red) transparent;
-
+      
       .frame {
-        background: url(../assets/ui/image-circle.webp) no-repeat top left;
-        background-size: 171px 171px, cover;
         height: 170px;
         margin-left: 9px;
         margin-top: 0;
+      
+        .overlay {
+          position: absolute;
+          height: 170px;
+          width: 170px;
+          left: 40px;
+          pointer-events: none;
+        }
       }
 
       .framenpc {
-        background: url(../assets/ui/image-circle-npc.webp) no-repeat top left;
-        background-size: 171px 171px, cover;
         height: 170px;
         margin-left: 9px;
         margin-top: 0;
+      
+        .overlay {
+          position: absolute;
+          height: 170px;
+          width: 170px;
+          left: 40px;
+          pointer-events: none;
+        }
       }
 
       .framecreature {
-        background: url(../assets/ui/image-circle-creature.webp) no-repeat top left;
-        background-size: 171px 171px, cover;
         height: 170px;
         margin-left: 9px;
         margin-top: 0;
+      
+        .overlay {
+          position: absolute;
+          height: 170px;
+          width: 170px;
+          left: 40px;
+          pointer-events: none;
+        }
       }
 
       .framevehicle {
-        background: url(../assets/ui/image-circle-vehicle.webp) no-repeat top left;
-        background-size: 171px 171px, cover;
         height: 170px;
         margin-left: 9px;
         margin-top: 0;
+      
+        .overlay {
+          position: absolute;
+          height: 170px;
+          width: 170px;
+          left: 40px;
+          pointer-events: none;
+        }
       }
 
       .injured-overlay {

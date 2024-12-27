@@ -8,7 +8,7 @@
   "data": {
     "description": "",
     "hands": "Two",
-    "properties": "Misfire, Range (long), Reload, Uses Bullets",
+    "properties": "Range (long), Uses Bullets",
     "availability": "E",
     "value": "10 gc",
     "action": {
@@ -19,10 +19,15 @@
       "damagetypes": [],
       "boonsbanes": "",
       "plus20": ""
+    },
+    "consume": {
+      "reloadRequired": false,
+      "ammorequired": true
     }
   },
   "flags": {},
-  "img": "systems/demonlord/assets/icons/weapons/rifle.webp",
+  "img": "systems/demonlord/assets/icons/weapons/guns/rifle/common/rifle3.webp",
   "_id": "yGtiA3qJGtLaeF96",
   "_key": "!items!yGtiA3qJGtLaeF96"
 }
+

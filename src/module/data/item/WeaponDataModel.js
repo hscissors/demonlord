@@ -5,7 +5,35 @@ export default class WeaponDataModel extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
       description: makeHtmlField(),
-      action: action(),
+      action: new foundry.data.fields.SchemaField({
+        active: makeBoolField(true),
+        attack: makeStringField(),
+        against: makeStringField(),
+        damageactive: makeBoolField(true),
+        damage: makeStringField(),
+        damagetype: makeStringField(),
+        boonsbanesactive: makeBoolField(true),
+        boonsbanes: makeStringField(),
+        plus20active: makeBoolField(true),
+        plus20: makeStringField(),
+        plus20damage: makeStringField(),
+        defense: makeStringField(),
+        defenseboonsbanes: makeStringField(),
+        damagetypes: new foundry.data.fields.ArrayField(new foundry.data.fields.SchemaField({
+          damage: makeStringField(),
+          damagetype: makeStringField()
+        })),
+        strengthboonsbanesselect: makeBoolField(),
+        agilityboonsbanesselect: makeBoolField(),
+        intellectboonsbanesselect: makeBoolField(),
+        willboonsbanesselect: makeBoolField(),
+        perceptionboonsbanesselect: makeBoolField(),
+        extraboonsbanes: makeStringField(),
+        extradamage: makeStringField(),
+        extraplus20damage: makeStringField(),
+        extraEffect: makeStringField(),
+        extraEffect20: makeStringField()
+      }),
       activatedEffect: activatedEffect(),
       enrichedDescription: makeHtmlField(),
       hands: makeStringField(),
