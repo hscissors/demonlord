@@ -1,79 +1,82 @@
 <aside>
   <div class="sidebar" data-group="dashboard" data-tab="sidebar">
     <div class="framecreature">
-      <img class="profile-img img-cre" alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+      <img class="profile-img" alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+      <img class="overlay" src="systems/demonlord//assets/ui/image-circle-creature.webp"/>
     </div>
     {{#if system.characteristics.health.injured}}
     <div class="injured-overlay"></div>
     {{/if}}
-    <div class="restbox">
-      <div class="frightening">
-        <label>
-          <input type="checkbox" name="system.frightening" id="system.frightening" {{checked system.frightening}} />
-          </label>
-      </div>
-      <div class="resttext">{{localize "DL.CreatureFrightening"}}</div>
-    </div>
-    <div class="restboxright">
-      <div class="horrifying">
-        <label>
-          <input type="checkbox" name="system.horrifying" id="system.horrifying" {{checked system.horrifying}} >
-        </label>
-      </div>
-      <div class="resttext">{{localize "DL.CreatureHorrifying"}}</div>
-    </div>
     <div class="charsstat">
       <div class="chars grid grid-2">
-        <div class="speedbox">
-          <div class="speedtext">{{localize "DL.TalentDamage"}}</div>
-          <div class="speed">
+        <div class="box checkbox left">
+          <div class="box-inner">
+            <label>
+              <input type="checkbox" name="system.frightening" id="system.frightening" {{checked system.frightening}} />
+            </label>
+          </div>
+          <div class="box-text">{{localize "DL.CreatureFrightening"}}</div>
+        </div>
+        <div class="box checkbox right">
+          <div class="box-inner">
+            <label>
+              <input type="checkbox" name="system.horrifying" id="system.horrifying" {{checked system.horrifying}} >
+            </label>
+          </div>
+          <div class="box-text">{{localize "DL.CreatureHorrifying"}}</div>
+        </div>
+      </div>
+      <div class="chars grid grid-2">
+        <div class="box">
+          <div class="box-text">{{localize "DL.TalentDamage"}}</div>
+          <div class="box-inner">
             <input name="system.characteristics.health.value" type="number"
                    value="{{system.characteristics.health.value}}" data-dtype="Number" placeholder=""/>
           </div>
         </div>
-        <div class="speedbox">
-          <div class="speedtext">{{localize "DL.CreatureHealth"}}</div>
-          <div class="speed">
+        <div class="box">
+          <div class="box-text">{{localize "DL.CreatureHealth"}}</div>
+          <div class="box-inner">
             <input name="system.characteristics.health.max" type="number"
                    value="{{system.characteristics.health.max}}" data-dtype="Number" placeholder=""/>
           </div>
         </div>
       </div>
       <div class="chars grid grid-2">
-        <div class="speedbox">
-          <div class="speedtext">{{localize "DL.AttributeDefense"}}</div>
-          <div class="speed"><input name="system.characteristics.defense" type="number"
+        <div class="box">
+          <div class="box-text">{{localize "DL.AttributeDefense"}}</div>
+          <div class="box-inner"><input name="system.characteristics.defense" type="number"
                                     value="{{system.characteristics.defense}}" data-dtype="Number" placeholder=""/></div>
         </div>
-        <div class="speedbox">
-          <div class="speedtext">{{localize "DL.CharPower"}}</div>
-          <div class="speed"><input name="system.characteristics.power" type="number"
+        <div class="box">
+          <div class="box-text">{{localize "DL.CharPower"}}</div>
+          <div class="box-inner"><input name="system.characteristics.power" type="number"
                                     value="{{system.characteristics.power}}" data-dtype="Number" placeholder=""/></div>
         </div>
       </div>
       <div class="chars grid grid-2">
-        <div class="speedbox">
-          <div class="speedtext">{{localize "DL.CharSize"}}</div>
-          <div class="speed"><input name="system.characteristics.size" type="text"
+        <div class="box">
+          <div class="box-text">{{localize "DL.CharSize"}}</div>
+          <div class="box-inner"><input name="system.characteristics.size" type="text"
                                     value="{{system.characteristics.size}}" data-dtype="String" placeholder=""/></div>
         </div>
-        <div class="speedbox">
-          <div class="speedtext">{{localize "DL.CharSpeed"}}</div>
-          <div class="speed"><input name="system.characteristics.speed" type="number"
+        <div class="box">
+          <div class="box-text">{{localize "DL.CharSpeed"}}</div>
+          <div class="box-inner"><input name="system.characteristics.speed" type="number"
                                     value="{{system.characteristics.speed}}" data-dtype="Number" placeholder=""/>
           </div>
         </div>
       </div>
       <div class="chars grid grid-2">
-        <div class="speedbox characteristic">
-          <div class="speedtext name" data-key="insanity">{{localize "DL.CreatureInsanity"}}</div>
-          <div class="speed">
+        <div class="box characteristic">
+          <div class="box-text name" data-key="insanity">{{localize "DL.CreatureInsanity"}}</div>
+          <div class="box-inner">
             <input name="system.characteristics.insanity.value" type="{{ifThen system.characteristics.insanity.immune "Text" "number"}}" value="{{ifThen system.characteristics.insanity.immune "-" system.characteristics.insanity.value}}" data-dtype="Number" {{disabled system.characteristics.insanity.immune}}/>
           </div>
         </div>
-        <div class="speedbox characteristic">
-          <div class="speedtext name" data-key="corruption">{{localize "DL.CreatureCorruption"}}</div>
-          <div class="speed">
+        <div class="box characteristic">
+          <div class="box-text name" data-key="corruption">{{localize "DL.CreatureCorruption"}}</div>
+          <div class="box-inner">
             <input name="system.characteristics.corruption.value" type="{{ifThen system.characteristics.corruption.immune "Text" "number"}}" value="{{ifThen system.characteristics.corruption.immune "-" system.characteristics.corruption.value}}" data-dtype="Number" {{disabled system.characteristics.corruption.immune}}/>
           </div>
         </div>

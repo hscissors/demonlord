@@ -1,0 +1,22 @@
+{
+    "name": "Moltov Cocktail",
+    "permission": {
+      "default": 0,
+      "Sd8TaawsSgOTEPU7": 3
+    },
+    "type": "item",
+    "img": "systems/demonlord/assets/icons/weapons/explosive/gernade1.webp",
+    "system": {
+      "description": "<p>Lighting the rag and throwing the bottle takes an action. When the lit cocktail strikes a solid surface, it explodes hitting on target and 1 random target, dealing 1d6 damage. On a failure to throw, both targets are random. A creature that gets a success on an Agility challenge roll takes no damage, while a creature that gets a 0 or lower catches fire.</p>",
+      "enrichedDescription": "<p>Lighting the rag and throwing the bottle takes an action. When the lit cocktail strikes a solid surface, it explodes hitting on target and 1 random target, dealing [[/roll 1d6]] damage. On a failure to throw, both targets are random. A creature that gets a success on an Agility challenge roll takes no damage, while a creature that gets a 0 or lower catches fire.</p>",
+      "quantity": 1,
+      "availability": "C",
+      "value": "1 gp",
+      "wear": true,
+      "autoDestroy": false,
+      "consumabletype": "T"
+    },
+    "flags": {},
+    "_id": "of859d1iusv3mola",
+    "_key": "!items!of859d1iusv3mola"
+  }

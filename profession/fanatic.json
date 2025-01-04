@@ -1,0 +1,154 @@
+{
+    "items":[
+       {
+          "name":"Anchorite, flagellant, or hermit",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"VxR0BeHcQn1owNm5",
+          "system":{
+             "description":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads).",
+             "enrichedDescription":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads). Titles include: Meditations in Solitude, Rites of Self-Denial, The Quiet Path"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"kIy0nsAZfE85qbj9"
+       },
+       {
+          "name":"Evangelist or street preacher",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"VxR0BeHcQn1owNm5",
+          "system":{
+             "description":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads).",
+             "enrichedDescription":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads). Titles include: Voices of the Divine, Sermons for the Streets, The Wandering Prophet"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"BQrlsTCzcJ3074qd"
+       },
+       {
+          "name":"Acolyte, devotee, or initiate",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"VxR0BeHcQn1owNm5",
+          "system":{
+             "description":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads).",
+             "enrichedDescription":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads). Titles include: Lessons of the Faithful, Rituals of Devotion, The Path of Enlightenment"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"dveKYXNS1JGqLaEQ"
+       },
+       {
+          "name":"Cult member",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"VxR0BeHcQn1owNm5",
+          "system":{
+             "description":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads).",
+             "enrichedDescription":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads). Titles include: Secrets of the Inner Circle, The Chosen’s Creed, Whispers from Beyond"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"LQTAilhc49JvkxyG"
+       },
+       {
+          "name":"Minister to a small congregation",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"VxR0BeHcQn1owNm5",
+          "system":{
+             "description":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads).",
+             "enrichedDescription":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads). Titles include: Guiding the Flock, Sermons of the Heart, Prayers for the People"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"prmCD5z4Zt269bJ7"
+       },
+       {
+          "name":"Religious soldier such as a crusader",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"VxR0BeHcQn1owNm5",
+          "system":{
+             "description":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads).",
+             "enrichedDescription":"You start the game with some item related to your faith (such as a medallion, hat, idol, book, or beads). Titles include: Blades of Faith, The Holy Campaign, Martyrs and Champions"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"VyH3zaJwMNkGbiYs"
+       }
+    ]
+ }

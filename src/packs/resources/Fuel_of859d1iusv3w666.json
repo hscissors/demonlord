@@ -1,0 +1,22 @@
+{
+    "name": "Void Fuel",
+    "permission": {
+      "default": 0,
+      "Sd8TaawsSgOTEPU7": 3
+    },
+    "type": "item",
+    "img": "systems/demonlord/assets/icons/other/resources/fuel2.webp",
+    "system": {
+      "description": "<p>If you’re going to drive a vehicle, you need fuel. Fuel is made from Void tar, and when it burns it produces a thick black smoke. Fuel is measured in 1-gallon increments.</p>",
+      "enrichedDescription": "<p>If you’re going to drive a vehicle, you need fuel. Fuel is made from Void tar, and when it burns it produces a thick black smoke. Fuel is measured in 1-gallon increments.</p>",
+      "quantity": 1,
+      "availability": "C",
+      "value": "1 gp",
+      "wear": true,
+      "autoDestroy": false,
+      "consumabletype": "T"
+    },
+    "flags": {},
+    "_id": "of859d1iusv3w666",
+    "_key": "!items!of859d1iusv3w666"
+  }

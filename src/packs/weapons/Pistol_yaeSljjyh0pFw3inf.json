@@ -20,7 +20,7 @@
       "damagetypes": [],
       "boonsbanes": "-1",
       "plus20": "",
-      "extraEffect": "Unreliable: If this attack misses by +5, roll [[/r 1d6]]. On 1, the weapon explodes for [[/r 2d6]] damage. On 2, the weapon is broken."
+      "extraEffect": "Unreliable: If this attack is 0 or less, roll [[/r 1d6]]. On 1, the weapon explodes for [[/r 2d6]] damage. On 2, the weapon is broken."
     },
     "consume": {
       "reloadRequired": false,

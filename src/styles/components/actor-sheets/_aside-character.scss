@@ -11,17 +11,6 @@ form {
 }
 
 .window-content {
-  padding: 5px;
-  font-size: 13px;
-  overflow-y: hidden;
-}
-
-section.window-content {
-  padding: 0;
-  overflow: hidden;
-}
-
-.window-content {
   background: url(../assets/ui/sidebar_background.webp), url(../assets/ui/paper.webp);
   background-repeat: repeat-x, no-repeat;
   background-size: auto 130px, cover;
@@ -30,69 +19,20 @@ section.window-content {
 
 form {
   aside {
-    display: block;
-    grid-area: sidebar;
-    color: #fff;
-    font-family: $font-primary;
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    height: 720px;
-    width: 247px;
-    position: fixed;
-    overflow: hidden;
-    background: url('../assets/ui/sidebar.webp') no-repeat top center;
-
-    .sidebar {
-      margin: 0 23px 0 30px;
-      height: 650px;
-      overflow: hidden;
-      scrollbar-width: thin;
-      scrollbar-color: var(--demonlord-red) transparent;
-      
-      .frame {
+    .frame {
+      height: 170px;
+      margin-left: 9px;
+      margin-top: 0;
+    
+      .overlay {
+        position: absolute;
         height: 170px;
-        margin-left: 9px;
-        margin-top: 0;
-      
-        .overlay {
-          position: absolute;
-          height: 170px;
-          width: 170px;
-          left: 40px;
-          pointer-events: none;
-        }
+        width: 170px;
+        left: 40px;
+        pointer-events: none;
       }
 
       .framenpc {
-        height: 170px;
-        margin-left: 9px;
-        margin-top: 0;
-      
-        .overlay {
-          position: absolute;
-          height: 170px;
-          width: 170px;
-          left: 40px;
-          pointer-events: none;
-        }
-      }
-
-      .framecreature {
-        height: 170px;
-        margin-left: 9px;
-        margin-top: 0;
-      
-        .overlay {
-          position: absolute;
-          height: 170px;
-          width: 170px;
-          left: 40px;
-          pointer-events: none;
-        }
-      }
-
-      .framevehicle {
         height: 170px;
         margin-left: 9px;
         margin-top: 0;

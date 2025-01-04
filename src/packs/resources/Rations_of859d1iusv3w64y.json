@@ -1,0 +1,22 @@
+{
+    "name": "Ration",
+    "permission": {
+      "default": 0,
+      "Sd8TaawsSgOTEPU7": 3
+    },
+    "type": "item",
+    "img": "systems/demonlord/assets/icons/other/resources/food.webp",
+    "system": {
+      "description": "<p>One meal provides a typical person with enough sustenance for a day.</p>",
+      "enrichedDescription": "<p>One meal provides a typical person with enough sustenance for a day.</p>",
+      "quantity": 1,
+      "availability": "C",
+      "value": "1 gp",
+      "wear": true,
+      "autoDestroy": false,
+      "consumabletype": "T"
+    },
+    "flags": {},
+    "_id": "of859d1iusv3w64y",
+    "_key": "!items!of859d1iusv3w64y"
+  }

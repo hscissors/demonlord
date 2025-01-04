@@ -1,0 +1,154 @@
+{
+    "items":[
+       {
+          "name":"Vigilante",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"B2ZT4IvljcbfsH3o",
+          "system":{
+             "description":"You start the game with a uniform, and a pistol.",
+             "enrichedDescription":"You start the game with a uniform, and a pistol."
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"x7qvzPyIKw91t5rU"
+       },
+       {
+          "name":"Soldier",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"B2ZT4IvljcbfsH3o",
+          "system":{
+             "description":"You start the game with combat fatigues and a machine gun.",
+             "enrichedDescription":"You start the game with combat fatigues and a machine gun."
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"Vt78lWS1QHmRunJO"
+       },
+       {
+          "name":"Militia member",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"B2ZT4IvljcbfsH3o",
+          "system":{
+             "description":"You start the game with combat fatigues and a rifle.",
+             "enrichedDescription":"You start the game with combat fatigues and a rifle."
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"JpErKn2laO5Lo38i"
+       },
+       {
+          "name":"Guard",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"B2ZT4IvljcbfsH3o",
+          "system":{
+             "description":"You start the game with a uniform, a badge, and a stun baton or stun gun.",
+             "enrichedDescription":"You start the game with a uniform, a badge, and a stun baton or stun gun."
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"DuKnrzSmkMYsTbUC"
+       },
+       {
+          "name":"Thug",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"B2ZT4IvljcbfsH3o",
+          "system":{
+             "description":"You start the game with knuckledusters and a pistol.",
+             "enrichedDescription":"You start the game with knuckledusters and a pistol."
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"ONTsRCoAY4abGVpn"
+       },
+       {
+          "name":"Terrorist",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"B2ZT4IvljcbfsH3o",
+          "system":{
+             "description":"You start the game with a suicide vest and a machine gun.",
+             "enrichedDescription":"You start the game with a suicide vest and a machine gun."
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"z0DPYkEir7WSK2aI"
+       }
+    ]
+ }

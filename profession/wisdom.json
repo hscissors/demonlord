@@ -1,0 +1,504 @@
+{
+    "items":[
+       {
+          "name":"Architect",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Blueprints of the Ancient World, The Skyward Spire, Modern Marvels of Masonry"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"jCBYmdp9xVQWr74l"
+       },
+       {
+          "name":"Engineer",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: The Mechanics of Time, Bridges Across Worlds, Innovations in Steam"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"2B4EmfLhnA7V3jRc"
+       },
+       {
+          "name":"Lawyer",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Cases of Contention, The Law's Edge, Justice and Jurisprudence"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"XDZIvL5PmxqJb98F"
+       },
+       {
+          "name":"Politician",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: The Art of Governance, Rhetoric and Reform, The People's Mandate"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"JSRfloQV83HcM9UG"
+       },
+       {
+          "name":"Astronomer",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Stars Beyond Measure, The Cosmic Atlas, Orbital Mysteries"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"2kvpauH1cUhAixnM"
+       },
+       {
+          "name":"Historian",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Echoes of the Past, The Forgotten Chronicles, Turning Points in Time"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"qeUdRFbGWgk0j8yO"
+       },
+       {
+          "name":"Geographer",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Mapping the Unseen, Contours of the World, Atlas of Discovery"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"zlcbAkfqEB0hLIr4"
+       },
+       {
+          "name":"Writer or poet",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Verses of Eternity, The Written Soul, Poetry of the Ages"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"wItqEyYlUJfS82vr"
+       },
+       {
+          "name":"Philosopher",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Wisdom of the Ages, The Mind's Mirror, Paths to Enlightenment"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"BukcCtRjJXa1nGYA"
+       },
+       {
+          "name":"Theologian",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Divine Reflections, Sacred Scripts, Theology Through Time"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"kIw2AFcgqbmPYHSr"
+       },
+       {
+          "name":"Critic",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: The Art of Critique, Masterworks Unveiled, The Reviewer’s Eye"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"SoypUX3mAj9hw0Pd"
+       },
+       {
+          "name":"Doctor or veterinarian",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Anatomy for All, The Healing Hand, Beasts and Remedies"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"PnEhSajzKFNwR4DJ"
+       },
+       {
+          "name":"Naturalist",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: The Wilds of Nature, Field Notes of Discovery, Living Ecosystems"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"nsxmpYkLRWvUNwdy"
+       },
+       {
+          "name":"Occultist",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Secrets of the Arcane, The Hidden Veil, Mystic Writings"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"pvuUyA6YE8Sh2lB1"
+       },
+       {
+          "name":"Biologist",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Life Unveiled, The Cellular Code, Biodiversity Explored"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"lq76iptu8SjPbYB1"
+       },
+       {
+          "name":"Military scientist",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Tactics and Triumphs, The Art of War, Strategic Innovations"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"kMYBc9ftJuQiNqX7"
+       },
+       {
+          "name":"Chemist",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Reactions of Reality, The Alchemy of Modernity, Bonding Elements"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"PD1nJQTVKdFWmAe7"
+       },
+       {
+          "name":"Physicist",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: The Quantum Enigma, Physics Beyond Limits, Universal Forces"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"gam1qjZUkpySefbP"
+       },
+       {
+          "name":"Void Engineer",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not. Titles include: ",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not. Titles include: Harnessing the Abyss, Blueprints of the Infinite, The Singularity’s Edge"
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"teF8uvSCOBE6Ko9y"
+       },
+       {
+          "name":"Scientist in an area of your choosing",
+          "type":"profession",
+          "img":"icons/tools/hand/hammer-and-nail.webp",
+          "folder":"fYvEaG6w8WN7hOTn",
+          "system":{
+             "description":"You have a book related to your area of expertise, whether you can read or not.",
+             "enrichedDescription":"You have a book related to your area of expertise, whether you can read or not."
+          },
+          "effects":[
+             
+          ],
+          "flags":{
+             
+          },
+          "_stats":{
+             "systemId":"demonlord",
+             "systemVersion":"3.7.0",
+             "coreVersion":"12.324",
+             "createdTime":1710550870165,
+             "modifiedTime":1710550870165,
+             "lastModifiedBy":"gIEa46qorVGeQGW4"
+          },
+          "_id":"mjWCHS7TgEopn4al"
+       }
+    ]
+ }

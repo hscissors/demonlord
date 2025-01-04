@@ -62,6 +62,20 @@
       "type": "Item"
     },
     {
+      "name": "resources",
+      "label": "Resources",
+      "system": "demonlord",
+      "path": "packs/resources",
+      "type": "Item"
+    },
+    {
+      "name": "explosives",
+      "label": "Explosives",
+      "system": "demonlord",
+      "path": "packs/explosives",
+      "type": "Item"
+    },
+    {
       "name": "demonlord-macros-gm",
       "label": "Demonlord Macros - GM",
       "system": "demonlord",
@@ -88,6 +102,40 @@
       "system": "demonlord",
       "path": "packs/roll-tables",
       "type": "RollTable"
+    }
+  ],
+  "packFolders": [
+    {
+			"name": "System Compendia",
+			"sorting": "m",
+			"color": "#a51d2d",
+      "packs": ["languages"], 
+      "folders": [
+        {
+          "name": "Equipment",
+          "sorting": "m",
+          "color": "#000000",
+          "packs": [
+            "weapons", "armor", "ammunition", "explosives", "resources", "weapons-creature"
+          ]
+        },
+        {
+            "name": "Macros and Guides",
+            "sorting": "m",
+            "color": "#000000",
+            "packs": [
+              "sotdl-system-guide", "demonlord-macros-player", "demonlord-macros-gm"
+            ]
+        },
+        {
+          "name": "Roll Tables",
+            "sorting": "m",
+            "color": "#000000",
+            "packs": [
+              "sotdl-roll-tables"
+            ]
+        }
+      ]
     }
   ],
   "languages": [

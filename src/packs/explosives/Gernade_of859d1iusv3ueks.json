@@ -1,0 +1,22 @@
+{
+    "name": "Gernade (Concussion)",
+    "permission": {
+      "default": 0,
+      "Sd8TaawsSgOTEPU7": 3
+    },
+    "type": "item",
+    "img": "systems/demonlord/assets/icons/weapons/explosive/gernade3.webp",
+    "system": {
+      "description": "<p>A concussion grenade releases a tight blast of damaging force. On successful throw, the target creature and 1 other random creature in the zone takes 3d6 damage. On a failure, both targets are random. A creature that gets a success on a Strength challenge roll takes half the damage.</p>",
+      "enrichedDescription": "<p>A concussion grenade releases a tight blast of damaging force. On successful throw, the target creature and one other random creature in the zone takes [[/roll 3d6]] damage. On a failure, both targets are random. A creature that gets a success on a Strength challenge roll takes half the damage.</p>",
+      "quantity": 1,
+      "availability": "C",
+      "value": "1 gp",
+      "wear": true,
+      "autoDestroy": false,
+      "consumabletype": "T"
+    },
+    "flags": {},
+    "_id": "of859d1iusv3ueks",
+    "_key": "!items!of859d1iusv3ueks"
+  }

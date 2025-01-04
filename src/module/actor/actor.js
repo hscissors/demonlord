@@ -653,7 +653,7 @@ export class DemonlordActor extends Actor {
         this.name + ': ' + game.i18n.localize('DL.DialogChallengeRoll').slice(0, -2), 
         async html => {
           let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
-          let mod = html.currentTarget.querySelector("input[id='modifier']").val()
+          let mod = html.currentTarget.querySelector("input[id='modifier']").value
           
           await this.rollAttribute(attribute, boba, mod)
         }
@@ -681,7 +681,7 @@ export class DemonlordActor extends Actor {
         game.i18n.localize('DL.TalentVSRoll') + game.i18n.localize(item.name), 
         async html => {
           let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
-          let mod = html.currentTarget.querySelector("input[id='modifier']").val()
+          let mod = html.currentTarget.querySelector("input[id='modifier']").value
           
           await this.useTalent(item, boba, mod)
         }
@@ -779,7 +779,7 @@ export class DemonlordActor extends Actor {
         game.i18n.localize('DL.DialogSpellRoll') + game.i18n.localize(item.name),        
         async html => {
           let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
-          let mod = html.currentTarget.querySelector("input[id='modifier']").val()
+          let mod = html.currentTarget.querySelector("input[id='modifier']").value
           
           await this.useSpell(item, boba, mod)
         }
@@ -897,7 +897,7 @@ export class DemonlordActor extends Actor {
         game.i18n.localize('DL.ItemVSRoll') + game.i18n.localize(item.name),        
         async html => {
           let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
-          let mod = html.currentTarget.querySelector("input[id='modifier']").val()
+          let mod = html.currentTarget.querySelector("input[id='modifier']").value
           
           await this.useItem(item, boba, mod)
         }

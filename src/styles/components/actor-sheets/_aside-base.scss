@@ -1,19 +1,17 @@
-.window-content {
-  padding: 5px;
-  font-size: 13px;
-  overflow-y: hidden;
-}
-
 section.window-content {
   padding: 0;
   overflow: hidden;
 }
+
 
 .window-content {
   background: url(../assets/ui/sidebar_background.webp), url(../assets/ui/paper.webp);
   background-repeat: repeat-x, no-repeat;
   background-size: auto 130px, cover;
   background-attachment: local;
+  padding: 5px;
+  font-size: 13px;
+  overflow-y: hidden;
 }
 
 form {
@@ -37,58 +35,8 @@ form {
       scrollbar-width: thin;
       scrollbar-color: var(--demonlord-red) transparent;
 
-      .frame {
-        height: 170px;
-        margin-left: 9px;
-        margin-top: 0;
-      
-        .overlay {
-          position: absolute;
-          height: 170px;
-          width: 170px;
-          left: 40px;
-          pointer-events: none;
-        }
-      }
-
-      .framecreature {
-        height: 170px;
-        margin-left: 9px;
-        margin-top: 0;
-      
-        .overlay {
-          position: absolute;
-          height: 170px;
-          width: 170px;
-          left: 40px;
-          pointer-events: none;
-        }
-      }
-
-      .framevehicle {
-        height: 170px;
-        margin-left: 9px;
-        margin-top: 0;
-      
-        .overlay {
-          position: absolute;
-          height: 170px;
-          width: 170px;
-          left: 40px;
-          pointer-events: none;
-        }
-      }
-
-      .injured-overlay {
-        background: url(../assets/ui/injured-overlay.webp) no-repeat top left;
-        background-size: 171px 171px, cover;
-        pointer-events: none;
-        position: absolute;
-        top: 0px;
-        left: 41px;
-        width: 171px;
-        height: 171px;
-        border-radius: 100px;
+      img {
+        border: none;
       }
 
       .profile-img {
@@ -103,187 +51,114 @@ form {
         cursor: pointer;
       }
 
-      .img-cre {
-        top: 23px;
-        right: -24px;
-        height: 124px;
-        width: 124px;
-      }
-
-      .restbox,
-      .restboxright,
-      .healingratebox {
-        position: absolute;
-        top: 143px;
-        left: 35px;
-
-        .rest {
-          pointer-events: none;
-
-          .rest-char {
-            pointer-events: auto;
-          }
-        }
-
-        .rest,
-        .healingrate,
-        .frightening,
-        .horrifying {
-          height: 26px;
-          width: 26px;
-          border-radius: 16px;
-          border: none;
-          box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgba(0, 0, 0, 0.5),
-            0 0 8px #c74134;
-          font-weight: 500;
-          font-size: 14px;
-          padding-left: 2px;
-          padding-top: 4px;
-
-          input.checkbox {
-            display: none;
-          }
-
-          input.checkbox + label {
-            position: relative;
-            top: -7px;
-            left: -9px;
-            display: inline-block;
-            width: 35px;
-            height: 38px;
-            cursor: pointer;
-            text-align: center;
-          }
-        }
-
-        .resttext,
-        .healingratetext {
-          position: absolute;
-          text-align: center;
-          left: 0;
-          top: 30px;
-        }
-      }
-
       .editBars {
         position: relative;
         left: 174px;
         top: 25px;
       }
 
-      .barboxes {
-        margin-bottom: 20px;
-
-        .barbox {
-          height: 45px;
-          text-align: center;
-          padding-left: 5px;
-          padding-top: 15px;
-          width: 100%;
-
-          .healthedit,
-          .insanityedit,
-          .corruptionedit {
-            height: 19px;
-            width: 40px;
-            border-radius: 16px;
-            border: none;
-            box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgba(0, 0, 0, 0.5),
-              0 0 8px #c74134;
-            font-weight: 500;
-            font-size: 13px;
-            padding-left: 2px;
-            padding-top: 2px;
-
-            input {
-              margin-top: -4px;
-            }
-          }
-
-          .healthtext,
-          .insanitytext,
-          .corruptiontext {
-            width: 150px;
-            text-align: left;
-            padding-bottom: 4px;
-          }
-        }
-      }
-
       .chars.grid {
         gap: 0;
+        padding-left: 5px;
+        padding-right: 8px;
+        padding-bottom: 20px;
       }
 
-      .chars {
-        margin-bottom: -19px;
+      .box {
+        position: relative;
+        text-align: center;
+        padding-left: 5px;
+        padding-right: 5px;
 
-        .defensebox,
-        .speedbox,
-        .powerbox {
-          float: left;
-          position: relative;
-          height: 54px;
-          text-align: center;
-          padding-left: 27px;
-          padding-top: 15px;
-
-          .defense,
-          .speed,
-          .power {
-            height: 19px;
-            width: 40px;
-            border-radius: 16px;
+        .box-inner {
+          height: 19px;
+          width: 40px;
+          border-radius: 16px;
+          border: none;
+          box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgba(0, 0, 0, 0.5),
+            0 0 8px #c74134;
+          font-weight: 500;
+          font-size: 13px;
+          margin: auto;
+      
+          input {
+            position: relative;
+            top: 0px;
+            left: 0px;
             border: none;
-            box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgba(0, 0, 0, 0.5),
-              0 0 8px #c74134;
-            font-weight: 500;
-            font-size: 13px;
-            padding-left: 2px;
-            padding-top: 2px;
-
-            input {
-              margin-top: -4px;
-            }
+            color: white;
           }
 
-          .defensetext,
-          .speedtext,
-          .powertext {
-            position: absolute;
-            text-align: center;
-            left: 0;
-            top: 0;
-            width: 100%;
+          input[type="number"] {
+            width: 40px;
+            height: 20px;
+          }
+  
+          input[type="checkbox"] {
+            display: none;
+          }
+
+          input:checked::before {
+            display: inline-block;
+            content: '';
+            width: 40px;
+            height: 40px;
+            background-image: url('../assets/ui/bloodstain.webp');
+            position: relative;
+            top: -5px;
+            left: -7px;
           }
         }
 
-        .turnmode {
-          margin-top: 15px;
+        .box-text {
           text-align: center;
+          width: 100%;
+          padding-bottom: 5px;
         }
       }
 
-      .healingratebox {
-        left: 186px;
-
-        .healingrate {
+      .box.checkbox {
+        .box-inner {
+          width: 30px;
+          height: 30px;
+        }
+        .box-text {
           padding-top: 5px;
-          text-align: center;
-        }
-
-        .healingratetext {
-          left: -20px;
         }
       }
 
-      .health,
-      .insanity,
-      .corruption {
+      .box.checkbox.left {
+        .box-inner {
+          margin: unset;
+        }
+
+        .box-text {
+          text-align: left;
+        }
+      }
+
+      .box.checkbox.right {
+        .box-inner {
+          margin: unset;
+          margin-left: auto;
+        }
+
+        .box-text {
+          text-align: right;
+        }
+      }
+      
+      .turnmode {
+        margin-top: 15px;
+        text-align: center;
+      }
+
+      .bar {
         margin-top: 10px;
         padding: 5px;
 
-        .healthbar {
-          width: 178px;
+        .bar-inner {
+          width: 100%;
           background-color: #e0e0e0;
           padding: 1px;
           margin-top: 3px;
@@ -292,9 +167,7 @@ form {
             0 0 8px #c74134;
         }
 
-        .healthbar-fill,
-        .insanity-fill,
-        .corruption-fill {
+        .bar-fill {
           display: block;
           height: 12px;
           background-color: var(--demonlord-red);
@@ -302,37 +175,29 @@ form {
           transition: width 500ms ease-in-out;
         }
 
-        .healtmax,
-        .insanitymax,
-        .corruptionmax {
+        .bar-max {
           float: right;
           margin-top: -13px;
           padding-right: 10px;
           color: #000;
         }
 
-        .damage,
-        .insanityvalue,
-        .corruptionvalue {
+        .bar-current {
           float: left;
           margin-top: -13px;
           padding-left: 5px;
           color: #000;
         }
-      }
 
-      .insanity {
-        margin: 4px 0 0 0;
+        .bar-fill.speed-fill {
+          background-color: darkgoldenrod;
+        }
 
-        .insanity-fill {
+        .bar-fill.insanity-fill {
           background-color: darkgreen;
         }
-      }
 
-      .corruption {
-        margin: 4px 0 0 0;
-
-        .corruption-fill {
+        .bar-fill.corruption-fill {
           background-color: darkmagenta;
         }
       }

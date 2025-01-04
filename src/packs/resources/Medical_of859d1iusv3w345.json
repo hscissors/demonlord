@@ -1,0 +1,22 @@
+{
+    "name": "Medicine",
+    "permission": {
+      "default": 0,
+      "Sd8TaawsSgOTEPU7": 3
+    },
+    "type": "item",
+    "img": "systems/demonlord/assets/icons/other/resources/medical5.webp",
+    "system": {
+      "description": "<p>You can use an action to administer a dose of medicine to one living creature you can reach that is willing or defenseless, including yourself. The creature heals damage equal to its healing rate, and it makes challenge rolls to resist disease and poison with 1 boon until it completes a rest.</p>",
+      "enrichedDescription": "<p>You can use an action to administer a dose of medicine to one living creature you can reach that is willing or defenseless, including yourself. The creature heals damage equal to its healing rate, and it makes challenge rolls to resist disease and poison with 1 boon until it completes a rest.</p>",
+      "quantity": 1,
+      "availability": "C",
+      "value": "1 gp",
+      "wear": true,
+      "autoDestroy": false,
+      "consumabletype": "T"
+    },
+    "flags": {},
+    "_id": "of859d1iusv3w345",
+    "_key": "!items!of859d1iusv3w345"
+  }

@@ -1,0 +1,22 @@
+{
+    "name": "Gernade (Fragmentation)",
+    "permission": {
+      "default": 0,
+      "Sd8TaawsSgOTEPU7": 3
+    },
+    "type": "item",
+    "img": "systems/demonlord/assets/icons/weapons/explosive/gernade.webp",
+    "system": {
+      "description": "A fragmentation grenade hurls shrapnel in all directions. one target and 1d4 random targets. On a failed throw, all 5 are random. All targets takes 4d6 damage. A creature that gets a success on an Agility challenge roll takes half the damage.</p>",
+      "enrichedDescription": "A fragmentation grenade hurls shrapnel in all directions. one target and [[/roll 1d4]] random targets. On a failed throw, all 5 are random. All targets takes [[/roll 4d6]] damage. A creature that gets a success on an Agility challenge roll takes half the damage.</p>",
+      "quantity": 1,
+      "availability": "C",
+      "value": "1 gp",
+      "wear": true,
+      "autoDestroy": false,
+      "consumabletype": "T"
+    },
+    "flags": {},
+    "_id": "of859d1iusvfrag1",
+    "_key": "!items!of859d1iusvfrag1"
+  }

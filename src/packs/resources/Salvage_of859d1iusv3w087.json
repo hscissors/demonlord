@@ -1,0 +1,22 @@
+{
+    "name": "Salvage",
+    "permission": {
+      "default": 0,
+      "Sd8TaawsSgOTEPU7": 3
+    },
+    "type": "item",
+    "img": "systems/demonlord/assets/icons/other/resources/machine3.webp",
+    "system": {
+      "description": "<p>Mechanical salvage consists of parts used to build machines, such as motors, gears, or wheels. Some machines run on fuel, others on more exotic sources of energy.</p>",
+      "enrichedDescription": "<p>Mechanical salvage consists of parts used to build machines, such as motors, gears, or wheels. Some machines run on fuel, others on more exotic sources of energy.</p>",
+      "quantity": 1,
+      "availability": "C",
+      "value": "1 gp",
+      "wear": true,
+      "autoDestroy": false,
+      "consumabletype": "T"
+    },
+    "flags": {},
+    "_id": "of859d1iusv3w087",
+    "_key": "!items!of859d1iusv3w087"
+  }

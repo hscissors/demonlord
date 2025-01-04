@@ -1,0 +1,22 @@
+{
+    "name": "Water",
+    "permission": {
+      "default": 0,
+      "Sd8TaawsSgOTEPU7": 3
+    },
+    "type": "item",
+    "img": "systems/demonlord/assets/icons/other/resources/water.webp",
+    "system": {
+      "description": "<p>One unit of water.</p>",
+      "enrichedDescription": "<p>One unit of water.</p>",
+      "quantity": 1,
+      "availability": "C",
+      "value": "1 gp",
+      "wear": true,
+      "autoDestroy": false,
+      "consumabletype": "T"
+    },
+    "flags": {},
+    "_id": "of859d1iusv3w123",
+    "_key": "!items!of859d1iusv3w123"
+  }

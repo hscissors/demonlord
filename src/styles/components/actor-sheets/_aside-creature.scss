@@ -3,162 +3,69 @@
 form {
   aside {
     background: url('../assets/ui/sidebar_creature.webp') no-repeat top center;
-  }
-
-  .sidebar {
-    .frightening,
-    .horrifying {
-      input {
-        position: relative;
-        top: -7px;
-        left: -7px;
-        width: 0px;
-        height: 0px;
-      }
-
-      input:checked::before {
-        display: inline-block;
-        content: '';
-        width: 40px;
-        height: 40px;
-        background-image: url('../assets/ui/bloodstain.webp');
-        position: relative;
-        top: -5px;
-        left: -7px;
-      }
-    }
-
-    .restboxright {
-      left: 188px !important;
-
-      .resttext {
-        left: -37px !important;
-      }
-    }
-
-    .charsstat {
-      margin-top: 25px;
-    }
-
-    .barboxes .barbox {
-      .healthedit,
-      .insanityedit,
-      .corruptionedit {
-        input {
-          margin-left: -2px;
-
-          &:focus {
-            border-radius: 16px;
-            background: #555;
-          }
+  
+    .sidebar {
+      .framecreature {
+        height: 170px;
+        margin-left: 9px;
+        margin-top: 0;
+      
+        .overlay {
+          position: absolute;
+          height: 170px;
+          width: 170px;
+          left: 40px;
+          pointer-events: none;
         }
       }
     }
 
-    .chars {
-      .defensebox,
-      .speedbox,
-      .powerbox {
-        .defense,
-        .speed,
-        .power {
-          input {
-            margin-top: -6px;
-            margin-left: -2px;
-            height: 16px;
-            border: 0;
-            color: #ffffff;
-            box-shadow: none;
-
-            &:focus {
-              border-radius: 16px;
-              background: #555;
-            }
-          }
-        }
-      }
+    .dl-side-tab-container {
+      position: absolute;
+      top: 200px;
+      pointer-events: none;
     }
 
-    .healingratebox {
-      margin-bottom: 10px;
+    .dl-side-tab {
+      transition: left 200ms ease-in-out;
+      position: relative;
+      background-color: var(--demonlord-red);
+      width: 150px;
+      height: 32px;
+      border-radius: 0 5px 5px 0;
+      line-height: 32px;
+      text-align: center;
+      left: -130px;
+      pointer-events: initial;
+      margin-bottom: 2px;
     }
 
-    .armor,
-    .speedtraits {
-      padding: 10px;
-
-      input[type='text'],
-      input[type='number'] {
-        width: 174px;
-        font-family: 'Roboto', system, -apple-system, sans-serif;
-        font-size: 11px;
-        color: #fff;
-        line-height: calc(1em + 1px);
-        height: 26px;
-        padding: 10px;
-        margin-left: -5px;
-        background: rgba(0, 0, 0, 1);
-
-        &:focus,
-        &:hover {
-          padding-left: 5px;
-          margin-left: 1px;
-          margin-top: 1px;
-          background: #000;
-        }
-      }
-    }
-
-    .speedtraits {
-      margin-top: -10px;
+    .dl-side-tab:hover {
+      left: -20px;
+      margin-left: 20px;
     }
   }
 
-  .dl-side-tab-container {
-    position: absolute;
-    top: 200px;
-    pointer-events: none;
-  }
-
-  .dl-side-tab {
-    transition: left 200ms ease-in-out;
+  .editmode {
     position: relative;
-    background-color: var(--demonlord-red);
-    width: 150px;
-    height: 32px;
-    border-radius: 0 5px 5px 0;
-    line-height: 32px;
-    text-align: center;
-    left: -130px;
-    pointer-events: initial;
-    margin-bottom: 2px;
-  }
+    left: 29px;
+    top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
 
-  .dl-side-tab:hover {
-    left: -20px;
-    margin-left: 20px;
-  }
-}
+    .switchBig {
+      width: 130px;
 
-.editmode {
-  position: relative;
-  left: 29px;
-  top: 10px;
-  text-transform: uppercase;
-  font-weight: bold;
+      input:checked + .slider:before {
+        -webkit-transform: translateX(116px);
+        -ms-transform: translateX(116px);
+        transform: translateX(116px);
+      }
 
-  .switchBig {
-    width: 130px;
-
-    input:checked + .slider:before {
-      -webkit-transform: translateX(116px);
-      -ms-transform: translateX(116px);
-      transform: translateX(116px);
-    }
-
-    input:disabled + .slider:before {
-      content: '';
-      background-image: url('../assets/ui/bloodstain.webp');
+      input:disabled + .slider:before {
+        content: '';
+        background-image: url('../assets/ui/bloodstain.webp');
+      }
     }
   }
 }
