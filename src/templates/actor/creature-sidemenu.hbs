@@ -7,21 +7,17 @@
     {{#if system.characteristics.health.injured}}
     <div class="injured-overlay"></div>
     {{/if}}
-    <div class="charsstat">
-      <div class="chars grid grid-2">
+    <div class="charstat">
+      <div class="chars grid grid-2 grid-top">
         <div class="box checkbox left">
           <div class="box-inner">
-            <label>
-              <input type="checkbox" name="system.frightening" id="system.frightening" {{checked system.frightening}} />
-            </label>
+            <input type="checkbox" name="system.frightening" id="system.frightening" {{checked system.frightening}} />
           </div>
           <div class="box-text">{{localize "DL.CreatureFrightening"}}</div>
         </div>
         <div class="box checkbox right">
           <div class="box-inner">
-            <label>
-              <input type="checkbox" name="system.horrifying" id="system.horrifying" {{checked system.horrifying}} >
-            </label>
+            <input type="checkbox" name="system.horrifying" id="system.horrifying" {{checked system.horrifying}} >
           </div>
           <div class="box-text">{{localize "DL.CreatureHorrifying"}}</div>
         </div>

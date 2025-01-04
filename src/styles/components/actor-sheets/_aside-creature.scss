@@ -5,6 +5,11 @@ form {
     background: url('../assets/ui/sidebar_creature.webp') no-repeat top center;
   
     .sidebar {
+      .charstat {
+        position: relative;
+        bottom: 15px;
+      }
+      
       .framecreature {
         height: 170px;
         margin-left: 9px;

@@ -4,6 +4,9 @@
       <img class="profile-img img-cre" alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
       <img class="overlay" src="systems/demonlord//assets/ui/image-circle-vehicle.webp"/>
     </div>
+    {{#if system.characteristics.health.injured}}
+      <div class="injured-overlay"></div>
+    {{/if}}
     <div class="charsstat">
       <div class="chars grid">
         <div class="bar speed">
@@ -58,7 +61,7 @@
     <div class="crew">
       <input name="system.crew" type="text" value="{{system.crew}}" data-dtype="String" placeholder="{{localize 'DL.VehicleCrew'}}"/>
     </div> --}}
-    <div class="turnmode">
+    {{!-- <div class="turnmode">
       <label class="switchTurn">
         <input type="checkbox" id="system.fastturn" name="system.fastturn" {{checked system.fastturn}}>
         <div class="slider round">
@@ -66,6 +69,6 @@
           <span class="off">{{localize "DL.TurnSlowButton"}}</span>
         </div>
       </label>
-    </div>
+    </div> --}}
   </div>
 </aside>

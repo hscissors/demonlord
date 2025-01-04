@@ -19,6 +19,20 @@ form {
 
 form {
   aside {
+    .framenpc {
+      height: 170px;
+      margin-left: 9px;
+      margin-top: 0;
+    
+      .overlay {
+        position: absolute;
+        height: 170px;
+        width: 170px;
+        left: 40px;
+        pointer-events: none;
+      }
+    }
+
     .frame {
       height: 170px;
       margin-left: 9px;
@@ -31,316 +45,106 @@ form {
         left: 40px;
         pointer-events: none;
       }
+    }
 
-      .framenpc {
-        height: 170px;
-        margin-left: 9px;
-        margin-top: 0;
+    .charstat {
+      position: relative;
+      bottom: 15px;
+    }
+
+    .injured-overlay {
+      background: url(../assets/ui/injured-overlay.webp) no-repeat top left;
+      background-size: 171px 171px, cover;
+      pointer-events: none;
+      position: absolute;
+      top: 0px;
+      left: 41px;
+      width: 171px;
+      height: 171px;
+      border-radius: 100px;
+    }
+
+    .profile-img {
+      position: relative;
+      top: 27px;
+      right: -27px;
+      height: 119px;
+      width: 119px;
+      border-radius: 60px;
+      object-fit: cover;
+      object-position: top;
+      cursor: pointer;
+    }
+
+    .box.buttonbox {
+      .box-inner {
+        margin: unset;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+
+      .box-text {
+        padding-bottom: 0px;
+        padding-top: 5px;
+      }
       
-        .overlay {
-          position: absolute;
-          height: 170px;
-          width: 170px;
-          left: 40px;
-          pointer-events: none;
-        }
-      }
-
-      .injured-overlay {
-        background: url(../assets/ui/injured-overlay.webp) no-repeat top left;
-        background-size: 171px 171px, cover;
-        pointer-events: none;
-        position: absolute;
-        top: 0px;
-        left: 41px;
-        width: 171px;
-        height: 171px;
-        border-radius: 100px;
-      }
-
-      .profile-img {
+      .rest-char.button {
+        width: 30px;
+        height: 30px;
         position: relative;
-        top: 27px;
-        right: -27px;
-        height: 119px;
-        width: 119px;
-        border-radius: 60px;
-        object-fit: cover;
-        object-position: top;
+        left: -4px;
+        top: -6px;
+        border-radius: 25px;
+        background: transparent;
+        border: none;
         cursor: pointer;
       }
 
-      .img-cre {
-        top: 23px;
-        right: -24px;
-        height: 124px;
-        width: 124px;
-      }
-
-      .restbox,
-      .healbox {
-        position: absolute;
-
-        .rest,
-        .heal {
-          height: 26px;
-          width: 26px;
-          border-radius: 16px;
-          border: none;
-          box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgba(0, 0, 0, 0.5),
-            0 0 8px #c74134;
-          font-weight: 500;
-          font-size: 14px;
-          padding-left: 2px;
-          padding-top: 4px;
-
-          input.button {
-            width: 30px;
-            height: 30px;
-            position: relative;
-            left: -4px;
-            top: -6px;
-            border-radius: 25px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-          }
-
-          img.rest-icon {
-            pointer-events: none;
-            content: url('../../../icons/svg/sleep.svg');
-            position: relative;
-            left: -1px;
-            top: -33px;
-          }
-
-          img.heal-icon {
-            pointer-events: none;
-            content: url('../../../icons/svg/pill.svg');
-            position: relative;
-            left: -1px;
-            top: -33px;
-          }
-
-          input.checkbox {
-            display: none;
-          }
-
-          input.checkbox + label {
-            position: relative;
-            top: -7px;
-            left: -9px;
-            display: inline-block;
-            width: 35px;
-            height: 38px;
-            cursor: pointer;
-            text-align: center;
-          }
-
-          input.checkbox:checked + label {
-            background-image: url('../assets/ui/bloodstain.webp');
-          }
-        }
-
-        .resttext,
-        .healtext {
-          position: absolute;
-          text-align: center;
-          left: 0;
-          top: 30px;
-        }
-      }
-
-      .restbox {
-        top: 143px;
-        left: 35px;
-      }
-      .healbox {
-        top: 143px;
-        right: 35px;
-      }
-
-      .editBars {
+      .heal-char.button {
+        width: 30px;
+        height: 30px;
         position: relative;
-        left: 174px;
-        top: 25px;
+        left: -4px;
+        top: -6px;
+        border-radius: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
       }
 
-      .barboxes {
-        margin-bottom: 20px;
-
-        .barbox {
-          height: 45px;
-          text-align: center;
-          padding-left: 5px;
-          padding-top: 15px;
-          width: 100%;
-
-          .healthedit,
-          .insanityedit,
-          .corruptionedit {
-            height: 19px;
-            border-radius: 16px;
-            border: none;
-            box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgba(0, 0, 0, 0.5),
-              0 0 8px #c74134;
-            font-weight: 500;
-            font-size: 13px;
-            padding-left: 2px;
-            width: 98%;
-            line-height: 0;
-            padding-top: 0;
-
-            input {
-              margin-top: -4px;
-            }
-          }
-
-          .healthtext,
-          .insanitytext,
-          .corruptiontext {
-            width: 150px;
-            text-align: left;
-            padding-bottom: 4px;
-          }
-        }
+      .rest-icon {
+        pointer-events: none;
+        content: url('../../../icons/svg/sleep.svg');
+        position: relative;
+        left: -1px;
+        top: -30px;
       }
 
-      .chars.grid {
-        gap: 0;
+      .heal-icon {
+        pointer-events: none;
+        content: url('../../../icons/svg/sleep.svg');
+        position: relative;
+        left: -1px;
+        top: -30px;
+      }
+    }
+  
+
+    .bar {
+      .insanitymiddle,
+      .corruptionmiddle {
+        margin-top: -13px;
+        color: #000;
+        text-align: center;
       }
 
-      .chars {
-        margin-bottom: -19px;
-
-        .defensebox,
-        .speedbox,
-        .powerbox {
-          float: left;
-          position: relative;
-          height: 54px;
-          text-align: center;
-          padding-left: 27px;
-          padding-top: 15px;
-
-          .defense,
-          .speed,
-          .power {
-            height: 19px;
-            width: 40px;
-            border-radius: 16px;
-            border: none;
-            box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgba(0, 0, 0, 0.5),
-              0 0 8px #c74134;
-            font-weight: 500;
-            font-size: 13px;
-            padding-left: 2px;
-            padding-top: 2px;
-
-            input {
-              margin-top: -4px;
-            }
-          }
-
-          .defensetext,
-          .speedtext,
-          .powertext {
-            position: absolute;
-            text-align: center;
-            left: 0;
-            top: 0;
-            width: 100%;
-          }
-        }
-
-        .turnmode {
-          margin-top: 15px;
-          text-align: center;
-        }
-      }
-
-      .health,
-      .insanity,
-      .corruption {
-        margin-top: 10px;
-        padding: 5px;
-
-        .healthbar {
-          width: 178px;
-          background-color: #e0e0e0;
-          padding: 1px;
-          margin-top: 3px;
-          border-radius: 3px;
-          box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgba(0, 0, 0, 0.5),
-            0 0 8px #c74134;
-        }
-
-        .healthbar-fill,
-        .insanity-fill,
-        .corruption-fill {
-          display: block;
-          height: 12px;
-          background-color: var(--demonlord-red);
-          border-radius: 3px;
-          transition: width 500ms ease-in-out;
-          max-width: 100%;
-        }
-
-        .healtmax,
-        .insanitymax,
-        .corruptionmax {
-          float: right;
-          margin-top: -13px;
-          padding-right: 10px;
-          color: #000;
-        }
-
-        .insanitymiddle,
-        .corruptionmiddle {
-          margin-top: -13px;
-          color: #000;
-          text-align: center;
-        }
-
-        .insanity-empty,
-        .corruption-empty {
-          display: block;
-          height: 12px;
-          border-radius: 3px;
-        }
-
-        .damage,
-        .insanityvalue,
-        .corruptionvalue {
-          float: left;
-          margin-top: -13px;
-          padding-left: 5px;
-          color: #000;
-        }
-
-        .insanity-roll,
-        .corruption-roll {
-          float: right;
-          position: relative;
-          top: -28px;
-          right: 5px;
-        }
-      }
-
-      .insanity {
-        margin: 4px 0 0 0;
-
-        .insanity-fill {
-          background-color: #3e796a;
-        }
-      }
-
-      .corruption {
-        margin: 4px 0 0 0;
-
-        .corruption-fill {
-          background-color: #6f58c9;
-        }
+      .insanity-roll,
+      .corruption-roll {
+        float: right;
+        position: relative;
+        top: -28px;
+        right: 5px;
       }
     }
   }
