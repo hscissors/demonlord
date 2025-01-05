@@ -43,6 +43,11 @@ export default class DLVehicleSheet extends DLBaseActorSheet {
 
   /* -------------------------------------------- */
 
+    /** @override */
+    async _onDropActor(event, actorData) { 
+      console.log(actorData)
+    }
+
   /** @override */
   async checkDroppedItem(itemData) {
     if (['armor', 'ammo', 'ancestry', 'path', 'profession', 'item', 'language', 'creaturerole', 'relic'].includes(itemData.type)) return false

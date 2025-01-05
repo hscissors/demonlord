@@ -69,8 +69,10 @@
     {{/if}}
       <div class="chars grid grid-2">
         <div class="box">
-          <div class="box-text">{{localize "DL.AttributeDefense"}}</div>
-          <div class="box-inner"><input name="system.characteristics.defense" type="number" value="{{system.characteristics.defense}}" data-dtype="Number" placeholder=""/></div>
+          <div class="box-text">{{localize "DL.VehicleCargo"}}</div>
+          <div class="box-inner">
+            <input name="system.cargo" type="number" value="{{system.cargo}}" data-dtype="Number" placeholder=""/>
+            </div>
         </div>
         <div class="box">
           <div class="box-text">Acceleration</div>
@@ -84,12 +86,6 @@
           <div class="box-text">{{localize "DL.CharSize"}}</div>
           <div class="box-inner">
             <input name="system.characteristics.size" type="text" value="{{system.characteristics.size}}" data-dtype="String" placeholder=""/>
-            </div>
-        </div>
-        <div class="box">
-          <div class="box-text">{{localize "DL.VehicleCargo"}}</div>
-          <div class="box-inner">
-            <input name="system.cargo" type="number" value="{{system.cargo}}" data-dtype="Number" placeholder=""/>
             </div>
         </div>
       </div>
