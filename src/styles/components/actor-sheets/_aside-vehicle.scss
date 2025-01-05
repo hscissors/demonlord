@@ -4,20 +4,36 @@ form {
   aside {
     background: url('../assets/ui/sidebar_vehicle.webp') no-repeat top center;
 
-    .sidebar {
-      .framevehicle {
+    .framevehicle {
+      height: 170px;
+      margin-left: 9px;
+      margin-top: 0;
+    
+      .overlay {
+        position: absolute;
         height: 170px;
-        margin-left: 9px;
-        margin-top: 0;
-      
-        .overlay {
-          position: absolute;
-          height: 170px;
-          width: 170px;
-          left: 40px;
-          pointer-events: none;
-        }
+        width: 170px;
+        left: 40px;
+        pointer-events: none;
       }
+    }
+
+    .injured-overlay {
+      background: url(../assets/ui/injured-vehicle-overlay.webp) no-repeat top left;
+      background-size: 200px 200px, cover;
+      pointer-events: none;
+      position: absolute;
+      top: -22px;
+      left: 25px;
+      width: 200px;
+      height: 200px;
+      border-radius: 100px;
+    }
+
+    .bar-edit {
+      position: absolute;
+      right: 192px;
+      top: -25px;
     }
   }
 }

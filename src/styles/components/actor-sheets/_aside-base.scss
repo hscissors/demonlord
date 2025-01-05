@@ -71,6 +71,7 @@ form {
         padding-right: 5px;
 
         .box-inner {
+          position: relative;
           height: 19px;
           width: 40px;
           border-radius: 16px;
@@ -96,17 +97,32 @@ form {
   
           input[type="checkbox"] {
             display: none;
+            opacity: 0;
+            height: 0px;
+            width: 0px;
+            position: absolute;
           }
 
-          input:checked::before {
-            display: inline-block;
-            content: '';
+          .checkmark {
             width: 40px;
             height: 40px;
-            background-image: url('../assets/ui/bloodstain.webp');
-            position: relative;
+            position: absolute;
             top: -5px;
             left: -7px;
+          }
+
+          /* Create the checkmark/indicator (hidden when not checked) */
+          .checkmark:after {
+            content: "";
+            background-image: url('../assets/ui/bloodstain.webp');
+            position: absolute;
+            display: none;
+          }
+
+          /* Show the checkmark when checked */
+          input:checked ~ .checkmark:after {
+            background-image: unset;
+            display: block;
           }
         }
 
@@ -148,11 +164,6 @@ form {
         }
       }
       
-      .turnmode {
-        margin-top: 15px;
-        text-align: center;
-      }
-
       .bar {
         padding-left: 5px;
         padding-right: 5px;
@@ -190,7 +201,7 @@ form {
           color: #000;
         }
 
-        .bar-fill.speed-fill {
+        .bar-fill.speedbar-fill {
           background-color: darkgoldenrod;
         }
 
@@ -201,6 +212,35 @@ form {
         .bar-fill.corruption-fill {
           background-color: darkmagenta;
         }
+      }  
+      
+      .edit {
+        padding-left: 5px;
+        padding-right: 5px;
+        
+        .edit-inner {
+          width: 100%;
+          border-radius: 16px;
+          border: none;
+          box-shadow: 0 0 0 1px #000, 0 0 0 2px #c74134, 0 0 0 3px #000, inset 0 0 8px rgba(0, 0, 0, 0.5), 0 0 8px #c74134;
+          font-weight: 500;
+          font-size: 13px;
+          margin-left: auto;
+          margin-right: auto;
+          height: 15px;
+          text-align: center;
+          margin-top: 2px;
+
+          input {
+            position: relative;
+            top: -6px;
+          }
+        }
+      }
+      
+      .turnmode {
+        margin-top: 15px;
+        text-align: center;
       }
     }
   }

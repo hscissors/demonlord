@@ -24,10 +24,7 @@ export default class VehicleDataModel extends foundry.abstract.DataModel {
       speedtraits: makeStringField(),
       price: makeStringField(),
       cargo: makeIntField(),
-      space: makeStringField(),
-      maximumspeed: makeStringField(),
       crew: makeStringField(),
-      currentspeed: makeStringField(),
       driver: makeStringField() 
     }
   }

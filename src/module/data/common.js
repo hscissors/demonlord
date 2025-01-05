@@ -1,4 +1,4 @@
-import { makeBoolField, makeIntField, makeStringField, makeObjectField, makeAttribute, makeHealth, makeInsanity, makeCorruption } from './helpers.js'
+import { makeBoolField, makeIntField, makeStringField, makeObjectField, makeAttribute, makeHealth, makeInsanity, makeCorruption, makeSpeed } from './helpers.js'
 
 export function attributes() {
   return new foundry.data.fields.SchemaField({
@@ -46,10 +46,12 @@ export function characteristics(actorType) {
         health: makeHealth(),
         size: makeStringField("1"),
         speed: makeIntField(10),
+        vehiclespeed: makeSpeed(),
         speedtraits: makeStringField(),
         descriptor: makeStringField("object (vehicle)"),
         price: makeStringField('0 gc'),
-        cargo: makeIntField(0)
+        cargo: makeIntField(0),
+        driver: makeStringField()
       })
   }
 }

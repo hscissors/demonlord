@@ -1242,6 +1242,15 @@ export class DemonlordActor extends Actor {
     })
   }
 
+  async increaseSpeed(increment) {
+    const speed = this.system.characteristics.vehiclespeed
+    const newSpeed = Math.max(0, Math.min(speed.max, Math.floor(speed.value + increment)))
+
+    return this.update({
+      'system.characteristics.vehiclespeed.value': newSpeed
+    })
+  }
+
   async setUsesOnSpells() {
     const power = this.system.characteristics.power
     const diff = []
@@ -1268,7 +1277,7 @@ export class DemonlordActor extends Actor {
   }
 
   async handleHealthChange() {
-    if (this.type === 'vehicle') return // Ignore vehicles
+    // if (this.type === 'vehicle') return // Ignore vehicles
     if (this.effects.find(e => e.statuses.has("dead"))) return // Character is dead
     const hp = this.system.characteristics.health
 

@@ -153,7 +153,8 @@
       "descriptor": "object (vehicle)",
       "speedtraits": "",
       "price": "0 gc",
-      "cargo": 0
+      "cargo": 0,
+      "driver": ""
     }
   },
   "Item": {

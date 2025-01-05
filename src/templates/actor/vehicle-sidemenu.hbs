@@ -6,43 +6,76 @@
     </div>
     {{#if system.characteristics.health.injured}}
       <div class="injured-overlay"></div>
-    {{/if}}
+    {{/if}}      
+    <div class="editBars">
+      <a class="bar-edit" title="{{localize 'DL.ToggleBarView'}}"><i class="fas fa-edit"></i></a>
+    </div>
+  {{#if system.characteristics.editbar}}
+    <div class="chars grid">
+      <div class="edit">
+        <div class="edit-text">Maximum Speed</div>
+        <div class="edit-inner">
+          <input
+                  name="system.characteristics.vehiclespeed.max"
+                  type="number"
+                  value="{{system.characteristics.vehiclespeed.max}}"
+                  placeholder="{{system.characteristics.vehiclespeed.max}}"
+                  style="color: white; border: none; box-shadow: none"
+                  min="0"
+                  max="system.characteristics.vehiclespeed.max"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="chars grid">
+      <div class="edit">
+        <div class="edit-text">Maximum Health</div>
+        <div class="edit-inner">
+          <input
+                  name="system.characteristics.health.max"
+                  type="number"
+                  value="{{system.characteristics.health.max}}"
+                  placeholder="{{system.characteristics.health.max}}"
+                  style="color: white; border: none; box-shadow: none"
+                  min="0"
+                  max="{{system.characteristics.health.max}}"
+          />
+        </div>
+      </div>
+    </div>
+  {{else}}
     <div class="charsstat">
       <div class="chars grid">
         <div class="bar speed">
-          <div class="addSpeed">Current Speed</div>
+          <div class="addSpeed">Velocity</div>
           <div class="bar-inner">
-            <span class="bar-fill speed-fill"></span>
+            <span class="bar-fill speedbar-fill"></span>
           </div>
-          <div class="bar-max">{{system.maximumspeed}}</div>
-          <div class="bar-current">{{system.currentspeed}}</div>
+          <div class="bar-max">{{system.characteristics.vehiclespeed.max}}</div>
+          <div class="bar-current">{{system.characteristics.vehiclespeed.value}}</div>
         </div>
       </div>
-      <div class="chars grid grid-2">
-        <div class="box">
-          <div class="box-text">{{localize "DL.TalentDamage"}}</div>
-          <div class="box-inner">
-            <input name="system.characteristics.health.value" type="number"
-                   value="{{system.characteristics.health.value}}" data-dtype="Number" placeholder=""/>
+
+      <div class="chars grid">
+        <div class="bar health">
+          <div class="addDamage">{{localize "DL.TalentDamage"}}</div>
+          <div class="bar-inner">
+            <span class="bar-fill healthbar-fill"></span>
           </div>
-        </div>
-        <div class="box">
-          <div class="box-text">{{localize "DL.VehicleHealth"}}</div>
-          <div class="box-inner">
-            <input name="system.characteristics.health.max" type="number"
-                   value="{{system.characteristics.health.max}}" data-dtype="Number" placeholder=""/>
-          </div>
+          <div class="bar-max">{{system.characteristics.health.max}}</div>
+          <div class="bar-current">{{system.characteristics.health.value}}</div>
         </div>
       </div>
+    {{/if}}
       <div class="chars grid grid-2">
         <div class="box">
           <div class="box-text">{{localize "DL.AttributeDefense"}}</div>
           <div class="box-inner"><input name="system.characteristics.defense" type="number" value="{{system.characteristics.defense}}" data-dtype="Number" placeholder=""/></div>
         </div>
         <div class="box">
-          <div class="box-text">{{localize "DL.VehicleCargo"}}</div>
+          <div class="box-text">Acceleration</div>
           <div class="box-inner">
-            <input name="system.cargo" type="number" value="{{system.cargo}}" data-dtype="Number" placeholder=""/>
+            <input name="system.characteristics.vehiclespeed.acceleration" type="number" value="{{system.characteristics.vehiclespeed.acceleration}}" data-dtype="Number" placeholder=""/>
             </div>
         </div>
       </div>
@@ -51,6 +84,12 @@
           <div class="box-text">{{localize "DL.CharSize"}}</div>
           <div class="box-inner">
             <input name="system.characteristics.size" type="text" value="{{system.characteristics.size}}" data-dtype="String" placeholder=""/>
+            </div>
+        </div>
+        <div class="box">
+          <div class="box-text">{{localize "DL.VehicleCargo"}}</div>
+          <div class="box-inner">
+            <input name="system.cargo" type="number" value="{{system.cargo}}" data-dtype="Number" placeholder=""/>
             </div>
         </div>
       </div>
