@@ -549,75 +549,6 @@ export class DemonlordActor extends Actor {
       )
     }
   }
-  /* -------------------------------------------- */
-
-  async countBullets(itemID){
-    const item = this.getEmbeddedDocument('Item', itemID)
-    let ammoItem
-
-    ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
-
-    //Check if there is no ammo left already
-    if (ammoItem) {
-      if (ammoItem.system.quantity === 0) {
-        await item.update({
-          'system.consume.reloadRequired': false,
-        })
-
-        return ui.notifications.warn(
-          game.i18n.format('DL.WeaponRunOutOfAmmo', {
-            weaponName: item.name,
-          })
-        )
-      } 
-    } else {
-      await item.update({
-        'system.consume.reloadRequired': false,
-      })
-
-      return ui.notifications.warn(
-        game.i18n.format('DL.WeaponNoAmmo', {
-          weaponName: item.name,
-        }),
-      )
-    }
-
-    let isSpecialTypeAmmo = ammoItem.system.properties.toLowerCase().includes("special")
-    let targetNumber
-
-    launchCountBulletsDialog("Count bullets for " + item.name, async (html, countType) => {
-        if(isSpecialTypeAmmo) {
-          targetNumber = 4
-        } else {
-          switch(countType) {
-            case "single":
-              targetNumber = 2
-              break;
-            case "full":
-              targetNumber = 3
-              break;
-          }
-        }
-        
-        let isFailure = false
-        let countRoll = new Roll("1d6")
-        await countRoll.evaluate()
-
-        if(countRoll.total <= targetNumber) {
-          isFailure = true
-          //Decrease ammo quantity
-          await ammoItem.update({
-            'system.quantity': ammoItem.system.quantity - item.system.consume.amount,
-          })
-        }
-
-        postCountBulletsToChat(this, countRoll, isFailure)
-    })
-
-    await item.update({
-      'system.consume.reloadRequired': false,
-    })
-  }
   
   /* -------------------------------------------- */
 
@@ -1036,6 +967,77 @@ export class DemonlordActor extends Actor {
 
   /* -------------------------------------------- */
 
+  async countBullets(itemID){
+    const item = this.getEmbeddedDocument('Item', itemID)
+    let ammoItem
+
+    ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
+
+    //Check if there is no ammo left already
+    if (ammoItem) {
+      if (ammoItem.system.quantity === 0) {
+        await item.update({
+          'system.consume.reloadRequired': false,
+        })
+
+        return ui.notifications.warn(
+          game.i18n.format('DL.WeaponRunOutOfAmmo', {
+            weaponName: item.name,
+          })
+        )
+      } 
+    } else {
+      await item.update({
+        'system.consume.reloadRequired': false,
+      })
+
+      return ui.notifications.warn(
+        game.i18n.format('DL.WeaponNoAmmo', {
+          weaponName: item.name,
+        }),
+      )
+    }
+
+    let isSpecialTypeAmmo = ammoItem.system.properties.toLowerCase().includes("special")
+    let targetNumber
+
+    launchCountBulletsDialog("Count bullets for " + item.name, async (html, countType) => {
+        if(isSpecialTypeAmmo) {
+          targetNumber = 4
+        } else {
+          switch(countType) {
+            case "single":
+              targetNumber = 2
+              break;
+            case "full":
+              targetNumber = 3
+              break;
+          }
+        }
+        
+        let isFailure = false
+        let countRoll = new Roll("1d6")
+        await countRoll.evaluate()
+
+        if(countRoll.total <= targetNumber) {
+          isFailure = true
+          //Decrease ammo quantity
+          await ammoItem.update({
+            'system.quantity': ammoItem.system.quantity - item.system.consume.amount,
+          })
+        }
+
+        postCountBulletsToChat(this, countRoll, isFailure)
+    })
+
+    await item.update({
+      'system.consume.reloadRequired': false,
+    })
+  }
+
+  /* -------------------------------------------- */
+
+  
   async rollSpeed() {
     if(this.system.characteristics.speed == 0) { return }
 
@@ -1251,6 +1253,70 @@ export class DemonlordActor extends Actor {
     })
   }
 
+  async addDriver(actorData) {
+    const uuid = actorData.uuid
+    if(this.type.toLowerCase() == "vehicle" && actorData.type.toLowerCase() == "actor") {
+      let currentCrewArray = this.system.crew.split(",")
+      let currentCargo = currentCrewArray.length
+
+      if(this.system.cargo <= currentCargo) { 
+        ui.notifications.warn("No space in cargo for driver! Delete crew to add more.")
+      } else {
+        return this.update({'system.driver': uuid})
+      }
+    }
+  }
+
+  async removeDriver() {
+    return this.update({'system.driver': ""})
+  }
+
+  async addCrew(actorData) {
+    const uuid = actorData.uuid
+    if(this.type.toLowerCase() == "vehicle" && actorData.type.toLowerCase() == "actor") {
+      let driverCount
+      if (this.system.driver != "") {
+        driverCount = 1
+      } else {
+        driverCount = 0
+      }
+      
+      let currentCrewArray = this.system.crew.split(",")
+      currentCrewArray = currentCrewArray.filter(function(entry) { return /\S/.test(entry); });
+
+      if(this.system.driver == actorData.uuid || currentCrewArray.includes(actorData.uuid)) {
+        ui.notifications.warn("Actor is already in crew!")
+        return
+      }
+
+      let currentCargo = currentCrewArray.length + driverCount
+
+      if(this.system.cargo <= currentCargo) {
+        ui.notifications.warn("No space in cargo for crew! Delete crew to add more.")
+      } else {
+        currentCrewArray.push(uuid)
+        return this.update({
+          'system.crew': currentCrewArray.toString()
+        })
+      }
+    }
+  }
+
+  async removeCrew(event) {
+    const uuid = event.target.closest("[data-actor-id]").dataset.actorId
+
+    let currentCrewArray = this.system.crew.split(",")
+    currentCrewArray = currentCrewArray.filter(function(entry) { return /\S/.test(entry); });
+
+    const index = currentCrewArray.indexOf(uuid);
+    if (index > -1) { 
+      currentCrewArray.splice(index, 1); 
+      return this.update({
+        'system.crew': currentCrewArray.toString()
+      })
+    }
+  }
+
   async setUsesOnSpells() {
     const power = this.system.characteristics.power
     const diff = []
@@ -1405,5 +1471,37 @@ export class DemonlordActor extends Actor {
     }
 
     return corruption
+  }
+
+
+  get driver() {
+    let uuid = this.system.driver.split(".")[1]
+
+    return game.actors.get(uuid)
+  }
+
+  get crew() {
+    let crewArray = this.system.crew.split(",")
+    
+    crewArray = crewArray.filter(function(entry) { return /\S/.test(entry); });
+    
+    let crewData = crewArray.map(function(current, index, array){
+      let uuid = current.split(".")[1]
+
+      return game.actors.get(uuid)
+    })
+
+    return crewData
+  }
+
+  async onDragEnter (dragEvent) {
+    const target = dragEvent.currentTarget
+
+    target.classList.add('drag-over')
+  }
+
+  async onDragLeave (dragEvent) {
+    const target = dragEvent.currentTarget
+    target.classList?.remove('drag-over')
   }
 }

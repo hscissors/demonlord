@@ -43,10 +43,22 @@ export default class DLVehicleSheet extends DLBaseActorSheet {
 
   /* -------------------------------------------- */
 
-    /** @override */
-    async _onDropActor(event, actorData) { 
-      console.log(actorData)
+  /** @override */
+  async _onDropActor(event, actorData) { 
+    const target = event.target.closest("[data-type]").dataset.type
+    switch(target) {
+      case "driver":
+        await this.actor.addDriver(actorData)
+        break
+      case "crew":
+        await this.actor.addCrew(actorData)
+        break
+      default:
+        break
     }
+    
+    await super._onDropActor(event, actorData)
+  }
 
   /** @override */
   async checkDroppedItem(itemData) {
@@ -69,7 +81,6 @@ export default class DLVehicleSheet extends DLBaseActorSheet {
       else if (ev.button == 2) this.actor.increaseDamage(-1) // Decrease damage
     })
 
-
     // Speed bar clicks
     html.on('mousedown', '.addSpeed', ev => {
       if (ev.button == 0) this.actor.increaseSpeed(+1)
@@ -89,6 +100,22 @@ export default class DLVehicleSheet extends DLBaseActorSheet {
         })
         .then(_ => this.render())
     })
+
+    html.find('.can-drag').on('dragenter', event => {
+      this.actor.onDragEnter(event)
+    })
+
+    html.find('.can-drag').on('dragover', event => {
+      this.actor.onDragEnter(event)
+    })
+
+    html.find('.can-drag').on('dragleave', event => {
+      this.actor.onDragLeave(event)
+    })
+
+    html.find('.driver-delete').click(async ev => await this.actor.removeDriver())
+    
+    html.find('.crew-delete').click(async ev => await this.actor.removeCrew(ev))
 
     // Health bar fill
     const healthbar = html.find('.healthbar-fill')

@@ -11,7 +11,7 @@
 }
 
 .wearoff {
-  background: rgba(0, 0, 0, 0) !important;
+  background: rgba(255, 0, 0, 1) !important;
   label {
     font-weight: normal !important;
   }
@@ -25,6 +25,7 @@
   margin-bottom: 4px;
   font-size: $f-size-normal;
   font-family: $font-primary;
+  box-shadow: none;
 
   img {
     width: 32px;
@@ -92,6 +93,21 @@
       font-size: 10px;
     }
   }
+}
+
+.dl-item-row.empty{
+  width: 100%;
+  text-align: center;
+  border: black dotted 1px;
+  padding: 8px;
+
+  span {
+    font-weight: bold;
+  }
+}
+
+.dl-item-row.drag-over {
+  background: rgba(200, 0 , 0, .30);
 }
 
 // Row of items header

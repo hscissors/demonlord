@@ -117,16 +117,20 @@ form {
         pointer-events: none;
         content: url('../../../icons/svg/sleep.svg');
         position: relative;
-        left: -1px;
-        top: -30px;
+        left: 0px;
+        top: -26px;
+        width: 22px;
+        height: 22px;
       }
 
       .heal-icon {
         pointer-events: none;
-        content: url('../../../icons/svg/sleep.svg');
+        content: url('../../../icons/svg/pill.svg');
         position: relative;
-        left: -1px;
-        top: -30px;
+        left: 0px;
+        top: -26px;
+        width: 22px;
+        height: 22px;
       }
     }
   

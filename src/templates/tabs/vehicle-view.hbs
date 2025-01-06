@@ -1,8 +1,64 @@
+<div class="grid">
+  <div class="col-1">
+    <div class="dl-text-header-upper dl-underline-red dl-item-row-header">
+      <div class="col-10">Driver</div>
+      <div class="col-2">
+        <a class="item-create" title="{{localize 'DL.FeatureAdd'}}" data-type="feature"><i class="fas fa-plus"></i></a>
+      </div>
+    </div>
+  {{#if actor.system.driver}}
+    <div class="dl-item-row can-drag" data-type="driver">
+      <div class="row">
+        <div class="col-10">
+          <img class='dl-clickable-nored item-edit' src="{{actor.driver.img}}" title="{{actor.driver.name}}" width="64"
+              height="64"/>
+          <label class="dl-clickable item-roll">{{actor.driver.name}}</label>
+        </div>
+        <div class="col-2" style="padding-top: 3px">
+          <a class="dl-clickable driver-delete" title="Delete Driver"
+              style="margin-left: 2px; margin-top: 3px;">
+            <i class="fas fa-times"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <div class="dl-item-row empty can-drag" data-type="driver"><span>Uncontrolled</span></div>
+  {{/if}}
+    <div class="dl-text-header-upper dl-underline-red dl-item-row-header">
+      <div class="col-10">Crew</div>
+      <div class="col-2">
+        <a class="item-create" title="{{localize 'DL.FeatureAdd'}}" data-type="feature"><i class="fas fa-plus"></i></a>
+      </div>
+    </div>
+  {{#if actor.crew}}
+    {{#each actor.crew as |crew|}}
+      <div class="dl-item-row can-drag" data-type="crew" data-actor-id="{{crew.uuid}}">
+        <div class="row">
+          <div class="col-10">
+            <img class='dl-clickable-nored item-edit' src="{{crew.img}}" title="{{crew.name}}"  width="64"
+                height="64"/>
+            <label class="dl-clickable item-roll">{{crew.name}}</label>
+          </div>
+          <div class="col-2" style="padding-top: 3px">
+            <a class="dl-clickable crew-delete" title="Delete Crew Member"
+                style="margin-left: 2px; margin-top: 3px;">
+              <i class="fas fa-times"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    <div class="dl-item-row empty can-drag" data-type="crew"><span>No Crew</span></div>
+  {{/if}}
+  </div>
+</div>
 <div class="grid-2">
   <div class="col-1">
     <!-- TRAITS  -->
     <div class="dl-text-header-upper dl-underline-red dl-item-row-header">
-      <div class="col-10">{{localize "DL.VehicleTraits"}}</div>
+      <div class="col-10">Upgrades and Features</div>
       <div class="col-2">
         <a class="item-create" title="{{localize 'DL.FeatureAdd'}}" data-type="feature"><i class="fas fa-plus"></i></a>
       </div>
