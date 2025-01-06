@@ -117,6 +117,8 @@ export default class DLVehicleSheet extends DLBaseActorSheet {
     
     html.find('.crew-delete').click(async ev => await this.actor.removeCrew(ev))
 
+    html.find('.drive-roll').click(async ev => await this.actor.rollDrive())
+
     // Health bar fill
     const healthbar = html.find('.healthbar-fill')
     if (healthbar.length > 0) {

@@ -16,6 +16,7 @@ import {
   postItemToChat,
   postSpellToChat,
   postTalentToChat,
+  postDriveToChat
 } from '../chat/roll-messages'
 import {handleCreateAncestry, handleCreatePath, handleCreateRole, handleCreateRelic } from '../item/nested-objects'
 import {TokenManager} from '../pixi/token-manager'
@@ -196,9 +197,21 @@ export class DemonlordActor extends Actor {
       system.characteristics.power = powerLevel
     }
     // --- Creature specific data ---
-    else {
+    else if(this.type === 'creature'){
       system.characteristics.defense = system.characteristics.defense || system.bonuses.armor.fixed || system.attributes.agility.value + system.bonuses.armor.agility
-    }    
+    }      
+    // --- Vehicle specific data ---
+    else {
+      const driver = this.driver
+      system.characteristics.defense = 5 + system.characteristics.vehiclespeed.value
+      system.attributes.strength.value = 10 + system.characteristics.vehiclespeed.value
+      system.attributes.intellect.value = 0
+      system.attributes.will.value = 0
+      system.attributes.agility.value = 0
+      if(system.characteristics.vehiclespeed.value != 0){
+        system.attributes.agility.value += this.driver.system.attributes.agility.value
+      } 
+    }
 
     // Final armor computation
     system.characteristics.defense += system.bonuses.armor.defense
@@ -1314,6 +1327,12 @@ export class DemonlordActor extends Actor {
       return this.update({
         'system.crew': currentCrewArray.toString()
       })
+    }
+  }
+
+  async rollDrive() {
+    if(this.system.driver == "") {
+      postDriveToChat()
     }
   }
 

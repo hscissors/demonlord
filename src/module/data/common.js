@@ -42,7 +42,7 @@ export function characteristics(actorType) {
       })
     case 'vehicle':
       return new foundry.data.fields.SchemaField({
-        defense: makeIntField(),
+        defense: makeIntField(5),
         health: makeHealth(),
         size: makeStringField("1"),
         speed: makeIntField(10),

@@ -495,6 +495,16 @@ export async function postCorruptionToChat(actor, corruptionRoll, corruptionData
   await ChatMessage.create(chatData)
 }
 
+export async function postDriveToChat() {
+  const compendium = await game.packs.get('world.tables-godless').getDocuments()
+  const table = compendium.find(i => i.name === "Uncontrolled Vehicle")
+  const tableResult = await table.roll()
+
+  let message = tableResult.results[0].text
+
+  await ChatMessage.create({ content: message})
+}
+
 export async function postGritToChat(actor, gritRoll) {
   const templateData = {
     actor: actor,
