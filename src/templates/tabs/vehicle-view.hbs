@@ -1,15 +1,26 @@
 <div class="grid">
   <div class="col-1">
     <div class="dl-text-header-upper dl-underline-red dl-item-row-header">
-      <div class="col-10">Driver</div>
+      <div class="col-12">Driver</div>
     </div>
   {{#if actor.system.driver}}
     <div class="dl-item-row can-drag" data-type="driver">
       <div class="row">
-        <div class="col-10">
+        <div class="col-9">
           <img class='dl-clickable-nored driver-edit' src="{{actor.driver.img}}" title="{{actor.driver.name}}" width="64"
               height="64"/>
-          <label class="dl-clickable drive-roll">{{actor.driver.name}} <i class="fa-regular fa-steering-wheel"></i></label>
+          <label class="dl-clickable drive-roll">{{actor.driver.name}}</label>
+        </div>
+        <div class="col-1" style="padding-top: 3px">
+        {{#if actor.system.uncontrolled}}
+          <a class="dl-clickable drive-toggle-control" title="Toggle Uncontrolled" style="margin-left: 2px; margin-top: 3px;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </a>
+        {{else}}
+          <a class="dl-clickable drive-toggle-control" title="Toggle Uncontrolled" style="margin-left: 2px; margin-top: 3px;">
+            <i class="fa-regular fa-steering-wheel"></i>
+          </a>
+        {{/if}} 
         </div>
         <div class="col-2" style="padding-top: 3px">
           <a class="dl-clickable driver-delete" title="Delete Driver"
@@ -22,7 +33,7 @@
   {{else}}
     <div class="dl-item-row empty can-drag" data-type="driver">
       <div class="row">
-        <div class="col-10">
+        <div class="col-12">
           <div class="dl-clickable drive-roll"><i class="fa-solid fa-triangle-exclamation"></i> <span>Uncontrolled</span></div>
         </div>
       </div>

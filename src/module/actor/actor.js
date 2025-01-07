@@ -148,18 +148,17 @@ export class DemonlordActor extends Actor {
     effectChanges.sort((a, b) => a.priority - b.priority)
     // effectChanges now contains active effects for attributes and characteristics sorted by priority
 
-
-    // Clamp attribute values and calculate modifiers
-    for (const attribute of Object.values(system.attributes)) {
-      attribute.value = Math.min(attribute.max, Math.max(attribute.min, attribute.value))
-      attribute.modifier = attribute.value - 10
-    }
-
     // Maluses
     if (system.maluses.halfSpeed) system.characteristics.speed = Math.floor(system.characteristics.speed / 2)  // TODO: Remove for v12
 
     // --- Character specific data ---
     if (this.type === 'character') {
+      // Clamp attribute values and calculate modifiers
+      for (const attribute of Object.values(system.attributes)) {
+        attribute.value = Math.min(attribute.max, Math.max(attribute.min, attribute.value))
+        attribute.modifier = attribute.value - 10
+      }
+
       // Override Perception value
       system.attributes.perception.value += system.attributes.intellect.modifier
       system.attributes.perception.value = Math.min(system.attributes.perception.max,
@@ -198,19 +197,31 @@ export class DemonlordActor extends Actor {
     }
     // --- Creature specific data ---
     else if(this.type === 'creature'){
+      // Clamp attribute values and calculate modifiers
+      for (const attribute of Object.values(system.attributes)) {
+        attribute.value = Math.min(attribute.max, Math.max(attribute.min, attribute.value))
+        attribute.modifier = attribute.value - 10
+      }
+
       system.characteristics.defense = system.characteristics.defense || system.bonuses.armor.fixed || system.attributes.agility.value + system.bonuses.armor.agility
     }      
     // --- Vehicle specific data ---
     else {
-      const driver = this.driver
       system.characteristics.defense = 5 + system.characteristics.vehiclespeed.value
       system.attributes.strength.value = 10 + system.characteristics.vehiclespeed.value
       system.attributes.intellect.value = 0
+      system.attributes.intellect.immune = true
       system.attributes.will.value = 0
+      system.attributes.will.immune = true
       system.attributes.agility.value = 0
-      if(system.characteristics.vehiclespeed.value != 0){
+      if(system.characteristics.vehiclespeed.value != 0 && this.system.driver != ""){
         system.attributes.agility.value += this.driver.system.attributes.agility.value
       } 
+
+      //Recalc mods
+      for (const attribute of Object.values(system.attributes)) {
+        attribute.modifier = attribute.value - 10
+      }
     }
 
     // Final armor computation
@@ -566,6 +577,14 @@ export class DemonlordActor extends Actor {
   /* -------------------------------------------- */
 
   async rollAttribute(attribute, inputBoons, inputModifier) {
+    if (typeof attribute === 'string' || attribute instanceof String) attribute = this.getAttribute(attribute)
+
+
+    if (DLAfflictions.isActorBlocked(this, 'challenge', attribute.key)) {
+      ui.notifications.warn(game.i18n.localize("All challenge rolls result in failure."));
+      return
+    }
+
     const modifiers = [parseInt(inputModifier), this.getAttribute(attribute.key)?.modifier || 0]
     const boons = (parseInt(inputBoons) || 0) + (this.system.bonuses.challenge.boons[attribute.key] || 0) + (this.system.bonuses.challenge.boons.all || 0)
     const boonsReroll = parseInt(this.system.bonuses.rerollBoon1Dice)
@@ -1275,13 +1294,29 @@ export class DemonlordActor extends Actor {
       if(this.system.cargo <= currentCargo) { 
         ui.notifications.warn("No space in cargo for driver! Delete crew to add more.")
       } else {
-        return this.update({'system.driver': uuid})
+        return this.update(
+          {
+            'system.driver': uuid,
+            'system.uncontrolled': false
+          }
+        )
       }
     }
   }
 
   async removeDriver() {
-    return this.update({'system.driver': ""})
+    return this.update(
+      {
+        'system.driver': "",
+        'system.uncontrolled': true 
+      }
+    )
+  }
+
+  async toggleUncontrolled(){
+    let newStatus = !this.system.uncontrolled
+
+    return this.update({'system.uncontrolled': newStatus})
   }
 
   async addCrew(actorData) {
@@ -1331,8 +1366,12 @@ export class DemonlordActor extends Actor {
   }
 
   async rollDrive() {
-    if(this.system.driver == "") {
+    if(this.system.driver == "" || this.system.uncontrolled) {
       postDriveToChat()
+    } else {
+      let ba = this.getBanesForCurrentSpeed()
+      
+      await this.driver.rollAttribute('agility', ba)
     }
   }
 
@@ -1490,6 +1529,34 @@ export class DemonlordActor extends Actor {
     }
 
     return corruption
+  }
+
+  getBanesForCurrentSpeed() {
+    const currentSpeed = this.system.characteristics.vehiclespeed.value
+    let banes
+    switch(currentSpeed) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+        banes = 0
+        break;
+      case 4:
+      case 5:
+      case 6:
+        banes = currentSpeed - 3
+        break;
+      case 7:
+      case 8:
+        banes = 3
+        break
+      default:
+        let calcSpeed = currentSpeed - 8
+        banes = 3 + calcSpeed
+        break;
+    }
+
+    return -banes
   }
 
 

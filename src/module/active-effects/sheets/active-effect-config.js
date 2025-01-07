@@ -83,6 +83,7 @@ export class DLActiveEffectConfig extends ActiveEffectConfig {
       'system.characteristics.insanity.max': i18n('DL.Characteristics') + ' - ' + i18n('DL.CharInsanity'),
       'system.characteristics.insanity.immune': i18n('DL.ImmuneCharacteristic') + ' - ' + i18n('DL.CharInsanity'),
       'system.characteristics.corruption.immune': i18n('DL.ImmuneCharacteristic') + ' - ' + i18n('DL.CharCorruption'),
+      'system.characteristics.vehiclespeed.max': 'Vehicle - Max Speed',
       // Attack bonuses
       'system.bonuses.attack.boons.spell': i18n('DL.TalentAttackBoonsBanes') + ' - ' + i18n('DL.MagicSpellsTitle'),
       'system.bonuses.attack.boons.weapon': i18n('DL.TalentAttackBoonsBanes') + ' - ' + i18n('DL.WeaponTitle'),

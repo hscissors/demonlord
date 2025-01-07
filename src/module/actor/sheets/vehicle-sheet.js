@@ -119,6 +119,8 @@ export default class DLVehicleSheet extends DLBaseActorSheet {
 
     html.find('.drive-roll').click(async ev => await this.actor.rollDrive())
 
+    html.find('.drive-toggle-control').click(async ev => await this.actor.toggleUncontrolled())
+
     // Health bar fill
     const healthbar = html.find('.healthbar-fill')
     if (healthbar.length > 0) {
