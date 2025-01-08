@@ -1,3 +1,24 @@
+{{#*inline "driveAction"}}
+  <div class="dl-item-row drive-action" data-item-id="<b>{{label}}</b> - {{description}}">
+    <div class="row">
+      <div class="col-10 label">
+        <i class="{{icon}}"></i>
+        <label class="dl-clickable {{cssClass}}">{{label}}</label>
+      </div>
+      <div class="col-2 toggle">
+        <span class="dl-clickable dlToggleInfoBtn">
+          <i class="fas fa-chevron-up"></i>
+        </span>
+      </div>
+    </div>
+    <div class="row dlInfo dl-item-info" style="display: none; text-align: left">
+      <div class="col-12">
+        {{{description}}}
+      </div>
+    </div>
+  </div>
+{{/inline}}
+
 <div class="grid">
   <div class="col-1">
     <div class="dl-text-header-upper dl-underline-red dl-item-row-header">
@@ -65,6 +86,48 @@
   {{/if}}
   </div>
 </div>
+<div class="grid-1">
+  <div class="col-1">
+    <div class="dl-text-header-upper dl-underline-red dl-item-row-header">
+      <div class="col-12">Driving Actions</div>
+    </div>
+    <div class="grid-3">
+      <div class="col-1">
+          {{> driveAction icon="fa-solid fa-key" cssName="drive-action-start"  label="Start Your Engines" description="If the engine works and has fuel, you can spend 5 movement to start the engine. You can shut off the engine at any time on your turn."}}
+          <div class="dl-item-row drive-action" data-item-id="<b>Start Your Engines</b> - When you accelerate, you give the vehicle more gas or power to increase your velocity. The amount by which you increase your velocity depends on your current velocity and your vehicle's acceleration rating. Add up to the max acceleration bonus to your velocity. You can only increase the velocity to the vechiles maximum.">
+            <div class="row">
+              <div class="col-10 label">
+                <i class="fa-solid fa-gauge-max"></i>
+                <label class="dl-clickable drive-action-gas">Gun It! +{{actor.system.characteristics.vehiclespeed.accelBonus}}</label>
+              </div>
+              <div class="col-2 toggle">
+                <span class="dl-clickable dlToggleInfoBtn">
+                  <i class="fas fa-chevron-up"></i>
+                </span>
+              </div>
+            </div>
+            <div class="row dlInfo dl-item-info" style="display: none; text-align: left">
+              <div class="col-12">
+                When you accelerate, you give the vehicle more gas or power to increase your velocity. The amount by which you increase your velocity depends on your current velocity and your vehicle's acceleration rating. Add up to the max acceleration bonus to your velocity. You can only increase the velocity to the vechiles maximum.
+              </div>
+            </div>
+          </div>
+          {{!-- {{> driveAction icon="fa-solid fa-gauge-max" cssName="drive-action-gas"  label="Gun It! (+2)" description=""}} --}}
+          {{> driveAction icon="fa-solid fa-gauge-min" cssName="drive-action-brake"  label="Brake" description="When you brake, you reduce your vehicle's current velocity by 1. You can reduce velocity by double that, but you must succeed on a Aglity Challenge roll with 3 banes or lose control."}}
+      </div>
+      <div class="col-1">
+          {{> driveAction icon="fa-sharp-duotone fa-solid fa-cars" cssName="drive-action-close"  label="Close" description="The driver attempts to close the distance between the vehicle and another vehicle in front or behind it. The driver must make an Agility Challenge roll with banes from speed. On a success, the driver moves his or her vehicle up to 1d6 car lengths towards the target vehicle. On a failure, the driver maintains its current position. If the total of the roll is 0 or less, the driver moves 1 space away from the target vehicle."}}
+          {{> driveAction icon="fa-sharp-duotone fa-solid fa-traffic-cone" cssName="drive-action-avoid"  label="Avoid Hazard" description="If a hazard appears in the road, a driver can roll an Agility Challenge to avoid it, with banes imposed by speed and handling. On a success, the driver swerves around or otherwise avoids the hazard."}}
+          {{> driveAction icon="fa-solid fa-car-burst" cssName="drive-action-swipe"  label="Sideswipe" description="The driver swerves the vehicle so it slams into the side of a vehicle in the same space. The driver rolls Agility against the Agility of the target vehicle's driver. On a success, your vehicle takes 1d6 damage and the target vehicle's side takes 1d6 damage plus 1d6 extra damage if your vehicle is larger. In addition, the creature controlling the target vehicle must roll an Agility Challenge roll to main control."}}
+      </div>
+      <div class="col-1">
+          {{> driveAction icon="fa-solid fa-person-falling-burst" cssName="drive-action-shake"  label="Shake Off" description="If an unwanted passenger clings to the outside of a driver's vehicle, they can attempt to shake them off. Each creature on the outside of the vehicle must make a Strength Challenge roll. A failure means the creature falls off (see Falling from Moving Vehicles page 52)."}}
+          {{> driveAction icon="fa-solid fa-octagon-exclamation" cssName="drive-action-stop"  label="Slam On The Brakes" description="The driver hits the brakes to rapidly slow down. The drivers must make an Agility Challenge roll with banes from speed. On failure, all cards in the same space collide with the vehicle. (see Collisions page 52). On success, move the driver’s vehicle back 2d6 car lengths and reduce speed by 2."}}
+          {{> driveAction icon="fa-solid fa-solid fa-burst" cssName="drive-action-ram"  label="Ram" description="The driver attempts to ram the vehicle into a creature, object, or another vehicle that’s within 1 car length. If the target is not stationary, the attacking driver must roll Agility against the target's Agility. On a success, the driver rams its vehicle against the target (see Collisions page 52)."}}
+      </div>
+    </div>
+  </div>
+</div>
 <div class="grid-2">
   <div class="col-1">
     <!-- TRAITS  -->
@@ -80,7 +143,7 @@
         <div class="row">
           <div class="col-10">
             <img class='dl-clickable-nored item-edit' src="{{item.img}}" title="{{item.name}}" width="32"
-                 height="32"/>
+                  height="32"/>
             <label class="dl-clickable item-roll">{{item.name}}</label>
           </div>
           <div class="col-2" style="padding-top: 3px">
@@ -88,7 +151,7 @@
               <i class="fas fa-chevron-up"></i>
             </span>
             <a class="dl-clickable item-delete" title="{{localize 'DL.FeatureDelete'}}"
-               style="margin-left: 2px; margin-top: 3px;">
+                style="margin-left: 2px; margin-top: 3px;">
               <i class="fas fa-times"></i>
             </a>
           </div>

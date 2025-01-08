@@ -238,23 +238,25 @@ i.fa-regular.fa-shield, i.fas.fa-shield {
 
 // Vehicle tab
 .dl-vehicle-tab {
-  & > div.grid-2 {
+  .grid-2, .grid-3 {
     height: 100%;
 
-    & > .col-1 {
-      height: 98%;
-      padding-bottom: 32px;
-    }
-
-    & > .col-1:first-child {
+    .col-1:first-child {
       border-right: 1px solid #33333333;
       margin-right: 16px;
       padding-right: 16px;
-      height: 98%;
     }
 
-    & > .col-1:last-child {
+    .col-1:last-child {
       padding-right: 8px;
+    }
+  }
+
+  .grid-3 {
+    .col-1:nth-child(2) {
+      border-right: 1px solid #33333333;
+      margin-right: 16px;
+      padding-right: 16px;
     }
   }
 
@@ -281,6 +283,20 @@ i.fa-regular.fa-shield, i.fas.fa-shield {
       .fa-solid {
         float: left;
         padding-right: 5px;
+      }
+    }
+  }
+
+  .dl-item-row.drive-action {
+    .label {
+      i {
+        font-size: 16px;
+        padding-left: 7px;
+      }
+    }
+    .toggle {
+      i {
+        top: 4px;
       }
     }
   }

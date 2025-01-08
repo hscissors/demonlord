@@ -456,29 +456,30 @@ export async function postCorruptionToChat(actor, corruptionRoll, corruptionData
   data['diceTotal'] = corruptionRoll.total
   data['diceFormula'] = corruptionRoll.formula
 
+  //if actor gains a trait add to sheet
+  if(corruptionData.trait != undefined) {
+    const trait = await actor.items.find(i => i.name == corruptionData.trait)
+    if(trait == undefined) {
+      data['traitText'] = corruptionData.trait
+
+      const compendium = await game.packs.get('world.demonic-traits').getDocuments()
+      const trait = compendium.find(i => i.name === corruptionData.trait)
+      await actor.createEmbeddedDocuments('Item', [
+        {
+          name: trait.name,
+          type: 'feature',
+          img: trait.img,
+          system: {
+            description: trait.system.description,
+          },
+        },
+      ])
+    }
+  }
+
   if(isFailure) {
     data['resultText'] = game.i18n.localize('DL.DiceResultFailure')
     data['failureText'] = "Roll [[/roll 1d6]] to determine severity of your Mark of Darkness."
-
-    //if actor gains a trait on failure, add to sheet
-    if(corruptionData.trait != undefined) {
-      if(actor.items.get(corruptionData.trait) == undefined) {
-        data['traitText'] = corruptionData.trait
-
-        const compendium = await game.packs.get('world.demonic-traits').getDocuments()
-        const trait = compendium.find(i => i.name === corruptionData.trait)
-        await actor.createEmbeddedDocuments('Item', [
-          {
-            name: trait.name,
-            type: 'feature',
-            img: trait.img,
-            system: {
-              description: trait.system.description,
-            },
-          },
-        ])
-      }
-    }
   } else {
     data['resultText'] = game.i18n.localize('DL.DiceResultSuccess')
   }
@@ -502,6 +503,10 @@ export async function postDriveToChat() {
 
   let message = tableResult.results[0].text
 
+
+}
+
+export async function postMessageToChat(message){
   await ChatMessage.create({ content: message})
 }
 

@@ -89,6 +89,7 @@ export function makeSpeed() {
   return new foundry.data.fields.SchemaField({
     max: makeIntField(),
     value: makeIntField(),
+    accelBonus: makeIntField(),
     acceleration: makeIntField(1, 4, 1)
   })
 }

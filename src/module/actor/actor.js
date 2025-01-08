@@ -16,7 +16,8 @@ import {
   postItemToChat,
   postSpellToChat,
   postTalentToChat,
-  postDriveToChat
+  postDriveToChat,
+  postMessageToChat
 } from '../chat/roll-messages'
 import {handleCreateAncestry, handleCreatePath, handleCreateRole, handleCreateRelic } from '../item/nested-objects'
 import {TokenManager} from '../pixi/token-manager'
@@ -217,6 +218,7 @@ export class DemonlordActor extends Actor {
       if(system.characteristics.vehiclespeed.value != 0 && this.system.driver != ""){
         system.attributes.agility.value += this.driver.system.attributes.agility.value
       } 
+      system.characteristics.vehiclespeed.accelBonus = this.getAccelerationBonusForCurrentSpeed()
 
       //Recalc mods
       for (const attribute of Object.values(system.attributes)) {
@@ -1375,6 +1377,10 @@ export class DemonlordActor extends Actor {
     }
   }
 
+  async rollMessage(message){
+    await postMessageToChat(message)
+  }
+
   async setUsesOnSpells() {
     const power = this.system.characteristics.power
     const diff = []
@@ -1540,12 +1546,12 @@ export class DemonlordActor extends Actor {
       case 2:
       case 3:
         banes = 0
-        break;
+        break
       case 4:
       case 5:
       case 6:
         banes = currentSpeed - 3
-        break;
+        break
       case 7:
       case 8:
         banes = 3
@@ -1553,10 +1559,42 @@ export class DemonlordActor extends Actor {
       default:
         let calcSpeed = currentSpeed - 8
         banes = 3 + calcSpeed
-        break;
+        break
     }
 
     return -banes
+  }
+
+  getAccelerationBonusForCurrentSpeed() {
+    const vehiclespeed = this.system.characteristics.vehiclespeed
+    let bonus 
+    if(vehiclespeed.value >= vehiclespeed.max) {
+      bonus = 0
+      return bonus
+    } 
+
+    switch(vehiclespeed.acceleration) {
+      case 1:
+         bonus = 1
+        break
+      case 2:
+        if(vehiclespeed.value == 0) { bonus = 2 } 
+        else { bonus = 1 } 
+        break
+      case 3:
+        if(vehiclespeed.value == 0 || vehiclespeed.value == 1) { bonus = 3 } 
+        else if(vehiclespeed.value == 2 || vehiclespeed.value == 3) { bonus = 2 } 
+        else { bonus = 1 } 
+        break
+      case 4:
+        if(vehiclespeed.value == 0) { bonus = 4 } 
+        else if(vehiclespeed.value == 1 || vehiclespeed.value == 2) { bonus = 3 } 
+        else if(vehiclespeed.value == 3 || vehiclespeed.value == 4) { bonus = 2 } 
+        else { bonus = 1 } 
+        break;
+    }
+
+    return bonus
   }
 
 

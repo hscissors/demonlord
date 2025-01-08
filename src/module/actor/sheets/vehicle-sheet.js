@@ -121,6 +121,14 @@ export default class DLVehicleSheet extends DLBaseActorSheet {
 
     html.find('.drive-toggle-control').click(async ev => await this.actor.toggleUncontrolled())
 
+    html.find('.drive-action label').click(async ev => {
+      const description = $(ev.currentTarget).closest('[data-item-id]').data('itemId')
+      let result = description.replace(/1d6|2d6|3d6/gi, function (x) {
+        return "[[/roll " + x + " ]]";
+      });
+      await this.actor.rollMessage(result)
+    })
+
     // Health bar fill
     const healthbar = html.find('.healthbar-fill')
     if (healthbar.length > 0) {
