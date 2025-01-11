@@ -11,7 +11,7 @@
 }
 
 .wearoff {
-  background: rgba(255, 0, 0, 1) !important;
+  background: rgba(0, 0, 0, .3) !important;
   label {
     font-weight: normal !important;
   }
@@ -106,7 +106,7 @@
 }
 
 .dl-item-row.drag-over {
-  background: rgba(200, 0 , 0, .30);
+  background: rgba(112, 0, 0, 0.3);
 }
 
 // Row of items header
