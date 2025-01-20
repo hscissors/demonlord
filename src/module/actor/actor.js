@@ -531,30 +531,33 @@ export class DemonlordActor extends Actor {
       )
     }
 
-    // Check if there is an ammo for weapon
-    if (item.system.consume.ammorequired) {
-      ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
-      
-      if (ammoItem) {
-        if (ammoItem.system.quantity === 0) {
+    if (this.type !== 'creature') {
+      // Check if there is an ammo for weapon
+      if (item.system.consume.ammorequired) {
+        ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
+        
+        if (ammoItem) {
+          if (ammoItem.system.quantity === 0) {
+            return ui.notifications.warn(
+              game.i18n.format('DL.WeaponRunOutOfAmmo', {
+                weaponName: item.name,
+              })
+            )
+          } 
+        } else {
           return ui.notifications.warn(
-            game.i18n.format('DL.WeaponRunOutOfAmmo', {
+            game.i18n.format('DL.WeaponNoAmmo', {
               weaponName: item.name,
-            })
+            }),
           )
-        } 
-      } else {
-        return ui.notifications.warn(
-          game.i18n.format('DL.WeaponNoAmmo', {
-            weaponName: item.name,
-          }),
-        )
-      }
+        }
 
-      await item.update({
-        'system.consume.reloadRequired': true,
-      })
+        await item.update({
+          'system.consume.reloadRequired': true,
+        })
+      }
     }
+
 
     // If no attribute to roll, roll without modifiers and boons
     const attribute = item.system.action?.attack
