@@ -109,19 +109,12 @@ form {
             position: absolute;
             top: -5px;
             left: -7px;
-          }
-
-          /* Create the checkmark/indicator (hidden when not checked) */
-          .checkmark:after {
-            content: "";
-            background-image: url('../assets/ui/bloodstain.webp');
-            position: absolute;
-            display: none;
+            background-image: unset;
           }
 
           /* Show the checkmark when checked */
-          input:checked ~ .checkmark:after {
-            background-image: unset;
+          input:checked ~ .checkmark {
+            background-image: url('../assets/ui/bloodstain.webp');
             display: block;
           }
         }
