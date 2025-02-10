@@ -1040,14 +1040,14 @@ export class DemonlordActor extends Actor {
 
     launchCountBulletsDialog("Count bullets for " + item.name, async (html, countType) => {
         if(isSpecialTypeAmmo) {
-          targetNumber = 4
+          targetNumber = 5
         } else {
           switch(countType) {
             case "single":
-              targetNumber = 2
+              targetNumber = 3
               break;
             case "full":
-              targetNumber = 3
+              targetNumber = 4
               break;
           }
         }
@@ -1056,7 +1056,7 @@ export class DemonlordActor extends Actor {
         let countRoll = new Roll("1d6")
         await countRoll.evaluate()
 
-        if(countRoll.total <= targetNumber) {
+        if(countRoll.total > targetNumber) {
           isFailure = true
           //Decrease ammo quantity
           await ammoItem.update({
