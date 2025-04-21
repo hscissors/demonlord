@@ -1056,7 +1056,7 @@ export class DemonlordActor extends Actor {
         let countRoll = new Roll("1d6")
         await countRoll.evaluate()
 
-        if(countRoll.total > targetNumber) {
+        if(countRoll.total < targetNumber) {
           isFailure = true
           //Decrease ammo quantity
           await ammoItem.update({
