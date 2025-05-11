@@ -30,7 +30,10 @@
 .toggleEffectInfo,
 .item-uses,
 .edit-ancestrytalents,
-.show-iteminfo {
+.show-iteminfo,
+.speed-roll,
+.spendFortune,
+.grit-roll {
   &:hover,
   &:focus {
     color: #000;

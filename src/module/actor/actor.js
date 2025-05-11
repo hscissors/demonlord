@@ -635,7 +635,7 @@ export class DemonlordActor extends Actor {
           let boba = html.find('[id="boonsbanes"]').val()
           let mod = html.find('[id="modifier"]').val()
           
-          await this.rollAttribute(attribute, boba, mod)
+          await this.rollAttributeChallenge(attribute, boba, mod)
         }
       )
     }

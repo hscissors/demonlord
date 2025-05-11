@@ -119,6 +119,9 @@
         </div>
         <div class="chars grid">
           <div class="bar insanity">
+          {{#unless system.characteristics.insanity.immune}}
+            <a class="insanity-roll" title="Roll Instanity"><i class="fas fa-dice-d20"></i></a>        
+          {{/unless}}  
             <div class={{ifThen system.characteristics.insanity.immune "Insanity"  "addInsanity"}}>{{localize "DL.CharInsanity"}}</div>
             <div class="bar-inner">
               <span class="bar-fill insanity-fill"></span>
@@ -126,7 +129,6 @@
           {{#unless system.characteristics.insanity.immune}}
             <div class="bar-max">{{system.characteristics.insanity.max}}</div>
             <div class="bar-current">{{system.characteristics.insanity.value}}</div>
-            <a class="insanity-roll" title="Roll Instanity"><i class="fas fa-dice-d20"></i></a>          
           {{else}}
             <div class="insanitymiddle">–</div>
         {{/unless}}
@@ -134,14 +136,16 @@
         </div>
         <div class="chars grid">
           <div class="bar corruption">
+          {{#unless system.characteristics.corruption.immune}}
+            <a class="corruption-roll" title="{{localize 'DL.CharRolCorruption'}}"><i class="fas fa-dice-d20"></i></a>
+          {{/unless}}
             <div class={{ifThen system.characteristics.corruption.immune "Corruption"  "addCorruption"}}>{{localize "DL.CharCorruption"}}</div>
             <div class="bar-inner">
               <span class="bar-fill corruption-fill"></span>
             </div>
           {{#unless system.characteristics.corruption.immune}}
             <div class="bar-max">20</div>
-            <div class="bar-current">{{system.characteristics.corruption.value}}</div>
-            <a class="corruption-roll" title="{{localize 'DL.CharRolCorruption'}}"><i class="fas fa-dice-d20"></i></a>          
+            <div class="bar-current">{{system.characteristics.corruption.value}}</div>          
           {{else}}
             <div class="corruptionmiddle">–</div>
           {{/unless}}
@@ -164,13 +168,13 @@
             <div class="box-inner">{{system.characteristics.size}}</div>
           </div>
           <div class="box">
-            <div class="box-text"><a class="speed-roll">{{localize "DL.CharSpeed"}} <i class="fas fa-dice"></i></a> </div>
+            <div class="box-text"><a class="speed-roll">{{localize "DL.CharSpeed"}}</a> <i class="fas fa-dice"></i></div>
             <div class="box-inner">{{system.characteristics.speed}}</div>
           </div>
         </div>
         <div class="chars grid grid-2">
           <div class="box">
-            <div class="box-text"><a class="grit-roll" title="Grit">Grit <i class="fas fa-dice"></i></a> </div>
+            <div class="box-text"><a class="grit-roll" title="Grit">Grit</a> <i class="fas fa-dice"></i></div>
             <div class="box-inner">
               <input
                     name="system.characteristics.health.grit"
@@ -182,7 +186,7 @@
             </div>
           </div>
           <div class="box">
-            <div class="box-text">Fortune</div>
+            <div class="box-text"><a class="spendFortune">Fortune</a></div>
             <div class="box-inner">
               <input
                     name="system.characteristics.fortune"
