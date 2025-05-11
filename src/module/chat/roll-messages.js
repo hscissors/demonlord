@@ -54,7 +54,7 @@ export function postAttackToChat(attacker, defender, item, attackRoll, attackAtt
       ? defender?.system.characteristics.defense
       : defender?.getAttribute(defenseAttribute)?.value || ''
 
-  const plus20 = attackRoll?.total >= 20 && (targetNumber ? attackRoll?.total > targetNumber + (game.settings.get('demonlord', 'optinalRuleExceedsByFive') ? 5 : 4) : true)
+  const plus20 = attackRoll?.total >= 20 && (targetNumber ? attackRoll?.total > targetNumber + (game.settings.get('demonlord', 'optionalRuleExceedsByFive') ? 5 : 4) : true)
   const didHit = voidRoll ? false : attackRoll?.total >= targetNumber
 
   let diceTotalGM = attackRoll?.total ?? ''
@@ -223,7 +223,7 @@ export function postTalentToChat(actor, talent, attackRoll, target, inputBoons) 
   }
 
   const targetNumber = talentData?.action?.attack ? actor.getTargetNumber(talent) : ''
-  const plus20 = attackRoll?.total >= 20 && (targetNumber ? attackRoll?.total > targetNumber + (game.settings.get('demonlord', 'optinalRuleExceedsByFive') ? 5 : 4) : true)
+  const plus20 = attackRoll?.total >= 20 && (targetNumber ? attackRoll?.total > targetNumber + (game.settings.get('demonlord', 'optionalRuleExceedsByFive') ? 5 : 4) : true)
 
   let resultText =
     !voidRoll && attackRoll != null && targetNumber !== undefined && attackRoll.total >= parseInt(targetNumber)
@@ -339,7 +339,7 @@ export async function postSpellToChat(actor, spell, attackRoll, target, inputBoo
   if (uses >= 0 && usesMax > 0) usesText = game.i18n.localize('DL.SpellCastingsUses') + ': ' + uses + ' / ' + usesMax
 
   const targetNumber = actor.getTargetNumber(spell)
-  const plus20 = attackRoll?.total >= 20 && (targetNumber ? attackRoll?.total > targetNumber + (game.settings.get('demonlord', 'optinalRuleExceedsByFive') ? 5 : 4) : true)
+  const plus20 = attackRoll?.total >= 20 && (targetNumber ? attackRoll?.total > targetNumber + (game.settings.get('demonlord', 'optionalRuleExceedsByFive') ? 5 : 4) : true)
 
   let resultText =
     !voidRoll && targetNumber && attackRoll?.total >= parseInt(targetNumber)
@@ -609,6 +609,22 @@ export async function postCountBulletsToChat(actor, countRoll, isFailure) {
   await ChatMessage.create(chatData)
 }
 
+export async function postFortuneToChat(actor, awarded) {
+  const templateData = {
+    actor: actor,
+    data: {},
+  }
+  const data = templateData.data
+  data['actorInfo'] = buildActorInfo(actor)
+  data['awarded'] = awarded
+  
+  const rollMode = game.settings.get('core', 'rollMode')
+  const chatData = getChatBaseData(actor, rollMode)
+  const template = 'systems/demonlord/templates/chat/fortune.hbs'
+  chatData.content = await renderTemplate(template, templateData)  
+  await ChatMessage.create(chatData)
+}
+
 export const postItemToChat = (actor, item, attackRoll, target, inputBoons) => {
   const itemData = item.system
   const rollMode = game.settings.get('core', 'rollMode')
@@ -629,7 +645,7 @@ export const postItemToChat = (actor, item, attackRoll, target, inputBoons) => {
   }*/
 
   const targetNumber = itemData?.action?.attack ? actor.getTargetNumber(item) : ''
-  const plus20 = attackRoll?.total >= 20 && (targetNumber ? attackRoll?.total > targetNumber + (game.settings.get('demonlord', 'optinalRuleExceedsByFive') ? 5 : 4) : true)
+  const plus20 = attackRoll?.total >= 20 && (targetNumber ? attackRoll?.total > targetNumber + (game.settings.get('demonlord', 'optionalRuleExceedsByFive') ? 5 : 4) : true)
 
   let resultText =
     !voidRoll && attackRoll != null && targetNumber !== undefined && attackRoll.total >= parseInt(targetNumber)

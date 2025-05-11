@@ -11,16 +11,16 @@ import { changesMatch } from '../utils/chat'
 const tokenManager = new TokenManager()
 
 export function initChatListeners(html) {
-  html.on('click', '.roll-healing', _onChatApplyHealing.bind(this))
-  html.on('click', '.roll-damage', _onChatRollDamage.bind(this))
-  html.on('click', '.apply-damage', _onChatApplyDamage.bind(this))
-  html.on('click', '.apply-effect', _onChatApplyEffect.bind(this))
-  html.on('click', '.use-talent', _onChatUseTalent.bind(this))
-  html.on('click', '.place-template', _onChatPlaceTemplate.bind(this))
-  html.on('click', '.request-challengeroll', _onChatRequestChallengeRoll.bind(this))
-  html.on('click', '.make-challengeroll', _onChatMakeChallengeRoll.bind(this))
-  html.on('click', '.request-initroll', _onChatRequestInitRoll.bind(this))
-  html.on('click', '.make-initroll', _onChatMakeInitRoll.bind(this))
+  $(html).on('click', '.roll-healing', _onChatApplyHealing.bind(this))
+  $(html).on('click', '.roll-damage', _onChatRollDamage.bind(this))
+  $(html).on('click', '.apply-damage', _onChatApplyDamage.bind(this))
+  $(html).on('click', '.apply-effect', _onChatApplyEffect.bind(this))
+  $(html).on('click', '.use-talent', _onChatUseTalent.bind(this))
+  $(html).on('click', '.place-template', _onChatPlaceTemplate.bind(this))
+  $(html).on('click', '.request-challengeroll', _onChatRequestChallengeRoll.bind(this))
+  $(html).on('click', '.make-challengeroll', _onChatMakeChallengeRoll.bind(this))
+  $(html).on('click', '.request-initroll', _onChatRequestInitRoll.bind(this))
+  $(html).on('click', '.make-initroll', _onChatMakeInitRoll.bind(this))
 }
 
 /* -------------------------------------------- */
@@ -73,7 +73,7 @@ async function _onChatRollDamage(event) {
   const selected = tokenManager.targets
   const itemId = item.dataset.itemId || li.closest('.demonlord').dataset.itemId
 
-  if (game.settings.get('demonlord', 'optinalRuleConsistentDamage')) {
+  if (game.settings.get('demonlord', 'optionalRuleConsistentDamage')) {
     var flattenTree = function(root) {
       const list = []
 
@@ -359,7 +359,7 @@ async function _onChatMakeChallengeRoll(event) {
   const boonsbanesEntered = start.children[1].children[0].children[0].children[1]?.value
 
   if (!DLAfflictions.isActorBlocked(actor, 'challenge', attributeName)) {
-    await actor.rollAttribute(attribute, parseInt(boonsbanes) + parseInt(boonsbanesEntered), 0)
+    await actor.rollAttributeChallenge(attribute, parseInt(boonsbanes) + parseInt(boonsbanesEntered), 0)
   }
 }
 

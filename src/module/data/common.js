@@ -66,6 +66,7 @@ export function action() {
     damagetype: makeStringField(),
     boonsbanesactive: makeBoolField(true),
     boonsbanes: makeStringField(),
+    rollbonus: makeStringField(),
     plus20active: makeBoolField(true),
     plus20: makeStringField(),
     plus20damage: makeStringField(),

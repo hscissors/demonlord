@@ -71,6 +71,12 @@ export class DLActiveEffectConfig extends ActiveEffectConfig {
       'system.attributes.intellect.immune': i18n('DL.ImmuneAttribute') + ' - ' + i18n('DL.AttributeIntellect'),
       'system.attributes.will.immune': i18n('DL.ImmuneAttribute') + ' - ' + i18n('DL.AttributeWill'),
       'system.attributes.perception.immune': i18n('DL.ImmuneAttribute') + ' - ' + i18n('DL.AttributePerception'),
+      // Attribute requirement modifier
+      'system.attributes.strength.requirementModifier': i18n('DL.Requirements') + ' - ' + i18n('DL.AttributeStrength'),
+      'system.attributes.agility.requirementModifier': i18n('DL.Requirements') + ' - ' + i18n('DL.AttributeAgility'),
+      'system.attributes.intellect.requirementModifier': i18n('DL.Requirements') + ' - ' + i18n('DL.AttributeIntellect'),
+      'system.attributes.will.requirementModifier': i18n('DL.Requirements') + ' - ' + i18n('DL.AttributeWill'),
+      'system.attributes.perception.requirementModifier': i18n('DL.Requirements') + ' - ' + i18n('DL.AttributePerception'),
       // Immune
       'system.bonuses.immune.affliction': i18n('DL.ImmuneAffliction'),
       // Characteristics
@@ -93,6 +99,14 @@ export class DLActiveEffectConfig extends ActiveEffectConfig {
       'system.bonuses.attack.boons.will': i18n('DL.TalentAttackBoonsBanes') + ' - ' + i18n('DL.AttributeWill'),
       'system.bonuses.attack.boons.perception': i18n('DL.TalentAttackBoonsBanes') + ' - ' + i18n('DL.AttributePerception'),
       'system.bonuses.attack.boons.all': i18n('DL.TalentAttackBoonsBanes') + ' - ' + i18n('DL.AllTitle'),
+      'system.bonuses.attack.modifier.spell': i18n('DL.AttackRollBonuses') + ' - ' + i18n('DL.MagicSpellsTitle'),
+      'system.bonuses.attack.modifier.weapon': i18n('DL.AttackRollBonuses') + ' - ' + i18n('DL.WeaponTitle'),
+      'system.bonuses.attack.modifier.strength': i18n('DL.AttackRollBonuses') + ' - ' + i18n('DL.AttributeStrength'),
+      'system.bonuses.attack.modifier.agility': i18n('DL.AttackRollBonuses') + ' - ' + i18n('DL.AttributeAgility'),
+      'system.bonuses.attack.modifier.intellect': i18n('DL.AttackRollBonuses') + ' - ' + i18n('DL.AttributeIntellect'),
+      'system.bonuses.attack.modifier.will': i18n('DL.AttackRollBonuses') + ' - ' + i18n('DL.AttributeWill'),
+      'system.bonuses.attack.modifier.perception': i18n('DL.AttackRollBonuses') + ' - ' + i18n('DL.AttributePerception'),
+      'system.bonuses.attack.modifier.all': i18n('DL.AttackRollBonuses') + ' - ' + i18n('DL.AllTitle'),
       'system.bonuses.attack.damage.spell': i18n('DL.TalentExtraDamage') + ' - ' + i18n('DL.MagicSpellsTitle'),
       'system.bonuses.attack.damage.weapon': i18n('DL.TalentExtraDamage') + ' - ' + i18n('DL.WeaponTitle'),
       'system.bonuses.attack.damage.talent': i18n('DL.TalentExtraDamage') + ' - ' + i18n('DL.TalentTitle'),
