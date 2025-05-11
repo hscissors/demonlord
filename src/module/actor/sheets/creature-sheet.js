@@ -75,6 +75,15 @@ export default class DLCreatureSheet extends DLBaseActorSheet {
       const characteristicName = div.data('key')
       await this.actor.update({ system: { characteristics: { [characteristicName]: { immune : !this.actor.system.characteristics[characteristicName].immune } } } })
     })
+
+    // Frightening and Horriying toggles
+    html.find('.checkmark.frightening').click(async _ => 
+      await this.actor.update({ 'system.frightening': !this.actor.system.frightening }).then(() => this.render()),
+    )
+
+    html.find('.checkmark.horrifying').click(async _ =>
+      await this.actor.update({ 'system.horrifying': !this.actor.system.horrifying }).then(() => this.render()),
+    )
   }
 
   _resizeAutoColumns(element) {

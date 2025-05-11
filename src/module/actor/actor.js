@@ -1088,6 +1088,8 @@ export class DemonlordActor extends Actor {
 
   /* -------------------------------------------- */
 
+  async 
+
   async createItemCreate(event) {
     event.preventDefault()
 
