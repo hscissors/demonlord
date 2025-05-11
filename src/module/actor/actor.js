@@ -585,7 +585,7 @@ export class DemonlordActor extends Actor {
         async html => {
           let boba = html.find('[id="boonsbanes"]').val()
           let mod = html.find('[id="modifier"]').val()
-          await this.rollAttack(item, boba, mod)
+          await this.rollItemAttack(item, boba, mod)
 
           // Decrease ammo quantity
           if (item.system.consume.ammorequired) {
