@@ -17,6 +17,10 @@ export default function launchRestDialog(dialogTitle, callback) {
       <input id='noHealing' type='checkbox' data-dtype='Boolean'/>
       <label for='noHealing'><b>${game.i18n.localize('DL.DialogRestNoHealing')}</b></label>
     </div>
+    <div class="inputContainer">
+      <input id='noGrit' type='checkbox' data-dtype='Boolean'/>
+      <label for='noGrit'><b>No grit</b></label>
+    </div>
   </div>
   `,
       buttons: [

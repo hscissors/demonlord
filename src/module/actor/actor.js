@@ -1362,7 +1362,7 @@ export class DemonlordActor extends Actor {
 			if (specialDuration === 'RestComplete') await effect?.delete()
 		}
 
-    var templateData = { actor: this, restTime, magicRecovery, talentRecovery, healing }
+    var templateData = { actor: this, restTime, magicRecovery, talentRecovery, healing, grit }
 
     const chatData = {
       user: game.user.id,
