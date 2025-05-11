@@ -7,7 +7,7 @@
   "type": "weapon",
   "data": {
     "description": "",
-    "hands": "Two",
+    "hands": "two",
     "properties": "Range (long), Uses Bullets",
     "availability": "E",
     "value": "10 gc",
