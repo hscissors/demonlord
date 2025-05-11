@@ -583,8 +583,8 @@ export class DemonlordActor extends Actor {
       launchRollDialog(
         game.i18n.localize('DL.DialogAttackRoll') + game.i18n.localize(item.name), 
         async html => {
-          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
-          let mod = html.currentTarget.querySelector("input[id='modifier']").value
+          let boba = html.find('[id="boonsbanes"]').val()
+          let mod = html.find('[id="modifier"]').val()
           await this.rollAttack(item, boba, mod)
 
           // Decrease ammo quantity
@@ -703,9 +703,13 @@ export class DemonlordActor extends Actor {
     if (typeof attribute === 'string' || attribute instanceof String) attribute = this.getAttribute(attribute)
 
     if (!DLAfflictions.isActorBlocked(this, 'attack', attribute.key))
-      launchRollDialog(this.name + ' - ' + game.i18n.localize('DL.DialogAttackRoll') + attribute.label, async html =>
-        await this.rollAttributeAttack(attribute, html.find('[id="defense"]').val(), html.find('[id="boonsbanes"]').val(), html.find('[id=modifier]').val()),
-      true
+      launchRollDialog(this.name + ' - ' + game.i18n.localize('DL.DialogAttackRoll') + attribute.label, async html => {
+        let boba = html.find('[id="boonsbanes"]').val()
+        let mod = html.find('[id="modifier"]').val()
+
+        await this.rollAttributeAttack(attribute, html.find('[id="defense"]').val(), boba, mod)
+        true
+      }
     )
   }
 
@@ -836,8 +840,8 @@ export class DemonlordActor extends Actor {
       launchRollDialog(
         game.i18n.localize('DL.DialogSpellRoll') + game.i18n.localize(item.name),        
         async html => {
-          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
-          let mod = html.currentTarget.querySelector("input[id='modifier']").value
+          let boba = html.find('[id="boonsbanes"]').val()
+          let mod = html.find('[id="modifier"]').val()
           
           await this.useSpell(item, boba, mod)
         }
@@ -967,8 +971,8 @@ export class DemonlordActor extends Actor {
       launchRollDialog(
         game.i18n.localize('DL.ItemVSRoll') + game.i18n.localize(item.name),        
         async html => {
-          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
-          let mod = html.currentTarget.querySelector("input[id='modifier']").value
+          let boba = html.find('[id="boonsbanes"]').val()
+          let mod = html.find('[id="modifier"]').val()
           
           await this.useItem(item, boba, mod)
         }
