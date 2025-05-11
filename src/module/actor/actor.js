@@ -1102,7 +1102,7 @@ export class DemonlordActor extends Actor {
 
   /* -------------------------------------------- */
 
-  async rollGrit(increment = true) {
+  async rollGrit(increment = true, fullRate = true) {
     if(this.system.characteristics.health.grit == 0 && increment) { return }
 
     let gritFormula = this.getGritFromPaths(this.paths)
@@ -1113,7 +1113,14 @@ export class DemonlordActor extends Actor {
     if(increment) {
       await this.increaseGrit(-1)
     }
-    await this.increaseDamage(-gritRoll.total)
+
+    let totalHealed = gritRoll.total
+
+    if(fullRate == false) {
+      totalHealed = totalHealed / 2
+    }
+
+    await this.increaseDamage(-totalHealed)
 
     postGritToChat(this, gritRoll)
   }
@@ -1331,7 +1338,7 @@ export class DemonlordActor extends Actor {
     postFortuneToChat(this, awarded)
   }
 
-  async restActor(restTime, magicRecovery, talentRecovery, healing) {
+  async restActor(restTime, magicRecovery, talentRecovery, healing, grit) {
     // Reset talent and spell uses
     let talentData = this.items.filter(i => i.type === 'talent')
     let spellData = this.items.filter(i => i.type === 'spell')
@@ -1339,12 +1346,14 @@ export class DemonlordActor extends Actor {
     if(magicRecovery) spellData = spellData.map(s => ({_id: s.id, 'system.castings.value': 0}))
     await this.updateEmbeddedDocuments('Item', [...talentData, ...spellData])
 
-    if(healing) {
+    if(grit) {
       this.increaseGrit(1)
+    }
 
-      if (restTime === 24) {
-        this.applyHealing(true)
-      }
+    if(healing) {
+      await this.update({
+        'system.characteristics.health.value': 0
+      })    
     }
 
 		for (let effect of this.appliedEffects) {
@@ -1377,9 +1386,11 @@ export class DemonlordActor extends Actor {
   }
 
   async applyHealing(fullHealingRate) {
-    let rate = this.system.characteristics.health?.healingrate || 0
-    rate = fullHealingRate ? rate : rate / 2
-    return await this.increaseDamage(-rate)
+    // let rate = this.system.characteristics.health?.healingrate || 0
+    // rate = fullHealingRate ? rate : rate / 2
+    // return await this.increaseDamage(-rate)
+
+    await this.rollGrit(false, fullHealingRate)
   }
 
   async increaseGrit(increment) {

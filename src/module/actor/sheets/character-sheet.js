@@ -392,6 +392,7 @@ export default class DLCharacterSheet extends DLBaseActorSheet {
           !dHtml.currentTarget.querySelector("input[id='noMagicRecovery']").checked,
           !dHtml.currentTarget.querySelector("input[id='noTalentRecovery']").checked,
           !dHtml.currentTarget.querySelector("input[id='noHealing']").checked,
+          !dHtml.currentTarget.querySelector("input[id='noGrit']").checked,
         )
       }),
     )
