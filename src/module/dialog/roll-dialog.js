@@ -22,11 +22,11 @@ export default function launchRollDialog(dialogTitle, callback) {
       {
         action: 'cancel',
         label: game.i18n.localize('DL.DialogCancel'),
-        callback: () => {},
+        callback: () => { },
       },
     ],
     default: 'roll',
-    close: () => {},
+    close: () => { },
   })
   d.render(true)
 }

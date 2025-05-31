@@ -6,6 +6,7 @@ import {DemonlordItem} from './item/item.js'
 import {ActionTemplate} from './pixi/action-template.js'
 import {registerSettings} from './settings.js'
 import {registerVisionModes} from './vision.js'
+import KeyState from './utils/key-state.js'
 import {DLCombatTracker} from './combat/combat-tracker.js'
 import {preloadHandlebarsTemplates} from './templates.js'
 import * as migrations from './migration.js'
@@ -44,6 +45,7 @@ import 'tippy.js/dist/tippy.css';
 import {registerHandlebarsHelpers} from "./utils/handlebars-helpers.js";
 import DLBaseActorSheet from "./actor/sheets/base-actor-sheet.js";
 import {_onUpdateWorldTime, DLCombat} from "./combat/combat.js"; // optional for styling
+import { activateSocketListener } from "./utils/socket.js";
 
 
 Hooks.once('init', async function () {
@@ -152,6 +154,7 @@ Hooks.once('init', async function () {
   if (typeof Babele !== 'undefined') {
     Babele.get().setSystemTranslationsDir('packs/translations')
   }
+  activateSocketListener()
 })
 
 Hooks.once('ready', async function () {
@@ -159,6 +162,9 @@ Hooks.once('ready', async function () {
   Hooks.on('hotbarDrop', (bar, data, slot) => macros.createDemonlordMacro(data, slot))
   // Migration
   await handleMigrations()
+
+  game.demonlord.KeyState = new KeyState()
+
 })
 
 /**
@@ -230,10 +236,19 @@ Hooks.on('createToken', async _tokenDocument => {
 })
 
 Hooks.on('updateActor', async (actor, updateData) => {
-  if (!actor.isOwner) return
+  if (!actor.isOwner || !game.combat) return
+
+  let token = actor.token || game.combats?.viewed?.combatants.find(c => c.actor?.id == actor.id)?.token
+  let combatant = token?.combatant
+  let defeated = (actor?.system.characteristics.health.value >= actor?.system.characteristics.health.max) ? true : false
+
+     if (combatant != undefined && combatant.defeated != defeated && game.settings.get('demonlord', 'autoSetDefeated')) {
+         await combatant.update({ defeated: defeated })
+     }
+
   // Update the combat initiative if the actor has changed its turn speed
   const isUpdateTurn = typeof updateData?.system?.fastturn !== 'undefined' && updateData?.system?.fastturn !== null
-  if (!(isUpdateTurn && (game.user.isGM || actor.isOwner) && game.combat)) return
+  if (!(isUpdateTurn && (game.user.isGM || actor.isOwner))) return
   const linkedCombatants = game.combat.combatants.filter(c => c.actorId === actor.id)
   for await (const c of linkedCombatants) {
     game.combat.setInitiative(c.id, game.combat.getInitiativeValue(c))
@@ -391,6 +406,7 @@ Hooks.on('renderChatMessage', async (app, html, _msg) => {
     html.find('.gmonlyzero').remove()
     let messageActor = app.speaker.actor
     if (!game.actors.get(messageActor)?.isOwner && game.settings.get('demonlord', 'hideActorInfo')) html.find('.showlessinfo').remove()
+    if (!game.actors.get(messageActor)?.isOwner && game.settings.get('demonlord', 'hideDescription')) html.find('.showdescription').empty()
   } else html.find('.gmremove').remove()
 })
 

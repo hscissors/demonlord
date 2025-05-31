@@ -73,7 +73,7 @@ async function _onChatRollDamage(event) {
   const selected = tokenManager.targets
   const itemId = item.dataset.itemId || li.closest('.demonlord').dataset.itemId
 
-  if (game.settings.get('demonlord', 'optinalRuleConsistentDamage')) {
+  if (game.settings.get('demonlord', 'optionalRuleConsistentDamage')) {
     var flattenTree = function(root) {
       const list = []
 
@@ -359,7 +359,7 @@ async function _onChatMakeChallengeRoll(event) {
   const boonsbanesEntered = start.children[1].children[0].children[0].children[1]?.value
 
   if (!DLAfflictions.isActorBlocked(actor, 'challenge', attributeName)) {
-    await actor.rollAttribute(attribute, parseInt(boonsbanes) + parseInt(boonsbanesEntered), 0)
+    await actor.rollAttributeChallenge(attribute, parseInt(boonsbanes) + parseInt(boonsbanesEntered), 0)
   }
 }
 

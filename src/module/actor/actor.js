@@ -17,7 +17,8 @@ import {
   postSpellToChat,
   postTalentToChat,
   postDriveToChat,
-  postMessageToChat
+  postMessageToChat,
+  postFortuneToChat
 } from '../chat/roll-messages'
 import {handleCreateAncestry, handleCreatePath, handleCreateRole, handleCreateRelic } from '../item/nested-objects'
 import {TokenManager} from '../pixi/token-manager'
@@ -438,7 +439,7 @@ export class DemonlordActor extends Actor {
    * @param inputBoons              Number of boons/banes from the user dialog
    * @param inputModifier           Attack modifier from the user dialog
    */
-  async rollAttack(item, inputBoons = 0, inputModifier = 0) {
+  async rollItemAttack(item, inputBoons = 0, inputModifier = 0) {
     const attacker = this
     const defendersTokens = tokenManager.targets
     const defender = defendersTokens[0]?.actor
@@ -456,7 +457,15 @@ export class DemonlordActor extends Actor {
     // if !target -> ui.notifications.warn(Please select target) ??
 
     // Attack modifier and Boons/Banes
-    const modifiers = [attacker.system?.attributes[attackAttribute]?.modifier || 0, parseInt(inputModifier) || 0]
+    const modifiers = [
+      item.system.action?.rollbonus || 0,
+      attacker.system?.attributes[attackAttribute]?.modifier || 0,
+      attacker.system?.bonuses.attack.modifier?.[attackAttribute] || 0,
+      attacker.system?.bonuses.attack.modifier?.all || 0,
+      attacker.system?.bonuses.attack.modifier?.weapon || 0,
+      parseInt(inputModifier) || 0,
+    ]
+
     let boons =
       (parseInt(item.system.action.boonsbanes) || 0) +
       (parseInt(inputBoons) || 0) +
@@ -465,7 +474,7 @@ export class DemonlordActor extends Actor {
       (attacker.system.bonuses.attack.boons.weapon || 0)
 
     const horrifyingBane = game.settings.get('demonlord', 'horrifyingBane')
-    const ignoreLevelDependentBane = (game.settings.get('demonlord', 'optinalRuleLevelDependentBane') && ((attacker.system?.level >=3 && attacker.system?.level <=6 && defender?.system?.difficulty <= 25) || (attacker.system?.level >=7 && defender?.system?.difficulty <= 50))) ? false : true
+    const ignoreLevelDependentBane = (game.settings.get('demonlord', 'optionalRuleLevelDependentBane') && ((attacker.system?.level >=3 && attacker.system?.level <=6 && defender?.system?.difficulty <= 25) || (attacker.system?.level >=7 && defender?.system?.difficulty <= 50))) ? false : true
     // The defender banes apply only if the defender is one target
     if (defendersTokens.length === 1)
       boons -=
@@ -492,19 +501,22 @@ export class DemonlordActor extends Actor {
       return attackRoll?.total >= targetNumber
     })
 
-  for (let effect of this.appliedEffects) {
-    const specialDuration = foundry.utils.getProperty(effect, 'flags.specialDuration')
-    // if (!(specialDuration?.length > 0)) continue
-      if (specialDuration === 'NextD20Roll') {
-        let nAttackAttribute =  attackAttribute.length ? attackAttribute : 'None'
-        if (
-          effect.changes.find(e => e.key.includes('system.bonuses.attack.boons.all')) || !effect.changes.length ||
-          effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.${nAttackAttribute}`)) ||
-          effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.weapon`))
-        )
-          await effect?.delete()
-      }
-  }
+    for (let effect of this.appliedEffects) {
+      const specialDuration = foundry.utils.getProperty(effect, 'flags.specialDuration')
+      // if (!(specialDuration?.length > 0)) continue
+        if (specialDuration === 'NextD20Roll') {
+          let nAttackAttribute =  attackAttribute.length ? attackAttribute : 'None'
+          if (
+            effect.changes.find(e => e.key.includes('system.bonuses.attack.boons.all')) || !effect.changes.length ||
+            effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.${nAttackAttribute}`)) ||
+            effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.weapon`)) || 
+            effect.changes.find(e => e.key.includes('system.bonuses.attack.modifier.all')) || !effect.changes.length ||
+            effect.changes.find(e => e.key.includes(`system.bonuses.attack.modifier.${nAttackAttribute}`)) ||
+            effect.changes.find(e => e.key.includes(`system.bonuses.attack.modifier.weapon`))
+          )
+            await effect?.delete()
+        }
+    }
 
     Hooks.call('DL.RollAttack', {
       sourceToken: attacker.token || tokenManager.getTokenByActorId(attacker.id),
@@ -524,37 +536,23 @@ export class DemonlordActor extends Actor {
     const item = this.getEmbeddedDocument('Item', itemID)
     let ammoItem
 
-    //Check if item is equipped
-    if(item.system.wear == false) {
-      return ui.notifications.warn(
-        "Weapon is not equipped!", { weaponName: item.name }
-      )
-    }
-
-    if (this.type !== 'creature') {
-      // Check if there is an ammo for weapon
-      if (item.system.consume.ammorequired) {
-        ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
-        
-        if (ammoItem) {
-          if (ammoItem.system.quantity === 0) {
-            return ui.notifications.warn(
-              game.i18n.format('DL.WeaponRunOutOfAmmo', {
-                weaponName: item.name,
-              })
-            )
-          } 
-        } else {
+    // Check if there is an ammo for weapon
+    if (item.system.consume.ammorequired) {
+      ammoItem = await this.ammo.find(x => x.id === item.system.consume.ammoitemid)
+      if (ammoItem) {
+        if (ammoItem.system.quantity === 0) {
           return ui.notifications.warn(
-            game.i18n.format('DL.WeaponNoAmmo', {
+            game.i18n.format('DL.WeaponRunOutOfAmmo', {
               weaponName: item.name,
             }),
           )
         }
-
-        await item.update({
-          'system.consume.reloadRequired': true,
-        })
+      } else {
+        return ui.notifications.warn(
+          game.i18n.format('DL.WeaponNoAmmo', {
+            weaponName: item.name,
+          }),
+        )
       }
     }
 
@@ -562,34 +560,25 @@ export class DemonlordActor extends Actor {
     // If no attribute to roll, roll without modifiers and boons
     const attribute = item.system.action?.attack
     /*if (!attribute) {
-      this.rollAttack(item, 0, 0)
+      this.rollItemAttack(item, 0, 0)
       return
     }*/
 
     // Check if actor is blocked by an affliction
-    if (!DLAfflictions.isActorBlocked(this, 'action', attribute)) {
-      launchRollDialog(
-        game.i18n.localize('DL.DialogAttackRoll') + game.i18n.localize(item.name), 
-        async html => {
-          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
-          let mod = html.currentTarget.querySelector("input[id='modifier']").value
-          await this.rollAttack(item, boba, mod)
+    if (!DLAfflictions.isActorBlocked(this, 'action', attribute))
+      launchRollDialog(game.i18n.localize('DL.DialogAttackRoll') + game.i18n.localize(item.name), async html => {
+        await this.rollAttack(item, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val())
+        // Decrease ammo quantity
+        if (item.system.consume.ammorequired) {
+          await ammoItem.update({
+            'system.quantity': ammoItem.system.quantity - item.system.consume.amount,
+          })
         }
-      )
-    }
+      })
   }
-  
   /* -------------------------------------------- */
 
   async rollAttribute(attribute, inputBoons, inputModifier) {
-    if (typeof attribute === 'string' || attribute instanceof String) attribute = this.getAttribute(attribute)
-
-
-    if (DLAfflictions.isActorBlocked(this, 'challenge', attribute.key)) {
-      ui.notifications.warn(game.i18n.localize("All challenge rolls result in failure."));
-      return
-    }
-
     const modifiers = [parseInt(inputModifier), this.getAttribute(attribute.key)?.modifier || 0]
     const boons = (parseInt(inputBoons) || 0) + (this.system.bonuses.challenge.boons[attribute.key] || 0) + (this.system.bonuses.challenge.boons.all || 0)
     const boonsReroll = parseInt(this.system.bonuses.rerollBoon1Dice)
@@ -616,17 +605,10 @@ export class DemonlordActor extends Actor {
   rollChallenge(attribute) {
     if (typeof attribute === 'string' || attribute instanceof String) attribute = this.getAttribute(attribute)
 
-    if (!DLAfflictions.isActorBlocked(this, 'challenge', attribute.key)) {
-      launchRollDialog(
-        this.name + ': ' + game.i18n.localize('DL.DialogChallengeRoll').slice(0, -2), 
-        async html => {
-          let boba = html.currentTarget.querySelector("input[id='boonsbanes']").value
-          let mod = html.currentTarget.querySelector("input[id='modifier']").value
-          
-          await this.rollAttribute(attribute, boba, mod)
-        }
+    if (!DLAfflictions.isActorBlocked(this, 'challenge', attribute.key))
+      launchRollDialog(this.name + ': ' + game.i18n.localize('DL.DialogChallengeRoll').slice(0, -2), async html =>
+        await this.rollAttribute(attribute, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val()),
       )
-    }
   }
 
   /* -------------------------------------------- */
@@ -639,6 +621,7 @@ export class DemonlordActor extends Actor {
     const item = this.items.get(itemID)
     const uses = parseInt(item.system?.uses?.value) || 0
     const usesMax = parseInt(item.system?.uses?.max) || 0
+    
     if (usesMax !== 0 && uses >= usesMax) {
       ui.notifications.warn(game.i18n.localize('DL.TalentMaxUsesReached'))
       return
@@ -672,8 +655,15 @@ export class DemonlordActor extends Actor {
 
       const attackAttribute = talentData.action.attack.toLowerCase()
       const defenseAttribute = talentData.action?.attack?.toLowerCase()
+      const attacker = this
 
-      let modifiers = [parseInt(inputModifier), this.getAttribute(attackAttribute)?.modifier || 0]
+      const modifiers = [
+        talentData.action?.rollbonus || 0,
+        attacker.system?.attributes[attackAttribute]?.modifier || 0,
+        attacker.system?.bonuses.attack.modifier?.[attackAttribute] || 0,
+        attacker.system?.bonuses.attack.modifier?.all || 0,
+        parseInt(inputModifier) || 0,
+      ]
 
       let boons =
         (parseInt(inputBoons) || 0) +
@@ -682,7 +672,7 @@ export class DemonlordActor extends Actor {
         parseInt(talentData.action?.boonsbanes || 0)
 
       const horrifyingBane = game.settings.get('demonlord', 'horrifyingBane')
-      const ignoreLevelDependentBane = (game.settings.get('demonlord', 'optinalRuleLevelDependentBane') && ((this.system?.level >=3 && this.system?.level <=6 && target?.actor?.system?.difficulty <= 25) || (this.system?.level >=7 && target?.actor?.system?.difficulty <= 50))) ? false : true
+      const ignoreLevelDependentBane = (game.settings.get('demonlord', 'optionalRuleLevelDependentBane') && ((this.system?.level >=3 && this.system?.level <=6 && target?.actor?.system?.difficulty <= 25) || (this.system?.level >=7 && target?.actor?.system?.difficulty <= 50))) ? false : true
 
       if (targets.length === 1)
         boons -= (
@@ -701,7 +691,9 @@ export class DemonlordActor extends Actor {
           let nAttackAttribute =  attackAttribute.length ? attackAttribute : 'None'
           if (
             effect.changes.find(e => e.key.includes('system.bonuses.attack.boons.all')) || !effect.changes.length ||
-            effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.${nAttackAttribute}`))
+            effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.${nAttackAttribute}`))|| 
+            effect.changes.find(e => e.key.includes('system.bonuses.attack.modifier.all')) || !effect.changes.length ||
+            effect.changes.find(e => e.key.includes(`system.bonuses.attack.modifier.${nAttackAttribute}`))
           )
             await effect?.delete()
         }
@@ -724,7 +716,7 @@ export class DemonlordActor extends Actor {
 
   async rollSpell(itemID, _options = {event: null}) {
     const item = this.items.get(itemID)
-    const isAttack = item.system.spelltype === game.i18n.localize('DL.SpellTypeAttack')
+    const isAttack = item.system.spelltype === 'Attack'
     const attackAttribute = item.system?.action?.attack?.toLowerCase()
     const challengeAttribute = item.system?.attribute?.toLowerCase()
 
@@ -767,15 +759,26 @@ export class DemonlordActor extends Actor {
 
     let attackRoll
     if (attackAttribute) {
+      const attacker = this
+
+      const modifiers = [
+        spellData.action?.rollbonus || 0,
+        attacker.system?.attributes[attackAttribute]?.modifier || 0,
+        attacker.system?.bonuses.attack.modifier?.[attackAttribute] || 0,
+        attacker.system?.bonuses.attack.modifier?.all || 0,
+        attacker.system?.bonuses.attack.modifier?.spell || 0,
+        parseInt(inputModifier) || 0,
+      ]
+
       let boons =
         (parseInt(inputBoons) || 0) +
-        (parseInt(spellData.action.boonsbanes) || 0) +
+        (parseInt(spellData.action?.boonsbanes) || 0) +
         (this.system.bonuses.attack.boons[attackAttribute] || 0) +
         (this.system.bonuses.attack.boons.all || 0) +
         (this.system.bonuses.attack.boons.spell || 0)
 
       const horrifyingBane = game.settings.get('demonlord', 'horrifyingBane')
-      const ignoreLevelDependentBane = (game.settings.get('demonlord', 'optinalRuleLevelDependentBane') && ((this.system?.level >=3 && this.system?.level <=6 && target?.actor?.system?.difficulty <= 25) || (this.system?.level >=7 && target?.actor?.system?.difficulty <= 50))) ? false : true
+      const ignoreLevelDependentBane = (game.settings.get('demonlord', 'optionalRuleLevelDependentBane') && ((this.system?.level >=3 && this.system?.level <=6 && target?.actor?.system?.difficulty <= 25) || (this.system?.level >=7 && target?.actor?.system?.difficulty <= 50))) ? false : true
 
       if (targets.length > 0)
         boons -=
@@ -784,7 +787,6 @@ export class DemonlordActor extends Actor {
           (target?.actor?.system.bonuses.defense.boons.spell || 0) +
           (horrifyingBane && ignoreLevelDependentBane && !this.system.horrifying && !this.system.frightening && target?.actor?.system.horrifying && 1 || 0)
 
-      const modifiers = [parseInt(inputModifier) || 0, this.getAttribute(attackAttribute).modifier || 0]
       const boonsReroll = parseInt(this.system.bonuses.rerollBoon1Dice)
 
       attackRoll = new Roll(this.rollFormula(modifiers, boons, boonsReroll), this.system)
@@ -808,7 +810,10 @@ export class DemonlordActor extends Actor {
         if (
           effect.changes.find(e => e.key.includes('system.bonuses.attack.boons.all')) || !effect.changes.length ||
           effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.${nAttackAttribute}`)) ||
-          effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.spell`))
+          effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.spell`)) ||
+          effect.changes.find(e => e.key.includes('system.bonuses.attack.modifier.all')) || !effect.changes.length ||
+          effect.changes.find(e => e.key.includes(`system.bonuses.attack.modifier.${nAttackAttribute}`)) ||
+          effect.changes.find(e => e.key.includes(`system.bonuses.attack.modifier.spell`))
         )
           await effect?.delete()
       }
@@ -890,8 +895,15 @@ export class DemonlordActor extends Actor {
     } else {
       const attackAttribute = itemData.action.attack.toLowerCase()
       const defenseAttribute = itemData.action?.attack?.toLowerCase()
+      const attacker = this
 
-      let modifiers = [parseInt(inputModifier), (this.getAttribute(attackAttribute)?.modifier || 0)]
+      const modifiers = [
+        item.system.action.rollbonus || 0,
+        attacker.system?.attributes[attackAttribute]?.modifier || 0,
+        attacker.system?.bonuses.attack.modifier?.[attackAttribute] || 0,
+        attacker.system?.bonuses.attack.modifier?.all || 0,
+        parseInt(inputModifier) || 0,
+      ]
 
       let boons =
         (parseInt(inputBoons) || 0) +
@@ -900,7 +912,7 @@ export class DemonlordActor extends Actor {
         parseInt(itemData.action?.boonsbanes || 0)
 
       const horrifyingBane = game.settings.get('demonlord', 'horrifyingBane')
-      const ignoreLevelDependentBane = (game.settings.get('demonlord', 'optinalRuleLevelDependentBane') && ((this.system?.level >=3 && this.system?.level <=6 && target?.actor?.system?.difficulty <= 25) || (this.system?.level >=7 && target?.actor?.system?.difficulty <= 50))) ? false : true
+      const ignoreLevelDependentBane = (game.settings.get('demonlord', 'optionalRuleLevelDependentBane') && ((this.system?.level >=3 && this.system?.level <=6 && target?.actor?.system?.difficulty <= 25) || (this.system?.level >=7 && target?.actor?.system?.difficulty <= 50))) ? false : true
 
       if (targets.length === 1)
         boons -= (
@@ -919,7 +931,9 @@ export class DemonlordActor extends Actor {
           let nAttackAttribute =  attackAttribute.length ? attackAttribute : 'None'
           if (
             effect.changes.find(e => e.key.includes('system.bonuses.attack.boons.all')) || !effect.changes.length ||
-            effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.${nAttackAttribute}`))
+            effect.changes.find(e => e.key.includes(`system.bonuses.attack.boons.${nAttackAttribute}`)) ||
+            effect.changes.find(e => e.key.includes('system.bonuses.attack.modifier.all')) || !effect.changes.length ||
+            effect.changes.find(e => e.key.includes(`system.bonuses.attack.modifier.${nAttackAttribute}`))
           )
             await effect?.delete()
         }
@@ -1111,8 +1125,8 @@ export class DemonlordActor extends Actor {
   }
 
   showItemInfo(item) {
-    const uses = parseInt(item.system?.enchantment?.uses?.value)
-    const usesmax = parseInt(item.system?.enchantment?.uses?.max)
+    const uses = parseInt(item.system?.enchantment?.uses?.value) || 0
+    const usesmax = parseInt(item.system?.enchantment?.uses?.max) || 0
 
     const usesText = game.i18n.localize('DL.SpellCastingsUses') + ': ' + uses + ' / ' + usesmax
 
@@ -1178,8 +1192,9 @@ export class DemonlordActor extends Actor {
   /* -------------------------------------------- */
 
   async activateTalent(talent, setActive) {
-    let uses = talent.system.uses?.value || 0
-    const usesmax = talent.system.uses?.max || 0
+    let uses = parseInt(talent.system.uses?.value) || 0
+    const usesmax = parseInt(talent.system.uses?.max) || 0
+
     if (usesmax > 0 && uses < usesmax)
       return await talent.update({'system.uses.value': ++uses, 'system.addtonextroll': setActive}, {parent: this})
   }
@@ -1200,6 +1215,16 @@ export class DemonlordActor extends Actor {
         'system.characteristics.health.value': currentDamage + damage,
       })
     }))
+  }
+
+  async expendFortune(awarded = false) {
+    let value = parseInt(this.system.characteristics.fortune)
+    if (awarded) await this.update({ 'system.characteristics.fortune': ++value })
+    else {
+      if (value >= 1) await this.update({ 'system.characteristics.fortune': --value })
+      else return
+    }
+    postFortuneToChat(this, awarded)
   }
 
   async restActor(restTime, magicRecovery, talentRecovery, healing) {
@@ -1401,10 +1426,11 @@ export class DemonlordActor extends Actor {
   }
 
   async setEncumbrance() {
+    if (game.settings.get('demonlord', 'ignoreEncumbrance')) return
     const armors = this.items.filter(i => i.type === 'armor')
     const notMetItemNames = armors
       .map(a => a.system)
-      .filter(a => a.requirement?.minvalue > this.getAttribute(a.requirement?.attribute)?.value && a.wear)
+      .filter(a => a.requirement?.minvalue > (this.getAttribute(a.requirement?.attribute)?.value + this.getAttribute(a.requirement?.attribute)?.requirementModifier) && a.wear)
       .map(a => a.name)
     return await DLActiveEffects.addEncumbrance(this, notMetItemNames)
   }

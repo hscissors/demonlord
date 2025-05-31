@@ -69,7 +69,7 @@ export class OptionalRulesSettings extends FormApplication {
 
   getData() {
     return {
-      optinalRuleConsistentDamage: game.settings.get('demonlord', 'optinalRuleConsistentDamage'),
+      optionalRuleConsistentDamage: game.settings.get('demonlord', 'optionalRuleConsistentDamage'),
       optionalRuleDieRollsMode: game.settings.get('demonlord', 'optionalRuleDieRollsMode'),
       selectedDieRollsDropDrown: game.settings.get('demonlord', 'optionalRuleDieRollsMode'),
       dieRollsDropDrown: {
@@ -84,10 +84,29 @@ export class OptionalRulesSettings extends FormApplication {
       i: game.i18n.localize('DL.SettingOptionalRuleInitiativeInduvidual'),
       h: game.i18n.localize('DL.SettingOptionalRuleInitiativeGroup'),
       },
-      optinalRuleRollInitEachRound: game.settings.get('demonlord', 'optinalRuleRollInitEachRound'),
-      optinalRuleExceedsByFive: game.settings.get('demonlord', 'optinalRuleExceedsByFive'),
+      selectedSurroundingModeDropDown : game.settings.get('demonlord', 'optionalRuleSurroundingMode'),
+      SurroundingDropDown:
+      {
+        d: game.i18n.localize('DL.disabled'),
+        a: game.i18n.localize('DL.SettingOptionalRuleSurroundingModeAlltype'),
+        n: game.i18n.localize('DL.SettingOptionalRuleSurroundingModeNPCCreature'),
+        c: game.i18n.localize('DL.SettingOptionalRuleSurroundingModeCreatureOnly'),
+      },
+      selectedAllowedDispositionDropDown : game.settings.get('demonlord', 'optionalRuleSurroundingDispositions'),
+      AllowedDispositionDropDown:
+      {
+        d: game.i18n.localize('DL.None'),
+        b: game.i18n.localize('DL.SettingOptionalRuleSurroundingDispositionsAllowBoth'),      
+        n: game.i18n.localize('DL.SettingOptionalRuleSurroundingDispositionsAllowNeutral'),
+        s: game.i18n.localize('DL.SettingOptionalRuleSurroundingDispositionsAllowSecret'),
+      },
+      optionalRuleSurroundingRevealChatCard : game.settings.get('demonlord', 'optionalRuleSurroundingRevealChatCard'),
+      optionalRuleSurroundingExcludeTokens: game.settings.get('demonlord', 'optionalRuleSurroundingExcludeTokens'),
+      optionalRuleRollInitEachRound: game.settings.get('demonlord', 'optionalRuleRollInitEachRound'),
+      optionalRuleExceedsByFive: game.settings.get('demonlord', 'optionalRuleExceedsByFive'),
       horrifyingBane: game.settings.get("demonlord", "horrifyingBane"),      
-      optinalRuleLevelDependentBane: game.settings.get('demonlord', 'optinalRuleLevelDependentBane')
+      optionalRuleLevelDependentBane: game.settings.get('demonlord', 'optionalRuleLevelDependentBane'),
+      optionalRuleRevealHorrifyingBane: game.settings.get('demonlord','optionalRuleRevealHorrifyingBane')
     }
   }
 
@@ -109,7 +128,20 @@ export class OptionalRulesSettings extends FormApplication {
     super.activateListeners(html)
     html.find('button').on('click', async event => {
       if (event.currentTarget?.dataset?.action === 'reset') {
-        const keys = ['optinalRuleConsistentDamage', 'optionalRuleDieRollsMode','optionalRuleInitiativeMode','optinalRuleRollInitEachRound']
+        const keys = [
+          'optionalRuleConsistentDamage',
+          'optionalRuleDieRollsMode',
+          'optionalRuleInitiativeMode',
+          'optionalRuleRollInitEachRound',
+          'optionalRuleExceedsByFive',
+          'horrifyingBane',
+          'optionalRuleLevelDependentBane',
+          'optionalRuleRevealHorrifyingBane',
+          'optionalRuleSurroundingMode',
+          'optionalRuleSurroundingDispositions',
+          'optionalRuleSurroundingExcludeTokens',
+          'optionalRuleSurroundingRevealChatCard'
+        ]
         await Promise.all(
           keys.map(async key => {
             await this.resetToDefault(key)
@@ -163,7 +195,7 @@ export const registerSettings = function () {
   })
 
 
-  game.settings.registerMenu('demonlord', 'optinalRulesSettings', {
+  game.settings.registerMenu('demonlord', 'optionalRulesSettings', {
     name: game.i18n.localize('DL.SettingOptionalRules'),
     label: game.i18n.localize('Configure'),
     hint: game.i18n.localize('DL.SettingOptionalRulesHint'),
@@ -172,7 +204,7 @@ export const registerSettings = function () {
     restricted: true
   })
 
-  game.settings.register('demonlord', 'optinalRuleConsistentDamage', {
+  game.settings.register('demonlord', 'optionalRuleConsistentDamage', {
     name: game.i18n.localize('DL.SettingOptionalRuleConsistentDamage'),
     hint: game.i18n.localize('DL.SettingOptionalRuleConsistentDamageHint'),
     default: false,
@@ -181,23 +213,32 @@ export const registerSettings = function () {
     config: false,
   })
 
-  game.settings.register('demonlord', 'optinalRuleExceedsByFive', {
-    name: game.i18n.localize('DL.SettingOptinalRuleExceedsByFive'),
-    hint: game.i18n.localize('DL.SettingOptinalRuleExceedsByFiveDamageHint'),
+  game.settings.register('demonlord', 'optionalRuleExceedsByFive', {
+    name: game.i18n.localize('DL.SettingOptionalRuleExceedsByFive'),
+    hint: game.i18n.localize('DL.SettingOptionalRuleExceedsByFiveDamageHint'),
     default: false,
     scope: 'world',
     type: Boolean,
     config: false,
   })
 
-  game.settings.register('demonlord', 'optinalRuleLevelDependentBane', {
-    name: game.i18n.localize('DL.SettingOptinalRuleLevelDependentBane'),
-    hint: game.i18n.localize('DL.SettingOptinalRuleLevelDependentBaneHint'),
+  game.settings.register('demonlord', 'optionalRuleLevelDependentBane', {
+    name: game.i18n.localize('DL.SettingOptionalRuleLevelDependentBane'),
+    hint: game.i18n.localize('DL.SettingOptionalRuleLevelDependentBaneHint'),
     default: false,
     scope: 'world',
     type: Boolean,
     config: false,
   })
+
+  game.settings.register('demonlord', 'optionalRuleRevealHorrifyingBane', {
+    name: game.i18n.localize('DL.SettingOptionalRuleRevealHorrifyingBane'),
+    hint: game.i18n.localize('DL.SettingOptionalRuleRevealHorrifyingBaneHint'),
+    default: false,
+    scope: 'world',
+    type: Boolean,
+    config: false,
+  })  
 
   game.settings.register('demonlord', 'optionalRuleDieRollsMode', {
     name: game.i18n.localize('DL.SettingOptionalRuleDieRollsMode'),
@@ -226,12 +267,65 @@ export const registerSettings = function () {
     onChange: foundry.utils.debouncedReload
   })
 
-  game.settings.register('demonlord', 'optinalRuleRollInitEachRound', {
-    name: game.i18n.localize('DL.SettingOptinalRuleRollInitEachRound'),
+  game.settings.register('demonlord', 'optionalRuleRollInitEachRound', {
+    name: game.i18n.localize('DL.SettingOptionalRuleRollInitEachRound'),
     default: false,
     scope: 'world',
     type: Boolean,
     config: false,
+  })
+
+  game.settings.register('demonlord', 'optionalRuleSurroundingMode', {
+    name: game.i18n.localize('DL.SettingOptionalRuleSurroundingMode'),
+    scope: 'world',
+    type: String,
+    config: false,
+    default: 'd',
+    choices: {
+      d: game.i18n.localize('DL.disabled'),
+      a: game.i18n.localize('DL.SettingOptionalRuleSurroundingModeAlltype'),
+      n: game.i18n.localize('DL.SettingOptionalRuleSurroundingModeNPCCreature'),
+      c: game.i18n.localize('DL.SettingOptionalRuleSurroundingModeCreatureOnly'),
+    },
+  })
+
+  game.settings.register('demonlord', 'optionalRuleSurroundingDispositions', {
+    name: game.i18n.localize('DL.SettingOptionalRuleSurroundingDispositions'),
+    scope: 'world',
+    type: String,
+    config: false,
+    default: 'd',
+    choices: {
+      d: game.i18n.localize('DL.None'),
+      b: game.i18n.localize('DL.SettingOptionalRuleSurroundingDispositionsAllowBoth'),
+      n: game.i18n.localize('DL.SettingOptionalRuleSurroundingDispositionsAllowNeutral'),
+      s: game.i18n.localize('DL.SettingOptionalRuleSurroundingDispositionsAllowSecret'),
+    },
+  })
+
+  game.settings.register('demonlord', 'optionalRuleSurroundingExcludeTokens', {
+    name: game.i18n.localize('DL.SettingOptionalRuleSurroundingExcludeTokens'),
+    default: true,
+    scope: 'world',
+    type: Boolean,
+    config: false,
+  })
+
+  game.settings.register('demonlord', 'optionalRuleSurroundingRevealChatCard', {
+    name: game.i18n.localize('DL.SettingOptionalRuleSurroundingRevealChatCard'),
+    default: false,
+    scope: 'world',
+    type: Boolean,
+    config: false,
+  })
+
+  game.settings.register('demonlord', 'ignoreEncumbrance', {
+    name: game.i18n.localize('DL.SettingIgnoreEncumbrance'),
+    hint: game.i18n.localize('DL.SettingIgnoreEncumbranceHint'),
+    default: false,
+    scope: 'world',
+    type: Boolean,
+    config: true
   })
 
   game.settings.register('demonlord', 'systemMigrationVersion', {
@@ -265,6 +359,14 @@ export const registerSettings = function () {
     type: Boolean,
     config: true,
   })
+  game.settings.register('demonlord', 'autoSetDefeated', {
+    name: game.i18n.localize('DL.SettingAutoSetDefeated'),
+    hint: game.i18n.localize('DL.SettingAutoSetDefeatedHint'),
+    default: false,
+    scope: 'world',
+    type: Boolean,
+    config: true,
+  })  
   game.settings.register('demonlord', 'attackShowAttack', {
     name: game.i18n.localize('DL.SettingAttackShowEnemyAttributeAtt'),
     hint: game.i18n.localize('DL.SettingAttackShowEnemyAttributeAttHint'),
@@ -296,6 +398,16 @@ export const registerSettings = function () {
     scope: 'world',
     type: Boolean,
     config: true,
+    onChange: foundry.utils.debouncedReload
+  })
+  game.settings.register('demonlord', 'hideDescription', {
+    name: game.i18n.localize('DL.SettingHideCreatureDescription'),
+    hint: game.i18n.localize('DL.SettingHideCreatureDescriptionHint'),
+    default: true,
+    scope: 'world',
+    type: Boolean,
+    config: true,
+    onChange: foundry.utils.debouncedReload
   })
   game.settings.register('demonlord', 'statusIcons', {
     name: game.i18n.localize('DL.SettingStatusIcons'),
@@ -304,6 +416,7 @@ export const registerSettings = function () {
     scope: 'world',
     type: Boolean,
     config: true,
+    onChange: foundry.utils.debouncedReload
   })
   game.settings.register('demonlord', 'templateAutoTargeting', {
     name: game.i18n.localize('DL.SettingTemplateAutoTargeting'),

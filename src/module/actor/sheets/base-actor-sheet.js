@@ -350,7 +350,7 @@ export default class DLBaseActorSheet extends ActorSheet {
         item.system.wear &&
         item.system.requirement?.minvalue != '' &&
         item.system.requirement?.attribute != '' && 
-        +item.system.requirement?.minvalue > +this.actor.getAttribute(item.system.requirement?.attribute)?.value
+        +item.system.requirement?.minvalue > (+this.actor.getAttribute(item.system.requirement?.attribute)?.value + +this.actor.getAttribute(item.system.requirement?.attribute)?.requirementModifier)
       ) {
         $(el).addClass('dl-text-red')
       }
@@ -382,7 +382,14 @@ export default class DLBaseActorSheet extends ActorSheet {
       const div = $(ev.currentTarget)
       const attributeName = div.data('key')
       const attribute = this.actor.getAttribute(attributeName)
-      if (!attribute.immune) this.actor.rollChallenge(attribute)
+      if (!attribute.immune) {
+        // Make an attribute attack if a target is selected, otherwise, challenge roll
+        if (game.user.targets?.ids.length && !(event.ctrlKey || event.metaKey)) {
+          this.actor.rollAttack(attribute)
+        } else {
+          this.actor.rollChallenge(attribute)
+        }
+      }
     })
 
     // Set immune on rollable attribute
