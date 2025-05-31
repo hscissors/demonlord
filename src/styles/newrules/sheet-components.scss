@@ -238,6 +238,12 @@ i.fa-regular.fa-shield, i.fas.fa-shield {
 
 // Vehicle tab
 .dl-vehicle-tab {
+  .drive-roll {
+    padding-top: 3px;
+    text-align: center;
+    font-size: 50px;
+  }
+
   .grid-2, .grid-3 {
     height: 100%;
 
@@ -263,7 +269,7 @@ i.fa-regular.fa-shield, i.fas.fa-shield {
   .dl-item-row {
     label {
       display: inline-block;
-      margin-top: 9px;
+      margin-top: 7px;
     }
 
     .dlToggleInfoBtn {
@@ -275,7 +281,7 @@ i.fa-regular.fa-shield, i.fas.fa-shield {
       }
     }
 
-    .crew-roll, .drive-roll {
+    .crew-roll {
       font-size: 14px;
       .fa-regular {
         padding-left: 5px;

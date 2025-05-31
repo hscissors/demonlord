@@ -503,21 +503,26 @@ export async function postDriveToChat() {
 
   let message = tableResult.results[0].text
 
-
+  await postMessageToChat(message)
 }
 
 export async function postMessageToChat(message){
   await ChatMessage.create({ content: message})
 }
 
-export async function postGritToChat(actor, gritRoll) {
+export async function postGritToChat(actor, gritRoll, fullRate) {
   const templateData = {
     actor: actor,
     data: {},
     diceData: formatDice(gritRoll),
   }
   const data = templateData.data
-  data['healing'] = gritRoll.result
+  if(fullRate) {
+    data['healing'] = gritRoll.result
+  } else {
+    let total = Math.floor(gritRoll.result / 2)
+    data['healing'] = total + " (Half)" 
+  }
   data['actorInfo'] = buildActorInfo(actor)
 
   const rollMode = game.settings.get('core', 'rollMode')

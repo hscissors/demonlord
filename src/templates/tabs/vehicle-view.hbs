@@ -20,46 +20,53 @@
 {{/inline}}
 
 <div class="grid">
+  {{!-- Drive --}}
+  <div class="row">
+    <div class="col-1 drive-roll" style="padding-top: 3px">
+    {{#if actor.system.uncontrolled}}
+      <a class="dl-clickable" title="Roll Drive" style="margin-left: 2px; margin-top: 3px;">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </a>
+    {{else}}
+      <a class="dl-clickable" title="Roll Drive" style="margin-left: 2px; margin-top: 3px;">
+        <i class="fa-regular fa-steering-wheel"></i>
+      </a>
+    {{/if}} 
+    </div>
+
+    <div class="col-11">
+      <div class="dl-text-header-upper dl-underline-red dl-item-row-header">
+        <div class="col-12">Driver</div>
+      </div>
+    {{#if actor.system.driver}}
+      <div class="dl-item-row can-drag" data-type="driver">
+        <div class="row">
+          <div class="col-11">
+            <img class='dl-clickable-nored drive-toggle-control' src="{{actor.driver.img}}" title="{{actor.driver.name}}" width="64"
+                height="64"/>
+            <label class="dl-clickable drive-toggle-control">{{actor.driver.name}}</label>
+          </div>
+          <div class="col-1" style="padding-top: 3px">
+            <a class="dl-clickable driver-delete" title="Delete Driver"
+                style="margin-left: 2px; margin-top: 3px;">
+              <i class="fas fa-times"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <div class="dl-item-row empty can-drag" data-type="driver">
+        <div class="row">
+          <div class="col-12">
+            <span>Uncontrolled</span>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+    </div>
+  </div>
   <div class="col-1">
-    <div class="dl-text-header-upper dl-underline-red dl-item-row-header">
-      <div class="col-12">Driver</div>
-    </div>
-  {{#if actor.system.driver}}
-    <div class="dl-item-row can-drag" data-type="driver">
-      <div class="row">
-        <div class="col-9">
-          <img class='dl-clickable-nored driver-edit' src="{{actor.driver.img}}" title="{{actor.driver.name}}" width="64"
-              height="64"/>
-          <label class="dl-clickable drive-roll">{{actor.driver.name}}</label>
-        </div>
-        <div class="col-1" style="padding-top: 3px">
-        {{#if actor.system.uncontrolled}}
-          <a class="dl-clickable drive-toggle-control" title="Toggle Uncontrolled" style="margin-left: 2px; margin-top: 3px;">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </a>
-        {{else}}
-          <a class="dl-clickable drive-toggle-control" title="Toggle Uncontrolled" style="margin-left: 2px; margin-top: 3px;">
-            <i class="fa-regular fa-steering-wheel"></i>
-          </a>
-        {{/if}} 
-        </div>
-        <div class="col-2" style="padding-top: 3px">
-          <a class="dl-clickable driver-delete" title="Delete Driver"
-              style="margin-left: 2px; margin-top: 3px;">
-            <i class="fas fa-times"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  {{else}}
-    <div class="dl-item-row empty can-drag" data-type="driver">
-      <div class="row">
-        <div class="col-12">
-          <div class="dl-clickable drive-roll"><i class="fa-solid fa-triangle-exclamation"></i> <span>Uncontrolled</span></div>
-        </div>
-      </div>
-    </div>
-  {{/if}}
+  {{!-- Crew --}}
     <div class="dl-text-header-upper dl-underline-red dl-item-row-header">
       <div class="col-10">Crew</div>
     </div>
@@ -67,12 +74,12 @@
     {{#each actor.crew as |crew|}}
       <div class="dl-item-row can-drag" data-type="crew" data-actor-id="{{crew.uuid}}">
         <div class="row">
-          <div class="col-10">
-            <img class='dl-clickable-nored item-edit' src="{{crew.img}}" title="{{crew.name}}"  width="64"
+          <div class="col-11">
+            <img class='' src="{{crew.img}}" title="{{crew.name}}"  width="64"
                 height="64"/>
-            <label class="dl-clickable crew-roll">{{crew.name}}</label>
+            <label class="crew-roll">{{crew.name}}</label>
           </div>
-          <div class="col-2" style="padding-top: 3px">
+          <div class="col-1" style="padding-top: 3px">
             <a class="dl-clickable crew-delete" title="Delete Crew Member"
                 style="margin-left: 2px; margin-top: 3px;">
               <i class="fas fa-times"></i>

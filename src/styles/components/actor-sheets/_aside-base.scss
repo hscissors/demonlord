@@ -205,6 +205,15 @@ form {
         .bar-fill.corruption-fill {
           background-color: darkmagenta;
         }
+
+        .corruption-roll, 
+        .insanity-roll {
+          .fas {
+            display: inherit;
+            position: absolute;
+            right: -20px;
+          }
+        }
       }  
       
       .edit {

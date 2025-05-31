@@ -554,6 +554,10 @@ export class DemonlordActor extends Actor {
           }),
         )
       }
+
+      await item.update({
+        'system.consume.reloadRequired': true,
+      })
     }
 
 
@@ -567,13 +571,15 @@ export class DemonlordActor extends Actor {
     // Check if actor is blocked by an affliction
     if (!DLAfflictions.isActorBlocked(this, 'action', attribute))
       launchRollDialog(game.i18n.localize('DL.DialogAttackRoll') + game.i18n.localize(item.name), async html => {
-        await this.rollAttack(item, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val())
+        let boa = html.currentTarget.querySelector('[id="boonsbanes"]').value
+        let mod = html.currentTarget.querySelector('[id="modifier"]').value
+        await this.rollItemAttack(item, boa, mod)
         // Decrease ammo quantity
-        if (item.system.consume.ammorequired) {
-          await ammoItem.update({
-            'system.quantity': ammoItem.system.quantity - item.system.consume.amount,
-          })
-        }
+        // if (item.system.consume.ammorequired) {
+        //   await ammoItem.update({
+        //     'system.quantity': ammoItem.system.quantity - item.system.consume.amount,
+        //   })
+        // }
       })
   }
   /* -------------------------------------------- */
@@ -606,9 +612,11 @@ export class DemonlordActor extends Actor {
     if (typeof attribute === 'string' || attribute instanceof String) attribute = this.getAttribute(attribute)
 
     if (!DLAfflictions.isActorBlocked(this, 'challenge', attribute.key))
-      launchRollDialog(this.name + ': ' + game.i18n.localize('DL.DialogChallengeRoll').slice(0, -2), async html =>
-        await this.rollAttribute(attribute, html.find('[id="boonsbanes"]').val(), html.find('[id="modifier"]').val()),
-      )
+      launchRollDialog(this.name + ': ' + game.i18n.localize('DL.DialogChallengeRoll').slice(0, -2), async html => {
+        let boa = html.currentTarget.querySelector('[id="boonsbanes"]').value
+        let mod = html.currentTarget.querySelector('[id="modifier"]').value
+        await this.rollAttribute(attribute, boa, mod)
+      })
   }
 
   /* -------------------------------------------- */
@@ -1000,7 +1008,7 @@ export class DemonlordActor extends Actor {
 
   /* -------------------------------------------- */
 
-  async rollGrit(increment = true) {
+  async rollGrit(increment = true, fullRate = true) {
     if(this.system.characteristics.health.grit == 0 && increment) { return }
 
     let gritFormula = this.getGritFromPaths(this.paths)
@@ -1011,9 +1019,15 @@ export class DemonlordActor extends Actor {
     if(increment) {
       await this.increaseGrit(-1)
     }
-    await this.increaseDamage(-gritRoll.total)
 
-    postGritToChat(this, gritRoll)
+    let total = gritRoll.total
+    if(fullRate == false) {
+      total = Math.floor(total / 2)
+    }
+
+    await this.increaseDamage(-total)
+
+    postGritToChat(this, gritRoll, fullRate)
   }
 
   /* -------------------------------------------- */
@@ -1054,14 +1068,14 @@ export class DemonlordActor extends Actor {
 
     launchCountBulletsDialog("Count bullets for " + item.name, async (html, countType) => {
         if(isSpecialTypeAmmo) {
-          targetNumber = 5
+          targetNumber = 6
         } else {
           switch(countType) {
             case "single":
-              targetNumber = 3
+              targetNumber = 4
               break;
             case "full":
-              targetNumber = 4
+              targetNumber = 5
               break;
           }
         }
@@ -1237,10 +1251,10 @@ export class DemonlordActor extends Actor {
 
     if(healing) {
       this.increaseGrit(1)
-
-      if (restTime === 24) {
-        this.applyHealing(true)
-      }
+      
+      await this.update({
+        'system.characteristics.health.value': 0
+      })
     }
 
 		for (let effect of this.appliedEffects) {
@@ -1269,13 +1283,11 @@ export class DemonlordActor extends Actor {
   }
 
   async healActor() {
-    await this.rollGrit(false)
+    await this.rollGrit(false, true)
   }
 
   async applyHealing(fullHealingRate) {
-    let rate = this.system.characteristics.health?.healingrate || 0
-    rate = fullHealingRate ? rate : rate / 2
-    return await this.increaseDamage(-rate)
+    return await this.rollGrit(false, fullHealingRate)
   }
 
   async increaseGrit(increment) {
@@ -1318,7 +1330,7 @@ export class DemonlordActor extends Actor {
   async addDriver(actorData) {
     const uuid = actorData.uuid
     if(this.type.toLowerCase() == "vehicle" && actorData.type.toLowerCase() == "actor") {
-      let currentCrewArray = this.system.crew.split(",")
+      let currentCrewArray = this.system.crew.split(",").filter(o => o)
       let currentCargo = currentCrewArray.length
 
       if(this.system.cargo <= currentCargo) { 
@@ -1359,7 +1371,7 @@ export class DemonlordActor extends Actor {
         driverCount = 0
       }
       
-      let currentCrewArray = this.system.crew.split(",")
+      let currentCrewArray = this.system.crew.split(",").filter(o => o)
       currentCrewArray = currentCrewArray.filter(function(entry) { return /\S/.test(entry); });
 
       if(this.system.driver == actorData.uuid || currentCrewArray.includes(actorData.uuid)) {
@@ -1383,7 +1395,7 @@ export class DemonlordActor extends Actor {
   async removeCrew(event) {
     const uuid = event.target.closest("[data-actor-id]").dataset.actorId
 
-    let currentCrewArray = this.system.crew.split(",")
+    let currentCrewArray = this.system.crew.split(",").filter(o => o)
     currentCrewArray = currentCrewArray.filter(function(entry) { return /\S/.test(entry); });
 
     const index = currentCrewArray.indexOf(uuid);
@@ -1400,8 +1412,10 @@ export class DemonlordActor extends Actor {
       postDriveToChat()
     } else {
       let ba = this.getBanesForCurrentSpeed()
+
+      let agility = this.driver.getAttribute('agility')
       
-      await this.driver.rollAttribute('agility', ba)
+      await this.driver.rollAttribute(agility, ba)
     }
   }
 

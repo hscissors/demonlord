@@ -227,6 +227,9 @@ export default class DLCharacterSheet extends DLBaseActorSheet {
     // Speed Roll
     html.find('.speed-roll').click(async _ => await this.actor.rollSpeed())
 
+    // Fortune Roll
+    html.find('.fortune-roll').click(async _ => await this.actor.expendFortune())
+
     // Edit HealthBar, Insanity and Corruption
     html.find('.bar-edit').click(async () => {
       const actor = this.actor
